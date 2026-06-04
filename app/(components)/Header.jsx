@@ -9,8 +9,20 @@ import { FaCaretDown } from "react-icons/fa";
 
 const Header = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
+  const [blogDropdown, setBlogDropdown] = useState(false);
+  const [pagesDropdown, setPagesDropdown] = useState(false);
+  const [dashboardDropdown, setDashboardDropdown] = useState(false);
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
+  };
+  const handleBlog = () => {
+    setBlogDropdown(!blogDropdown);
+  };
+  const handlePages = () => {
+    setPagesDropdown(!pagesDropdown);
+  };
+  const handleDashboard = () => {
+    setDashboardDropdown(!dashboardDropdown);
   };
   return (
     <div className="fixed w-full top-0 left-0 z-50">
@@ -65,15 +77,57 @@ const Header = () => {
                   Destination
                 </Link>
               </li>
-              <li>
-                <Link href={"/"} className="flex gap-2 items-center">
+              <li
+                onMouseEnter={handleBlog}
+                onMouseLeave={() => setBlogDropdown(false)}
+                className="relative">
+                <div className="flex gap-2 items-center py-5 cursor-pointer">
                   Blog <FaCaretDown />
-                </Link>
+                </div>
+                {blogDropdown && (
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-[#051036] min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                    {[
+                      { name: "Blog list v1", href: "/" },
+                      { name: "Blog list v2", href: "/about" },
+                      { name: "Blog list v3", href: "/contact" },
+                    ].map((item) => (
+                      <li
+                        key={item.name}
+                        className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                        <Link href={item.href} onClick={() => setBlogDropdown(false)}>{item.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
-              <li>
-                <Link href={"/"} className="flex gap-2 items-center">
+              <li
+                onMouseEnter={handlePages}
+                onMouseLeave={() => setPagesDropdown(false)}
+                className="relative">
+                <div className="flex gap-2 items-center py-5 cursor-pointer">
                   Pages <FaCaretDown />
-                </Link>
+                </div>
+                {pagesDropdown && (
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-[#051036] min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                    {[
+                      { name: "404", href: "/" },
+                      { name: "About", href: "/about" },
+                      { name: "Become Expert", href: "/contact" },
+                      { name: "Help center", href: "/contact" },
+                      { name: "Login", href: "/contact" },
+                      { name: "Register", href: "/contact" },
+                      { name: "Terms", href: "/contact" },
+                      { name: "Invoice", href: "/contact" },
+                      { name: "UI elements", href: "/contact" },
+                    ].map((item) => (
+                      <li
+                        key={item.name}
+                        className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                        <Link href={item.href} onClick={() => setPagesDropdown(false)}>{item.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
               <li>
                 <Link href={"/"} className="flex gap-2 items-center">
