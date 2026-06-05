@@ -12,7 +12,7 @@ const Header = () => {
   const [blogDropdown, setBlogDropdown] = useState(false);
   const [pagesDropdown, setPagesDropdown] = useState(false);
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
   };
@@ -28,22 +28,22 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if(window.scrollY > 0) {
-      setIsScrolled(true)
-    }
-    else {
-      setIsScrolled(false)
-    }
-    }
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? "bg-[#051036]" : "bg-transparent"}`}>
+    <div
+      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? "bg-[#051036]" : "bg-transparent"}`}>
       <Container className={""}>
         <Flex className={""}>
           <Flex className={"gap-7"}>
@@ -79,7 +79,11 @@ const Header = () => {
                       <li
                         key={item.name}
                         className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
-                        <Link href={item.href} onClick={() => setHomeDropdown(false)}>{item.name}</Link>
+                        <Link
+                          href={item.href}
+                          onClick={() => setHomeDropdown(false)}>
+                          {item.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -112,7 +116,11 @@ const Header = () => {
                       <li
                         key={item.name}
                         className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
-                        <Link href={item.href} onClick={() => setBlogDropdown(false)}>{item.name}</Link>
+                        <Link
+                          href={item.href}
+                          onClick={() => setBlogDropdown(false)}>
+                          {item.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -141,7 +149,11 @@ const Header = () => {
                       <li
                         key={item.name}
                         className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
-                        <Link href={item.href} onClick={() => setPagesDropdown(false)}>{item.name}</Link>
+                        <Link
+                          href={item.href}
+                          onClick={() => setPagesDropdown(false)}>
+                          {item.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -170,7 +182,11 @@ const Header = () => {
                       <li
                         key={item.name}
                         className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
-                        <Link href={item.href} onClick={() => setDashboardDropdown(false)}>{item.name}</Link>
+                        <Link
+                          href={item.href}
+                          onClick={() => setDashboardDropdown(false)}>
+                          {item.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
