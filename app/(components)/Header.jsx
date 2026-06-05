@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "./Container";
 import Link from "next/link";
 import Flex from "./Flex";
@@ -12,6 +12,7 @@ const Header = () => {
   const [blogDropdown, setBlogDropdown] = useState(false);
   const [pagesDropdown, setPagesDropdown] = useState(false);
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
   };
@@ -24,8 +25,25 @@ const Header = () => {
   const handleDashboard = () => {
     setDashboardDropdown(!dashboardDropdown);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if(window.scrollY > 0) {
+      setIsScrolled(true)
+    }
+    else {
+      setIsScrolled(false)
+    }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
   return (
-    <div className="fixed w-full top-0 left-0 z-50">
+    <div className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? "bg-[#051036]" : "bg-transparent"}`}>
       <Container className={""}>
         <Flex className={""}>
           <Flex className={"gap-7"}>
@@ -124,6 +142,35 @@ const Header = () => {
                         key={item.name}
                         className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
                         <Link href={item.href} onClick={() => setPagesDropdown(false)}>{item.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+              <li
+                onMouseEnter={handleDashboard}
+                onMouseLeave={() => setDashboardDropdown(false)}
+                className="relative">
+                <div className="flex gap-2 items-center py-5 cursor-pointer">
+                  Dashboard <FaCaretDown />
+                </div>
+                {dashboardDropdown && (
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-[#051036] min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                    {[
+                      { name: "Dashboard", href: "/" },
+                      { name: "Booking", href: "/about" },
+                      { name: "Settings", href: "/contact" },
+                      { name: "Wishlist", href: "/contact" },
+                      { name: "Vendor dashboard", href: "/contact" },
+                      { name: "Vendor add hotel", href: "/contact" },
+                      { name: "Vendor booking", href: "/contact" },
+                      { name: "Vendor hotels", href: "/contact" },
+                      { name: "Vendor recovery", href: "/contact" },
+                    ].map((item) => (
+                      <li
+                        key={item.name}
+                        className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                        <Link href={item.href} onClick={() => setDashboardDropdown(false)}>{item.name}</Link>
                       </li>
                     ))}
                   </ul>
