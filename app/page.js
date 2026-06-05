@@ -32,7 +32,10 @@ export default function Home() {
                 These popular destinations have a lot to offer
               </p>
             </div>
-            <button className="py-3.5 px-7 bg-[#3554d10d] rounded-sm font-jost font-medium text-base transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] text-[#3554D1] cursor-pointer hover:bg-[#3554D1] hover:text-white">View All Destinations <RxArrowTopRight className={"ml-1 text-2xl inline"}/></button>
+            <button className="py-3.5 px-7 bg-[#3554d10d] rounded-sm font-jost font-medium text-base transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] text-[#3554D1] cursor-pointer hover:bg-[#3554D1] hover:text-white">
+              View All Destinations{" "}
+              <RxArrowTopRight className={"ml-1 text-2xl inline"} />
+            </button>
           </Flex>
         </Container>
       </section>
