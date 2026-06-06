@@ -2,6 +2,7 @@ import React from "react";
 import Container from "./Container";
 import Flex from "./Flex";
 import newsletter from "../../public/newsletter 1.svg";
+import { TfiWorld } from "react-icons/tfi";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -153,6 +154,9 @@ const Footer = () => {
                 <Link href={"/"} className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">Terms</Link>
                 <Link href={"/"} className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">Site Map</Link>
               </div>
+            </Flex>
+            <Flex>
+
             </Flex>
           </div>
         </Container>
