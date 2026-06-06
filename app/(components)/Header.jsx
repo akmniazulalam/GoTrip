@@ -14,6 +14,7 @@ const Header = () => {
   const [pagesDropdown, setPagesDropdown] = useState(false);
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currency, setCurrency] = useState(false);
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
   };
@@ -203,9 +204,13 @@ const Header = () => {
           <Flex className={"gap-x-4 items-center"}>
             <span
               href={"/"}
-              className="uppercase flex gap-2 items-center font-jost  text-[15px] cursor-pointer">
+              className="uppercase flex gap-2 items-center font-jost  text-[15px] cursor-pointer"
+              onClick={() => setCurrency(!currency)}>
               usd <FaCaretDown />
             </span>
+            {currency && (
+              <div className="w-267.5 bg-white rounded-sm px-7.5 py-5 top-1/2 left-1/2 -translate-1/2 fixed "></div>
+            )}
             <div className="w-0.5 h-5 bg-[#ffffff33]"></div>
             <div className="flex gap-x-2 items-center">
               <Image
@@ -215,8 +220,7 @@ const Header = () => {
                 width={20}
                 className="rounded-full h-5"
               />
-              <span
-                className="flex gap-2 items-center font-jost text-[15px] cursor-pointer">
+              <span className="flex gap-2 items-center font-jost text-[15px] cursor-pointer">
                 United Kingdom <FaCaretDown />
               </span>
               <Link href={"/"}>
