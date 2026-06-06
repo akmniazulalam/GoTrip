@@ -3,6 +3,8 @@ import Container from "./Container";
 import Flex from "./Flex";
 import newsletter from "../../public/newsletter 1.svg";
 import { TfiWorld } from "react-icons/tfi";
+import { LiaDollarSignSolid } from "react-icons/lia";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaApple, FaGooglePlay } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -139,25 +141,69 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="">
+            <div className="w-fit">
               <h3 className="mb-7.5 text-base font-medium font-jost text-black">
                 Mobile
               </h3>
+              <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 w-fit">
+                <FaApple className="text-[#051036] text-3xl" />
+                <div className="">
+                  <p className="text-sm text-[#697488] font-jost ">Download on the</p>
+                  <p className="text-[15px] font-medium font-jost text-[#051036]">Apple Store</p>
+                </div>
+              </div>
+              <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 ">
+                <FaGooglePlay  className="text-[#051036] text-2xl" />
+                <div className="">
+                  <p className="text-sm text-[#697488] font-jost ">Get in on</p>
+                  <p className="text-[15px] font-medium font-jost text-[#051036]">Google Play</p>
+                </div>
+              </div>
             </div>
           </div>
-          <hr />
+          <hr className="text-[#DDDDDD]" />
           <div className="flex py-5 justify-between">
             <Flex className={"gap-x-7"}>
-              <p className="font-jost text-base text-[#051036]">© 2022 GoTrip LLC All rights reserved.</p>
+              <p className="font-jost text-base text-[#051036]">
+                © 2022 GoTrip LLC All rights reserved.
+              </p>
               <div className="flex gap-3">
-                <Link href={"/"} className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">Privacy</Link>
-                <Link href={"/"} className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">Terms</Link>
-                <Link href={"/"} className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">Site Map</Link>
+                <Link
+                  href={"/"}
+                  className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">
+                  Privacy
+                </Link>
+                <Link
+                  href={"/"}
+                  className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">
+                  Terms
+                </Link>
+                <Link
+                  href={"/"}
+                  className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">
+                  Site Map
+                </Link>
               </div>
             </Flex>
             <Flex>
-              <TfiWorld className="text-[#051036] mr-3"/>
-              <p className="font-jost font-medium text-sm underline text-[#051036]">English (US)</p>
+              <button className="flex items-center cursor-pointer">
+                <TfiWorld className="text-[#051036] mr-3" />
+                <p className="font-jost font-medium text-sm underline text-[#051036]">
+                  English (US)
+                </p>
+              </button>
+              <button className="flex items-center cursor-pointer ml-3">
+                <LiaDollarSignSolid className="text-[#051036] mr-1 text-[18px]" />
+                <p className="font-jost font-medium text-sm underline text-[#051036]">
+                  USD
+                </p>
+              </button>
+              <Flex className={"gap-x-5 items-center ml-6"}>
+                <Link href={"www.facebook.com"}><FaFacebookF className="text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out"/></Link>
+                <Link href={"www.twitter.com"}><FaTwitter className="text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out"/></Link>
+                <Link href={"www.instagram.com"}><FaInstagram className="text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out"/></Link>
+                <Link href={"www.linkedin.com"}><FaLinkedinIn className="text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out"/></Link>
+              </Flex>
             </Flex>
           </div>
         </Container>
