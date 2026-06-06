@@ -146,7 +146,7 @@ const Footer = () => {
             </div>
           </div>
           <hr />
-          <div className="flex py-5">
+          <div className="flex py-5 justify-between">
             <Flex className={"gap-x-7"}>
               <p className="font-jost text-base text-[#051036]">© 2022 GoTrip LLC All rights reserved.</p>
               <div className="flex gap-3">
@@ -156,7 +156,8 @@ const Footer = () => {
               </div>
             </Flex>
             <Flex>
-
+              <TfiWorld className="text-[#051036] mr-3"/>
+              <p className="font-jost font-medium text-sm underline text-[#051036]">English (US)</p>
             </Flex>
           </div>
         </Container>
