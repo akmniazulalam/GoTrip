@@ -35,9 +35,9 @@ const Footer = () => {
           </div>
         </Container>
       </section>
-      <section className="py-15">
+      <section className="">
         <Container>
-          <div className="grid grid-cols-5">
+          <div className="grid grid-cols-5 py-15">
             <div className="">
               <h3 className="mb-7.5 text-base font-medium font-jost text-black">
                 Contact Us
@@ -144,7 +144,12 @@ const Footer = () => {
               </h3>
             </div>
           </div>
-          <hr className="mt-15" />
+          <hr />
+          <div className="flex py-5">
+            <Flex>
+              <p className="font-jost text-base text-[#051036]">© 2022 GoTrip LLC All rights reserved.</p>
+            </Flex>
+          </div>
         </Container>
       </section>
     </>
