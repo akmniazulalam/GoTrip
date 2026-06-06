@@ -6,6 +6,7 @@ import Flex from "./Flex";
 import Image from "next/image";
 import logo from "../../public/logo.png";
 import { FaCaretDown } from "react-icons/fa";
+import England from "../../public/lang.webp";
 
 const Header = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
@@ -44,7 +45,7 @@ const Header = () => {
   return (
     <div
       className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? "bg-[#051036]" : "bg-transparent"}`}>
-      <Container className={""}>
+      <Container className={"max-w-368"}>
         <Flex className={""}>
           <Flex className={"gap-7"}>
             <Image
@@ -54,7 +55,7 @@ const Header = () => {
               width={143}
               loading="eager"
             />
-            <ul className="flex justify-center items-center gap-x-5 font-jost font-medium text-base py-3">
+            <ul className="flex justify-center items-center gap-x-4 font-jost  text-[15px] py-3">
               <li
                 onMouseEnter={handleHome}
                 onMouseLeave={() => setHomeDropdown(false)}
@@ -96,7 +97,7 @@ const Header = () => {
               </li>
               <li>
                 <Link href={"/"} className="flex gap-2 items-center">
-                  Destination
+                  Destinations
                 </Link>
               </li>
               <li
@@ -198,6 +199,37 @@ const Header = () => {
                 </Link>
               </li>
             </ul>
+          </Flex>
+          <Flex className={"gap-x-4 items-center"}>
+            <span
+              href={"/"}
+              className="uppercase flex gap-2 items-center font-jost  text-[15px] cursor-pointer">
+              usd <FaCaretDown />
+            </span>
+            <div className="w-0.5 h-5 bg-[#ffffff33]"></div>
+            <div className="flex gap-x-2 items-center">
+              <Image
+                src={England}
+                alt="england"
+                height={20}
+                width={20}
+                className="rounded-full h-5"
+              />
+              <span
+                className="flex gap-2 items-center font-jost text-[15px] cursor-pointer">
+                United Kingdom <FaCaretDown />
+              </span>
+              <Link href={"/"}>
+                <button className="px-7.5 text-sm bg-white h-12.5 text-[#051036] font-jost rounded-sm mr-2.5 ml-2 cursor-pointer">
+                  Become An Expert
+                </button>
+              </Link>
+              <Link href={"/"}>
+                <button className="px-7.5 text-sm text-white border border-white hover:bg-white h-12.5 hover:text-[#051036] font-jost rounded-sm transition-all duration-300 ease-in-out cursor-pointer">
+                  Sign In / Register
+                </button>
+              </Link>
+            </div>
           </Flex>
         </Flex>
       </Container>
