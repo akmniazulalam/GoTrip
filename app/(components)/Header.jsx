@@ -6,6 +6,7 @@ import Flex from "./Flex";
 import Image from "next/image";
 import logo from "../../public/logo.png";
 import { FaCaretDown } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 import England from "../../public/lang.webp";
 
 const Header = () => {
@@ -263,10 +264,11 @@ const Header = () => {
                   <div
                     className="w-267.5 bg-white rounded-sm absolute left-1/2 -translate-x-1/2"
                     onClick={(e) => e.stopPropagation()}>
-                    <div className="px-7.5 py-5">
+                    <div className="px-7.5 py-5 flex justify-between items-center">
                       <p className="text-xl font-medium text-black font-jost">
                         Select your currency
                       </p>
+                      <RxCross2 className="text-primaryText text-2xl cursor-pointer" onClick={() => setCurrency(false)}/>
                     </div>
                     <hr className="text-[#ddd]" />
                     <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
