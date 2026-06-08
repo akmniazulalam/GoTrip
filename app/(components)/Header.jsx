@@ -82,6 +82,9 @@ const Header = () => {
     },
   ];
 
+  const [selectedCurrency, setSelectedCurrency] = useState(currencyItems[0]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const repeatedCurrencyGridItems = Array.from(
     { length: 20 },
     (_, index) => currencyItems[index % currencyItems.length],
@@ -245,37 +248,49 @@ const Header = () => {
             </ul>
           </Flex>
           <Flex className={"gap-x-4 items-center"}>
-            <span
-              href={"/"}
-              className="uppercase flex gap-2 items-center font-jost  text-[15px] cursor-pointer"
-              ref={currencyRef}
-              onClick={() => setCurrency(!currency)}>
-              usd <FaCaretDown />
-            </span>
-            {currency && (
-              <div className="w-267.5 bg-white rounded-sm top-1/2 left-1/2 -translate-1/2 fixed">
-                <div className="px-7.5 py-5">
-                  <p className="text-xl font-medium text-black font-jost">
-                    Select your currency
-                  </p>
-                </div>
-                <hr className="text-[#ddd]" />
-                <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
-                  {repeatedCurrencyGridItems.map((item, index) => (
-                    <div
-                      key={index}
-                      className="py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
-                      <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">
-                        {item.currencyName}
-                      </div>
-                      <span className="text-sm text-primaryText font-jost">
-                        {item.currency}
-                      </span>
+            <div ref={currencyRef}>
+              <span
+                href={"/"}
+                className="uppercase flex gap-2 items-center font-jost  text-[15px] cursor-pointer"
+                onClick={() => setCurrency(!currency)}>
+                {selectedCurrency.currency.split(" - ")[0]} <FaCaretDown />
+              </span>
+              {currency && (
+                <div className="top-0 left-0 w-full h-full pt-30 z-50 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] fixed">
+                  <div
+                    className="absolute top-0 left-0 h-full w-full z-0 bg-[#05103666]"
+                    onClick={() => setCurrency(false)}></div>
+                  <div
+                    className="w-267.5 bg-white rounded-sm absolute left-1/2 -translate-x-1/2"
+                    onClick={(e) => e.stopPropagation()}>
+                    <div className="px-7.5 py-5">
+                      <p className="text-xl font-medium text-black font-jost">
+                        Select your currency
+                      </p>
                     </div>
-                  ))}
+                    <hr className="text-[#ddd]" />
+                    <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
+                      {repeatedCurrencyGridItems.map((item, index) => (
+                        <div
+                          key={index}
+                          onClick={() => {
+                            setSelectedIndex(index);
+                            setSelectedCurrency(item);
+                          }}
+                          className={`py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] ${selectedIndex === index ? "bg-[#F5F5F5]" : ""}`}>
+                          <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">
+                            {item.currencyName}
+                          </div>
+                          <span className="text-sm text-primaryText font-jost">
+                            {item.currency}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
             <div className="w-0.5 h-5 bg-[#ffffff33]"></div>
             <div className="flex gap-x-2 items-center">
               <Image
