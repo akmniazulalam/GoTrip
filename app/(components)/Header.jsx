@@ -218,7 +218,8 @@ const Header = () => {
                 <hr className="text-[#ddd]"/>
                 <div className="p-7.5 grid grid-cols-5 gap-7.5">
                   <div className="py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
-                    <div className="text-primaryText text-[15px] font-medium font-jost mb-5 group-hover:text-[]:">United States dollar</div>
+                    <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">United States dollar</div>
+                    <span className="text-sm text-primaryText font-jost">USD - $</span>
                   </div>
                 </div>
               </div>
