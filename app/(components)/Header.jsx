@@ -209,7 +209,15 @@ const Header = () => {
               usd <FaCaretDown />
             </span>
             {currency && (
-              <div className="w-267.5 bg-white rounded-sm px-7.5 py-5 top-1/2 left-1/2 -translate-1/2 fixed "></div>
+              <div className="w-267.5 bg-white rounded-sm top-1/2 left-1/2 -translate-1/2 fixed">
+                <div className="px-7.5 py-5">
+                  <p className="text-xl font-medium text-black font-jost">
+                    Select your currency
+                  </p>
+                </div>
+                <hr className="text-[#ddd]"/>
+                <div className="p-7.5 grid grid-cols-5 gap-7.5"></div>
+              </div>
             )}
             <div className="w-0.5 h-5 bg-[#ffffff33]"></div>
             <div className="flex gap-x-2 items-center">
