@@ -7,7 +7,7 @@ import Flex from "./(components)/Flex";
 export default function Home() {
   return (
     <>
-      <secion className="bg-[url(../public/bg.webp)] bg-no-repeat bg-cover bg-center">
+      <section className="bg-[url(../public/bg.webp)] bg-no-repeat bg-cover bg-center">
         <div className="pt-80 pb-52.5 bg-linear-[270deg] from-[rgba(5,16,54,0.5)] to-[#051036d9]">
           <Container>
             <div className="text-center opacity-100 z-50">
@@ -69,7 +69,7 @@ export default function Home() {
             </div>
           </Container>
         </div>
-      </secion>
+      </section>
 
       <section className="pt-30 pb-15">
         <Container>
