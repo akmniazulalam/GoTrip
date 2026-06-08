@@ -29,7 +29,7 @@ export default function Home() {
                 ].map((item) => (
                   <button
                     key={item.name}
-                    className="font-medium font-jost text-[15px] text-white hover:text-[#3554D1] transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer relative before:absolute before:top-7 before:left-0 before:w-full before:bg-white before:h-0.5 before:content-['']">
+                    className="font-medium font-jost text-[15px] text-white hover:text-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer relative before:absolute before:top-7 before:left-0 before:w-full before:bg-white before:h-0.5 before:content-['']">
                     {item.name}
                   </button>
                 ))}
@@ -61,7 +61,7 @@ export default function Home() {
                     2 adults - 1 childeren - 1 room
                   </span>
                 </div>
-                <button className="px-9 bg-[#3554D1] text-white font-medium text-sm rounded-full cursor-pointer flex items-center gap-x-2 ml-auto hover:bg-[#051036] transition-all duration-300 ease-in-out">
+                <button className="px-9 bg-hoverText text-white font-medium text-sm rounded-full cursor-pointer flex items-center gap-x-2 ml-auto hover:bg-primaryText transition-all duration-300 ease-in-out">
                   <FiSearch className="text-white text-xl" />
                   Search
                 </button>
@@ -75,14 +75,14 @@ export default function Home() {
         <Container>
           <Flex>
             <div>
-              <h3 className="font-jost text-3xl text-[#051036] font-semibold">
+              <h3 className="font-jost text-3xl text-primaryText font-semibold">
                 Popular Destinations
               </h3>
               <p className="font-jost text-[#697488] text-base leading-7.5 mt-2">
                 These popular destinations have a lot to offer
               </p>
             </div>
-            <button className="py-3.5 px-7 bg-[#3554d10d] rounded-sm font-jost font-medium text-base transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] text-[#3554D1] cursor-pointer hover:bg-[#3554D1] hover:text-white">
+            <button className="py-3.5 px-7 bg-[#3554d10d] rounded-sm font-jost font-medium text-base transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] text-hoverText cursor-pointer hover:bg-hoverText hover:text-white">
               View All Destinations{" "}
               <RxArrowTopRight className={"ml-1 text-2xl inline"} />
             </button>

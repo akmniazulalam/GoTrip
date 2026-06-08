@@ -31,7 +31,7 @@ const Footer = () => {
                 placeholder="Your Email"
                 className="w-102.5 h-15 py-4 px-5 rounded-sm font-jost text-base bg-white text-black focus:outline-0"
               />
-              <button className="py-3.5 px-7.5 rounded-sm text-base font-jost font-medium cursor-pointer h-15 bg-[#3554D1] text-white">
+              <button className="py-3.5 px-7.5 rounded-sm text-base font-jost font-medium cursor-pointer h-15 bg-hoverText text-white">
                 Subscribe
               </button>
             </Flex>
@@ -51,7 +51,7 @@ const Footer = () => {
                 </p>
                 <Link
                   href={"tel:+(1) 123 456 7890"}
-                  className="text-[#3554D1] font-medium font-jost text-[18px]">
+                  className="text-hoverText font-medium font-jost text-[18px]">
                   +(1) 123 456 7890
                 </Link>
               </div>
@@ -61,7 +61,7 @@ const Footer = () => {
                 </p>
                 <Link
                   href={"mailto:hi@gotrip.com"}
-                  className="text-[#3554D1] font-medium font-jost text-[18px]">
+                  className="text-hoverText font-medium font-jost text-[18px]">
                   hi@gotrip.com
                 </Link>
               </div>
@@ -146,17 +146,17 @@ const Footer = () => {
                 Mobile
               </h3>
               <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 w-fit">
-                <FaApple className="text-[#051036] text-3xl" />
+                <FaApple className="text-primaryText text-3xl" />
                 <div className="">
                   <p className="text-sm text-[#697488] font-jost ">Download on the</p>
-                  <p className="text-[15px] font-medium font-jost text-[#051036]">Apple Store</p>
+                  <p className="text-[15px] font-medium font-jost text-primaryText">Apple Store</p>
                 </div>
               </div>
               <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 ">
-                <FaGooglePlay  className="text-[#051036] text-2xl" />
+                <FaGooglePlay  className="text-primaryText text-2xl" />
                 <div className="">
                   <p className="text-sm text-[#697488] font-jost ">Get in on</p>
-                  <p className="text-[15px] font-medium font-jost text-[#051036]">Google Play</p>
+                  <p className="text-[15px] font-medium font-jost text-primaryText">Google Play</p>
                 </div>
               </div>
             </div>
@@ -164,45 +164,45 @@ const Footer = () => {
           <hr className="text-[#DDDDDD]" />
           <div className="flex py-5 justify-between">
             <Flex className={"gap-x-7"}>
-              <p className="font-jost text-base text-[#051036]">
+              <p className="font-jost text-base text-primaryText">
                 © 2022 GoTrip LLC All rights reserved.
               </p>
               <div className="flex gap-3">
                 <Link
                   href={"/"}
-                  className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">
+                  className="font-jost text-base text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out">
                   Privacy
                 </Link>
                 <Link
                   href={"/"}
-                  className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">
+                  className="font-jost text-base text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out">
                   Terms
                 </Link>
                 <Link
                   href={"/"}
-                  className="font-jost text-base text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out">
+                  className="font-jost text-base text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out">
                   Site Map
                 </Link>
               </div>
             </Flex>
             <Flex>
               <button className="flex items-center cursor-pointer">
-                <TfiWorld className="text-[#051036] mr-3" />
-                <p className="font-jost font-medium text-sm underline text-[#051036]">
+                <TfiWorld className="text-primaryText mr-3" />
+                <p className="font-jost font-medium text-sm underline text-primaryText">
                   English (US)
                 </p>
               </button>
               <button className="flex items-center cursor-pointer ml-3">
-                <LiaDollarSignSolid className="text-[#051036] mr-1 text-[18px]" />
-                <p className="font-jost font-medium text-sm underline text-[#051036]">
+                <LiaDollarSignSolid className="text-primaryText mr-1 text-[18px]" />
+                <p className="font-jost font-medium text-sm underline text-primaryText">
                   USD
                 </p>
               </button>
               <Flex className={"gap-x-5 items-center ml-6"}>
-                <Link href={"www.facebook.com"}><FaFacebookF className="text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out"/></Link>
-                <Link href={"www.twitter.com"}><FaTwitter className="text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out"/></Link>
-                <Link href={"www.instagram.com"}><FaInstagram className="text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out"/></Link>
-                <Link href={"www.linkedin.com"}><FaLinkedinIn className="text-[#051036] hover:text-[#3554D1] transition-all duration-300 ease-in-out"/></Link>
+                <Link href={"www.facebook.com"}><FaFacebookF className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
+                <Link href={"www.twitter.com"}><FaTwitter className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
+                <Link href={"www.instagram.com"}><FaInstagram className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
+                <Link href={"www.linkedin.com"}><FaLinkedinIn className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
               </Flex>
             </Flex>
           </div>

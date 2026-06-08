@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Container from "./Container";
 import Link from "next/link";
 import Flex from "./Flex";
@@ -15,6 +15,21 @@ const Header = () => {
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [currency, setCurrency] = useState(false);
+  const currencyRef = useRef(null);
+
+  useEffect(() => {
+    const clickOutside = (e) => {
+      if (currencyRef.current && !currencyRef.current.contains(e.target)) {
+        setCurrency(false);
+      }
+    };
+
+    document.addEventListener("mousedown", clickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", clickOutside);
+    };
+  }, []);
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
   };
@@ -43,9 +58,37 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const currencyItems = [
+    {
+      currencyName: "United States dollar",
+      currency: "USD - $",
+    },
+    {
+      currencyName: "Australian dollar",
+      currency: "AUD - $",
+    },
+    {
+      currencyName: "Brazilian real",
+      currency: "BRL - R$",
+    },
+    {
+      currencyName: "Bulgarian lev",
+      currency: "BGN - лв.",
+    },
+    {
+      currencyName: "Canadian dollar",
+      currency: "CAD - $",
+    },
+  ];
+
+  const repeatedCurrencyGridItems = Array.from(
+    { length: 20 },
+    (_, index) => currencyItems[index % currencyItems.length],
+  );
   return (
     <div
-      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? "bg-[#051036]" : "bg-transparent"}`}>
+      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? "bg-primaryText" : "bg-transparent"}`}>
       <Container className={"max-w-368"}>
         <Flex className={""}>
           <Flex className={"gap-7"}>
@@ -65,7 +108,7 @@ const Header = () => {
                   Home <FaCaretDown />
                 </div>
                 {homeDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-[#051036] min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
                     {[
                       { name: "Home 1", href: "/" },
                       { name: "Home 2", href: "/about" },
@@ -80,7 +123,7 @@ const Header = () => {
                     ].map((item) => (
                       <li
                         key={item.name}
-                        className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
                         <Link
                           href={item.href}
                           onClick={() => setHomeDropdown(false)}>
@@ -109,7 +152,7 @@ const Header = () => {
                   Blog <FaCaretDown />
                 </div>
                 {blogDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-[#051036] min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
                     {[
                       { name: "Blog list v1", href: "/" },
                       { name: "Blog list v2", href: "/about" },
@@ -117,7 +160,7 @@ const Header = () => {
                     ].map((item) => (
                       <li
                         key={item.name}
-                        className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
                         <Link
                           href={item.href}
                           onClick={() => setBlogDropdown(false)}>
@@ -136,7 +179,7 @@ const Header = () => {
                   Pages <FaCaretDown />
                 </div>
                 {pagesDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-[#051036] min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
                     {[
                       { name: "404", href: "/" },
                       { name: "About", href: "/about" },
@@ -150,7 +193,7 @@ const Header = () => {
                     ].map((item) => (
                       <li
                         key={item.name}
-                        className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
                         <Link
                           href={item.href}
                           onClick={() => setPagesDropdown(false)}>
@@ -169,7 +212,7 @@ const Header = () => {
                   Dashboard <FaCaretDown />
                 </div>
                 {dashboardDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-[#051036] min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
                     {[
                       { name: "Dashboard", href: "/" },
                       { name: "Booking", href: "/about" },
@@ -183,7 +226,7 @@ const Header = () => {
                     ].map((item) => (
                       <li
                         key={item.name}
-                        className="hover:text-[#3554D1] hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
                         <Link
                           href={item.href}
                           onClick={() => setDashboardDropdown(false)}>
@@ -205,6 +248,7 @@ const Header = () => {
             <span
               href={"/"}
               className="uppercase flex gap-2 items-center font-jost  text-[15px] cursor-pointer"
+              ref={currencyRef}
               onClick={() => setCurrency(!currency)}>
               usd <FaCaretDown />
             </span>
@@ -215,13 +259,19 @@ const Header = () => {
                     Select your currency
                   </p>
                 </div>
-                <hr className="text-[#ddd]"/>
-                <div className="p-7.5 grid grid-cols-5 gap-7.5">
-                  {[].map((item) => (
-                    <div className="py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
-                    <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">United States dollar</div>
-                    <span className="text-sm text-primaryText font-jost">USD - $</span>
-                  </div>
+                <hr className="text-[#ddd]" />
+                <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
+                  {repeatedCurrencyGridItems.map((item, index) => (
+                    <div
+                      key={index}
+                      className="py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
+                      <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">
+                        {item.currencyName}
+                      </div>
+                      <span className="text-sm text-primaryText font-jost">
+                        {item.currency}
+                      </span>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -239,12 +289,12 @@ const Header = () => {
                 United Kingdom <FaCaretDown />
               </span>
               <Link href={"/"}>
-                <button className="px-7.5 text-sm bg-white h-12.5 text-[#051036] font-jost rounded-sm mr-2.5 ml-2 cursor-pointer">
+                <button className="px-7.5 text-sm bg-white h-12.5 text-primaryText font-jost rounded-sm mr-2.5 ml-2 cursor-pointer">
                   Become An Expert
                 </button>
               </Link>
               <Link href={"/"}>
-                <button className="px-7.5 text-sm text-white border border-white hover:bg-white h-12.5 hover:text-[#051036] font-jost rounded-sm transition-all duration-300 ease-in-out cursor-pointer">
+                <button className="px-7.5 text-sm text-white border border-white hover:bg-white h-12.5 hover:text-primaryText font-jost rounded-sm transition-all duration-300 ease-in-out cursor-pointer">
                   Sign In / Register
                 </button>
               </Link>
