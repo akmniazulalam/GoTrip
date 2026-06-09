@@ -1,10 +1,13 @@
+"use client";
 import Image from "next/image";
 import { RxArrowTopRight } from "react-icons/rx";
 import Container from "./(components)/Container";
 import { FiSearch } from "react-icons/fi";
 import Flex from "./(components)/Flex";
+import { useState } from "react";
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("Hotel");
   return (
     <>
       <section className="bg-[url(../public/bg.webp)] bg-no-repeat bg-cover bg-center">
@@ -29,7 +32,12 @@ export default function Home() {
                 ].map((item) => (
                   <button
                     key={item.name}
-                    className="font-medium font-jost text-[15px] text-white hover:text-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer relative before:absolute before:top-7 before:left-0 before:w-full before:bg-white before:h-0.5 before:content-['']">
+                    onClick={() => setActiveTab(item.name)}
+                    className={`font-medium font-jost text-[15px] text-white hover:text-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer relative before:absolute before:top-7 before:left-0 before:w-full before:bg-white before:h-0.5 before:content-[''] ${
+                      activeTab === item.name
+                        ? "text-hoverText before:scale-x-100"
+                        : "text-white before:scale-x-0"
+                    }`}>
                     {item.name}
                   </button>
                 ))}
@@ -37,7 +45,7 @@ export default function Home() {
               <div className="mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%]">
                 <div className="px-7 py-1.5 w-fit text-left">
                   <h4 className="text-[15px] font-jost font-medium text-black">
-                    Location
+                    Location ({activeTab})
                   </h4>
                   <input
                     placeholder="Where are you going?"
@@ -87,6 +95,32 @@ export default function Home() {
               <RxArrowTopRight className={"ml-1 text-2xl inline"} />
             </button>
           </Flex>
+
+          <div className="grid grid-cols-2 gap-x-7.5 mt-7.5">
+            <div className="bg-[url(../public/1.webp)] bg-no-repeat bg-center bg-cover rounded-sm">
+              <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm">
+                <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5 w-1/2">
+                  Things to do on your trip
+                </h4>
+                <button className="bg-white rounded-sm font-jost font-medium text-primaryText py-3 px-12 cursor-pointer">
+                  Experiences
+                </button>
+              </div>
+            </div>
+            <div className="bg-[url(../public/2.webp)] bg-no-repeat bg-center bg-cover rounded-sm">
+              <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm">
+                <h6 className="font-jost font-medium text-[15px] text-white mb-3">
+                  Enjoy Summer Deals
+                </h6>
+                <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5">
+                  Up to 70% Discount!
+                </h4>
+                <button className="bg-white rounded-sm font-jost font-medium text-primaryText py-3 px-12 cursor-pointer">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
         </Container>
       </section>
     </>
