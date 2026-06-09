@@ -5,6 +5,9 @@ import Container from "./(components)/Container";
 import { FiSearch } from "react-icons/fi";
 import Flex from "./(components)/Flex";
 import { useState } from "react";
+import featureOne from "../public/1.svg";
+import featureTwo from "../public/2.svg";
+import featureThree from "../public/3.svg";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Hotel");
@@ -118,6 +121,46 @@ export default function Home() {
                 <button className="bg-white rounded-sm font-jost font-medium text-primaryText py-3 px-12 cursor-pointer">
                   Learn More
                 </button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="pt-15 pb-30">
+        <Container>
+          <div className="grid grid-cols-3">
+            <div className="text-center">
+              <Image src={featureOne} alt="featureOne" height={70} width={70} className="m-auto" />
+              <div className="mt-7.5">
+                <h4 className="text-[18px] font-jost font-medium text-primaryText">
+                  Best Price Guarantee
+                </h4>
+                <p className="font-jost text-[15px] text-[#697488] w-[70%] leading-6.5 mx-auto mt-2.5">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+            </div>
+            <div className="text-center">
+              <Image src={featureTwo} alt="featureTwo" height={70} width={70} className="m-auto" />
+              <div className="mt-7.5">
+                <h4 className="text-[18px] font-jost font-medium text-primaryText">
+                  Easy & Quick Booking
+                </h4>
+                <p className="font-jost text-[15px] text-[#697488] w-[70%] leading-6.5 mx-auto mt-2.5">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+              </div>
+            </div>
+            <div className="text-center">
+              <Image src={featureThree} alt="featureThree" height={70} width={70} className="m-auto" />
+              <div className="mt-7.5">
+                <h4 className="text-[18px] font-jost font-medium text-primaryText">
+                  Customer Care 24/7
+                </h4>
+                <p className="font-jost text-[15px] text-[#697488] w-[70%] leading-6.5 mx-auto mt-2.5">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
               </div>
             </div>
           </div>
