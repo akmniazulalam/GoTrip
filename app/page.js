@@ -8,6 +8,8 @@ import { useState } from "react";
 import featureOne from "../public/1.svg";
 import featureTwo from "../public/2.svg";
 import featureThree from "../public/3.svg";
+import reviewer from "../public/1 (1).webp";
+import { FaStar } from "react-icons/fa";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Hotel");
@@ -131,7 +133,13 @@ export default function Home() {
         <Container>
           <div className="grid grid-cols-3">
             <div className="text-center">
-              <Image src={featureOne} alt="featureOne" height={70} width={70} className="m-auto" />
+              <Image
+                src={featureOne}
+                alt="featureOne"
+                height={70}
+                width={70}
+                className="m-auto"
+              />
               <div className="mt-7.5">
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Best Price Guarantee
@@ -142,7 +150,13 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
-              <Image src={featureTwo} alt="featureTwo" height={70} width={70} className="m-auto" />
+              <Image
+                src={featureTwo}
+                alt="featureTwo"
+                height={70}
+                width={70}
+                className="m-auto"
+              />
               <div className="mt-7.5">
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Easy & Quick Booking
@@ -153,7 +167,13 @@ export default function Home() {
               </div>
             </div>
             <div className="text-center">
-              <Image src={featureThree} alt="featureThree" height={70} width={70} className="m-auto" />
+              <Image
+                src={featureThree}
+                alt="featureThree"
+                height={70}
+                width={70}
+                className="m-auto"
+              />
               <div className="mt-7.5">
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Customer Care 24/7
@@ -162,6 +182,43 @@ export default function Home() {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="bg-[#E5F0FD] py-30">
+        <Container>
+          <div className="flex justify-between">
+            <div className="py-5 px-4 w-[40%]">
+              <h2 className="font-jost font-semibold text-3xl text-primaryText w-[70%] leading-11">What our customers are saying us?</h2>
+              <p className="text-base leading-7.5 text-[#697488] mt-5 font-jost">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo.</p>
+              <div className="pt-15 grid grid-cols-[42%_40%]">
+                <div>
+                  <p className="text-3xl font-semibold font-jost text-primaryText">13m+</p>
+                  <span className="font-jost text-base leading-7.5 text-[#697488]">Happy People</span>
+                </div>
+                <div>
+                  <p className="text-3xl font-semibold font-jost text-primaryText">4.88</p>
+                  <span className="font-jost text-base leading-7.5 text-[#697488]">Overall rating</span>
+                  <div className={"flex gap-x-1 items-center mt-1.5"}>
+                    <FaStar className="text-hoverText text-[10px]"/>
+                    <FaStar className="text-hoverText text-[10px]"/>
+                    <FaStar className="text-hoverText text-[10px]"/>
+                    <FaStar className="text-hoverText text-[10px]"/>
+                    <FaStar className="text-hoverText text-[10px]"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-[50%] py-5">
+              <div className="flex gap-x-7.5 items-center">
+                <Image src={reviewer} alt="reviewer" height={80} width={80} />
+                <div>
+                  <p className="text-base font-medium font-jost text-primaryText leading-6.5">Annette Black</p>
+                  <span className="text-[15px] text-[#697488] font-jost">UX / UI Designer</span>
+                </div>
+              </div>
+              <p className="mt-8 w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">The place is in a great location in Gumbet. The area is safe and beautiful. The apartment was comfortable and the host was kind and responsive to our requests.</p>
             </div>
           </div>
         </Container>
