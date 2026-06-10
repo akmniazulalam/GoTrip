@@ -11,7 +11,7 @@ import featureThree from "../public/3.svg";
 import reviewer from "../public/1 (1).webp";
 import BlogOne from "../public/1 (2).webp";
 import BlogTwo from "../public/2 (1).webp";
-import BlogThree from "../public/3,webp";
+import BlogThree from "../public/3.webp";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 
@@ -261,14 +261,24 @@ export default function Home() {
             </p>
             <div className="pt-10 grid grid-cols-3 gap-7.5">
               <Link href={"/"}>
-                <div>
-                  <Image
+                <div className="px-3 group">
+                  <div className="overflow-hidden rounded-lg">
+                    <Image
                     src={BlogOne}
                     alt="BlogOne"
                     height={308}
                     width={410}
-                    className="rounded-lg"
+                    className="w-full rounded-lg group-hover:scale-125 transition-transform duration-300 ease-in-out object-cover"
                   />
+                  </div>
+                  <div className="mt-5 text-left">
+                    <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
+                      10 European ski destinations you should visit this winter
+                    </h4>
+                    <p className="mt-1.5 font-jost text-[#697488] text-[15px] leading-6.5">
+                      April 06, 2022
+                    </p>
+                  </div>
                 </div>
               </Link>
             </div>
