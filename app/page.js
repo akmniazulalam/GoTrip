@@ -261,15 +261,15 @@ export default function Home() {
             </p>
             <div className="pt-10 grid grid-cols-3 gap-7.5">
               <Link href={"/"}>
-                <div className="px-3 group">
+                <div className="group">
                   <div className="overflow-hidden rounded-lg">
                     <Image
-                    src={BlogOne}
-                    alt="BlogOne"
-                    height={308}
-                    width={410}
-                    className="w-full rounded-lg group-hover:scale-125 transition-transform duration-300 ease-in-out object-cover"
-                  />
+                      src={BlogOne}
+                      alt="BlogOne"
+                      height={308}
+                      width={410}
+                      className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
+                    />
                   </div>
                   <div className="mt-5 text-left">
                     <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
@@ -282,19 +282,20 @@ export default function Home() {
                 </div>
               </Link>
               <Link href={"/"}>
-                <div className="px-3 group">
+                <div className="group">
                   <div className="overflow-hidden rounded-lg">
                     <Image
-                    src={BlogTwo}
-                    alt="BlogOne"
-                    height={308}
-                    width={410}
-                    className="w-full rounded-lg group-hover:scale-125 transition-transform duration-300 ease-in-out object-cover"
-                  />
+                      src={BlogTwo}
+                      alt="BlogOne"
+                      height={308}
+                      width={410}
+                      className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
+                    />
                   </div>
                   <div className="mt-5 text-left">
                     <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
-                      Where can I go? 5 amazing countries that are open right now
+                      Booking travel during Corona: good advice in an uncertain
+                      time
                     </h4>
                     <p className="mt-1.5 font-jost text-[#697488] text-[15px] leading-6.5">
                       April 06, 2022
@@ -303,19 +304,20 @@ export default function Home() {
                 </div>
               </Link>
               <Link href={"/"}>
-                <div className="px-3 group">
+                <div className="group">
                   <div className="overflow-hidden rounded-lg">
                     <Image
-                    src={BlogThree}
-                    alt="BlogOne"
-                    height={308}
-                    width={410}
-                    className="w-full rounded-lg group-hover:scale-125 transition-transform duration-300 ease-in-out object-cover"
-                  />
+                      src={BlogThree}
+                      alt="BlogOne"
+                      height={308}
+                      width={410}
+                      className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
+                    />
                   </div>
                   <div className="mt-5 text-left">
                     <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
-                     Booking travel during Corona: good advice in an uncertain time
+                      Where can I go? 5 amazing countries that are open right
+                      now
                     </h4>
                     <p className="mt-1.5 font-jost text-[#697488] text-[15px] leading-6.5">
                       April 06, 2022
