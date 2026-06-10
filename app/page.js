@@ -17,6 +17,30 @@ import Link from "next/link";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Hotel");
+  const [openTab, setOpenTab] = useState(false);
+
+  const tabs = [
+    { city: "Hawai", properties: "12,683 properties" },
+    { city: "Istanbul", properties: "12,683 properties" },
+    { city: "San Diego", properties: "12,683 properties" },
+    { city: "Phuket", properties: "12,683 properties" },
+    { city: "Reykjavik", properties: "12,683 properties" },
+    { city: "Santorini", properties: "12,683 properties" },
+    { city: "Los Angeles", properties: "12,683 properties" },
+    { city: "İbiza", properties: "12,683 properties" },
+    { city: "Boston", properties: "12,683 properties" },
+    { city: "Florence", properties: "12,683 properties" },
+    { city: "Mykonos", properties: "12,683 properties" },
+    { city: "London", properties: "12,683 properties" },
+    { city: "Paris", properties: "12,683 properties" },
+    { city: "Dubai", properties: "12,683 properties" },
+    { city: "Krakow", properties: "12,683 properties" },
+    { city: "Jersey", properties: "12,683 properties" },
+    { city: "Prag", properties: "12,683 properties" },
+    { city: "Amsterdam", properties: "12,683 properties" },
+    { city: "Rome", properties: "12,683 properties" },
+    { city: "Miami", properties: "12,683 properties" },
+  ];
   return (
     <>
       <section className="bg-[url(../public/bg.webp)] bg-no-repeat bg-cover bg-center">
@@ -95,7 +119,7 @@ export default function Home() {
               <h3 className="font-jost text-3xl text-primaryText font-semibold">
                 Popular Destinations
               </h3>
-              <p className="font-jost text-[#697488] text-base leading-7.5 mt-2">
+              <p className="font-jost text-pText text-base leading-7.5 mt-2">
                 These popular destinations have a lot to offer
               </p>
             </div>
@@ -148,7 +172,7 @@ export default function Home() {
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Best Price Guarantee
                 </h4>
-                <p className="font-jost text-[15px] text-[#697488] w-[70%] leading-6.5 mx-auto mt-2.5">
+                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </div>
@@ -165,7 +189,7 @@ export default function Home() {
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Easy & Quick Booking
                 </h4>
-                <p className="font-jost text-[15px] text-[#697488] w-[70%] leading-6.5 mx-auto mt-2.5">
+                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </div>
@@ -182,7 +206,7 @@ export default function Home() {
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Customer Care 24/7
                 </h4>
-                <p className="font-jost text-[15px] text-[#697488] w-[70%] leading-6.5 mx-auto mt-2.5">
+                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </div>
@@ -197,7 +221,7 @@ export default function Home() {
               <h2 className="font-jost font-semibold text-3xl text-primaryText w-[70%] leading-11">
                 What our customers are saying us?
               </h2>
-              <p className="text-base leading-7.5 text-[#697488] mt-5 font-jost">
+              <p className="text-base leading-7.5 text-pText mt-5 font-jost">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
                 Aenean eu enim justo.
@@ -207,7 +231,7 @@ export default function Home() {
                   <p className="text-3xl font-semibold font-jost text-primaryText">
                     13m+
                   </p>
-                  <span className="font-jost text-base leading-7.5 text-[#697488]">
+                  <span className="font-jost text-base leading-7.5 text-pText">
                     Happy People
                   </span>
                 </div>
@@ -215,7 +239,7 @@ export default function Home() {
                   <p className="text-3xl font-semibold font-jost text-primaryText">
                     4.88
                   </p>
-                  <span className="font-jost text-base leading-7.5 text-[#697488]">
+                  <span className="font-jost text-base leading-7.5 text-pText">
                     Overall rating
                   </span>
                   <div className={"flex gap-x-1 items-center mt-1.5"}>
@@ -235,7 +259,7 @@ export default function Home() {
                   <p className="text-base font-medium font-jost text-primaryText leading-6.5">
                     Annette Black
                   </p>
-                  <span className="text-[15px] text-[#697488] font-jost">
+                  <span className="text-[15px] text-pText font-jost">
                     UX / UI Designer
                   </span>
                 </div>
@@ -256,7 +280,7 @@ export default function Home() {
             <h2 className="font-jost font-semibold text-3xl text-primaryText leading-11">
               Get inspiration for your next trip
             </h2>
-            <p className="text-base leading-7.5 text-[#697488] mt-1 font-jost">
+            <p className="text-base leading-7.5 text-pText mt-1 font-jost">
               Interdum et malesuada fames
             </p>
             <div className="pt-10 grid grid-cols-3 gap-7.5">
@@ -275,7 +299,7 @@ export default function Home() {
                     <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
                       10 European ski destinations you should visit this winter
                     </h4>
-                    <p className="mt-1.5 font-jost text-[#697488] text-[15px] leading-6.5">
+                    <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
                       April 06, 2022
                     </p>
                   </div>
@@ -297,7 +321,7 @@ export default function Home() {
                       Booking travel during Corona: good advice in an uncertain
                       time
                     </h4>
-                    <p className="mt-1.5 font-jost text-[#697488] text-[15px] leading-6.5">
+                    <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
                       April 06, 2022
                     </p>
                   </div>
@@ -319,13 +343,48 @@ export default function Home() {
                       Where can I go? 5 amazing countries that are open right
                       now
                     </h4>
-                    <p className="mt-1.5 font-jost text-[#697488] text-[15px] leading-6.5">
+                    <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
                       April 06, 2022
                     </p>
                   </div>
                 </div>
               </Link>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="pt-15 pb-30">
+        <Container>
+          <h3 className="font-jost font-semibold text-3xl text-primaryText leading-11">
+            Destinations we love
+          </h3>
+          <p className="text-base leading-7.5 text-pText mt-1 font-jost">
+            Interdum et malesuada fames ac ante ipsum
+          </p>
+          <div className="pt-10">
+            <div className="flex gap-x-5 mb-7.5 items-center">
+              <button
+                className={`py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}>
+                Regions
+              </button>
+              <button
+                className={`py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}>
+                Cities
+              </button>
+              <button
+                className={`py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}>
+                Place of interest
+              </button>
+            </div>
+          </div>
+          <div className="grid grid-rows-4 grid-cols-5 gap-5">
+            {tabs.map((item) => (
+              <Link href={"/"} className="group">
+                <p className="text-[15px] font-jost font-medium text-primaryText group-hover:text-hoverText transition-all duration-300 ease-in-out">{item.city}</p>
+                <span></span>
+              </Link>
+            ))}
           </div>
         </Container>
       </section>

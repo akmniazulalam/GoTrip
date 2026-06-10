@@ -148,14 +148,14 @@ const Footer = () => {
               <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 w-fit">
                 <FaApple className="text-primaryText text-3xl" />
                 <div className="">
-                  <p className="text-sm text-[#697488] font-jost ">Download on the</p>
+                  <p className="text-sm text-pText font-jost ">Download on the</p>
                   <p className="text-[15px] font-medium font-jost text-primaryText">Apple Store</p>
                 </div>
               </div>
               <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 ">
                 <FaGooglePlay  className="text-primaryText text-2xl" />
                 <div className="">
-                  <p className="text-sm text-[#697488] font-jost ">Get in on</p>
+                  <p className="text-sm text-pText font-jost ">Get in on</p>
                   <p className="text-[15px] font-medium font-jost text-primaryText">Google Play</p>
                 </div>
               </div>
