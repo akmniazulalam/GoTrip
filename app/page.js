@@ -4,7 +4,7 @@ import { RxArrowTopRight } from "react-icons/rx";
 import Container from "./(components)/Container";
 import { FiSearch } from "react-icons/fi";
 import Flex from "./(components)/Flex";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import featureOne from "../public/1.svg";
 import featureTwo from "../public/2.svg";
 import featureThree from "../public/3.svg";
@@ -17,30 +17,66 @@ import Link from "next/link";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Hotel");
-  const [openTab, setOpenTab] = useState(false);
+  const [openTab, setOpenTab] = useState("all");
 
   const tabs = [
-    { city: "Hawai", properties: "12,683 properties" },
-    { city: "Istanbul", properties: "12,683 properties" },
-    { city: "San Diego", properties: "12,683 properties" },
-    { city: "Phuket", properties: "12,683 properties" },
-    { city: "Reykjavik", properties: "12,683 properties" },
-    { city: "Santorini", properties: "12,683 properties" },
-    { city: "Los Angeles", properties: "12,683 properties" },
-    { city: "İbiza", properties: "12,683 properties" },
-    { city: "Boston", properties: "12,683 properties" },
-    { city: "Florence", properties: "12,683 properties" },
-    { city: "Mykonos", properties: "12,683 properties" },
-    { city: "London", properties: "12,683 properties" },
-    { city: "Paris", properties: "12,683 properties" },
-    { city: "Dubai", properties: "12,683 properties" },
-    { city: "Krakow", properties: "12,683 properties" },
-    { city: "Jersey", properties: "12,683 properties" },
-    { city: "Prag", properties: "12,683 properties" },
-    { city: "Amsterdam", properties: "12,683 properties" },
-    { city: "Rome", properties: "12,683 properties" },
-    { city: "Miami", properties: "12,683 properties" },
+    { city: "Hawai", properties: "12,683 properties", category: "regions" },
+    { city: "Istanbul", properties: "12,683 properties", category: "places" },
+    { city: "San Diego", properties: "12,683 properties", category: "cities" },
+    { city: "Phuket", properties: "12,683 properties", category: "regions" },
+    { city: "Reykjavik", properties: "12,683 properties", category: "cities" },
+    { city: "Santorini", properties: "12,683 properties", category: "cities" },
+    {
+      city: "Los Angeles",
+      properties: "12,683 properties",
+      category: "places",
+    },
+    { city: "İbiza", properties: "12,683 properties", category: "places" },
+    { city: "Boston", properties: "12,683 properties", category: "cities" },
+    { city: "Florence", properties: "12,683 properties", category: "regions" },
+    { city: "Mykonos", properties: "12,683 properties", category: "places" },
+    { city: "London", properties: "12,683 properties", category: "regions" },
+    { city: "Paris", properties: "12,683 properties", category: "places" },
+    { city: "Dubai", properties: "12,683 properties", category: "cities" },
+    { city: "Krakow", properties: "12,683 properties", category: "regions" },
+    { city: "Jersey", properties: "12,683 properties", category: "regions" },
+    { city: "Prag", properties: "12,683 properties", category: "places" },
+    { city: "Amsterdam", properties: "12,683 properties", category: "regions" },
+    { city: "Rome", properties: "12,683 properties", category: "cities" },
+    { city: "Miami", properties: "12,683 properties", category: "places" },
   ];
+
+  const containerRef = useRef(null);
+  const mixerRef = useRef(null);
+
+  useEffect(() => {
+    let mixer;
+
+    const initMixitup = async () => {
+      const mixitupModule = await import("mixitup");
+      const mixitup = mixitupModule.default;
+
+      if (containerRef.current) {
+        mixer = mixitup(containerRef.current, {
+          selectors: {
+            target: ".mix",
+          },
+          animation: {
+            duration: 400,
+          },
+        });
+      }
+    };
+
+    initMixitup();
+
+    return () => {
+      if (mixer) {
+        mixer.destroy();
+      }
+    };
+  }, []);
+
   return (
     <>
       <section className="bg-[url(../public/bg.webp)] bg-no-repeat bg-cover bg-center">
@@ -363,26 +399,63 @@ export default function Home() {
             Interdum et malesuada fames ac ante ipsum
           </p>
           <div className="pt-10">
-            <div className="flex gap-x-5 mb-7.5 items-center">
+            <div className="flex mb-7.5 items-center">
               <button
-                className={`py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}>
+                type="button"
+                data-filter="all"
+                className={`filter-btn py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab === "all" ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}
+                onClick={() => {
+                  setOpenTab("all");
+                  mixerRef.current?.filter("all");
+                }}>
+                All
+              </button>
+              <button
+                type="button"
+                data-filter=".regions"
+                className={`filter-btn py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab === "regions" ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}
+                onClick={() => {
+                  setOpenTab("regions");
+                  mixerRef.current?.filter(".regions");
+                }}>
                 Regions
               </button>
               <button
-                className={`py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}>
+                type="button"
+                data-filter=".cities"
+                className={`filter-btn py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab === "cities" ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}
+                onClick={() => {
+                  setOpenTab("cities");
+                  mixerRef.current?.filter(".cities");
+                }}>
                 Cities
               </button>
               <button
-                className={`py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}>
+                type="button"
+                data-filter=".places"
+                className={`filter-btn py-4 px-7.5 text-[15px] font-jost font-medium rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer hover:text-hoverText ${openTab === "places" ? "bg-[#3554d10d] text-hoverText" : "text-primaryText "}`}
+                onClick={() => {
+                  setOpenTab("places");
+                  mixerRef.current?.filter(".places");
+                }}>
                 Place of interest
               </button>
             </div>
           </div>
-          <div className="grid grid-rows-4 grid-cols-5 gap-x-5 gap-y-6">
+          <div
+            ref={containerRef}
+            className="grid grid-rows-4 grid-cols-5 gap-x-5 gap-y-6">
             {tabs.map((item) => (
-              <Link key={item.city} href={"/"} className="group">
-                <p className="text-[15px] font-jost font-medium text-primaryText group-hover:text-hoverText transition-all duration-300 ease-in-out">{item.city}</p>
-                <span className="text-sm text-pText font-jost pt-1.5">{item.properties}</span>
+              <Link
+                key={item.city}
+                href={"/"}
+                className={`mix ${item.category} group`}>
+                <p className="text-[15px] font-jost font-medium text-primaryText group-hover:text-hoverText transition-all duration-300 ease-in-out">
+                  {item.city}
+                </p>
+                <span className="text-sm text-pText font-jost pt-1.5">
+                  {item.properties}
+                </span>
               </Link>
             ))}
           </div>
