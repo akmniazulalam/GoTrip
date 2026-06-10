@@ -1,10 +1,13 @@
 "use client";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import { RxArrowTopRight } from "react-icons/rx";
 import Container from "./(components)/Container";
 import { FiSearch } from "react-icons/fi";
 import Flex from "./(components)/Flex";
-import { useEffect, useRef, useState } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import featureOne from "../public/1.svg";
 import featureTwo from "../public/2.svg";
 import featureThree from "../public/3.svg";
@@ -76,6 +79,17 @@ export default function Home() {
       }
     };
   }, []);
+
+  var settings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
   return (
     <>
@@ -288,23 +302,78 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-[50%] py-5">
-              <div className="flex gap-x-7.5 items-center">
-                <Image src={reviewer} alt="reviewer" height={80} width={80} />
+            <div className="w-[50%] py-5 testimonial-slider">
+              <Slider {...settings}>
                 <div>
-                  <p className="text-base font-medium font-jost text-primaryText leading-6.5">
-                    Annette Black
+                  <div className="flex gap-x-7.5 items-center">
+                    <Image
+                      src={reviewer}
+                      alt="reviewer"
+                      height={80}
+                      width={80}
+                    />
+                    <div>
+                      <p className="text-base font-medium font-jost text-primaryText leading-6.5">
+                        Annette Black
+                      </p>
+                      <span className="text-[15px] text-pText font-jost">
+                        UX / UI Designer
+                      </span>
+                    </div>
+                  </div>
+                  <p className="mt-8 w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
+                    The place is in a great location in Gumbet. The area is safe
+                    and beautiful. The apartment was comfortable and the host
+                    was kind and responsive to our requests.
                   </p>
-                  <span className="text-[15px] text-pText font-jost">
-                    UX / UI Designer
-                  </span>
                 </div>
-              </div>
-              <p className="mt-8 w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
-                The place is in a great location in Gumbet. The area is safe and
-                beautiful. The apartment was comfortable and the host was kind
-                and responsive to our requests.
-              </p>
+                <div>
+                  <div className="flex gap-x-7.5 items-center">
+                    <Image
+                      src={reviewer}
+                      alt="reviewer"
+                      height={80}
+                      width={80}
+                    />
+                    <div>
+                      <p className="text-base font-medium font-jost text-primaryText leading-6.5">
+                        Annette Black
+                      </p>
+                      <span className="text-[15px] text-pText font-jost">
+                        UX / UI Designer
+                      </span>
+                    </div>
+                  </div>
+                  <p className="mt-8 w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
+                    The place is in a great location in Gumbet. The area is safe
+                    and beautiful. The apartment was comfortable and the host
+                    was kind and responsive to our requests.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex gap-x-7.5 items-center">
+                    <Image
+                      src={reviewer}
+                      alt="reviewer"
+                      height={80}
+                      width={80}
+                    />
+                    <div>
+                      <p className="text-base font-medium font-jost text-primaryText leading-6.5">
+                        Annette Black
+                      </p>
+                      <span className="text-[15px] text-pText font-jost">
+                        UX / UI Designer
+                      </span>
+                    </div>
+                  </div>
+                  <p className="mt-8 w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
+                    The place is in a great location in Gumbet. The area is safe
+                    and beautiful. The apartment was comfortable and the host
+                    was kind and responsive to our requests.
+                  </p>
+                </div>
+              </Slider>
             </div>
           </div>
         </Container>
