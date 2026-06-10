@@ -223,6 +223,16 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      <section className="pt-30 pb-15">
+        <div className="text-center">
+          <h2 className="font-jost font-semibold text-3xl text-primaryText leading-11">Get inspiration for your next trip</h2>
+          <p className="text-base leading-7.5 text-[#697488] mt-1 font-jost">Interdum et malesuada fames</p>
+          <div className="pt-10 grid grid-cols-3 gap-7.5">
+            
+          </div>
+        </div>
+      </section>
     </>
   );
 }
