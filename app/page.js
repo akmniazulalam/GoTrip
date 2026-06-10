@@ -378,11 +378,11 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="grid grid-rows-4 grid-cols-5 gap-5">
+          <div className="grid grid-rows-4 grid-cols-5 gap-x-5 gap-y-6">
             {tabs.map((item) => (
-              <Link href={"/"} className="group">
+              <Link key={item.city} href={"/"} className="group">
                 <p className="text-[15px] font-jost font-medium text-primaryText group-hover:text-hoverText transition-all duration-300 ease-in-out">{item.city}</p>
-                <span></span>
+                <span className="text-sm text-pText font-jost pt-1.5">{item.properties}</span>
               </Link>
             ))}
           </div>
