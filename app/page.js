@@ -80,15 +80,23 @@ export default function Home() {
     };
   }, []);
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
+  const slides = [1, 2, 3];
+  const totalSlides = slides.length;
+
   var settings = {
-    dots: true,
+    dots: false,
     arrows: false,
-    infinite: true,
-    autoplay: true,
+    infinite: false,
+    autoplay: false,
     autoplaySpeed: 2000,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    afterChange: (current) => {
+      setCurrentSlide(current);
+    },
   };
 
   return (
@@ -303,7 +311,7 @@ export default function Home() {
               </div>
             </div>
             <div className="w-[50%] py-5 testimonial-slider">
-              <Slider {...settings}>
+              <Slider ref={sliderRef} {...settings}>
                 <div>
                   <div className="flex gap-x-7.5 items-center">
                     <Image
@@ -321,7 +329,7 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <p className="mt-8 w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
+                  <p className="mt-8 w-[94%] font-jost font-medium text-left text-[18px] text-primaryText leading-7.5">
                     The place is in a great location in Gumbet. The area is safe
                     and beautiful. The apartment was comfortable and the host
                     was kind and responsive to our requests.
@@ -344,7 +352,7 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <p className="mt-8 w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
+                  <p className="mt-8 text-left w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
                     The place is in a great location in Gumbet. The area is safe
                     and beautiful. The apartment was comfortable and the host
                     was kind and responsive to our requests.
@@ -367,13 +375,39 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <p className="mt-8 w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
+                  <p className="mt-8 text-left w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
                     The place is in a great location in Gumbet. The area is safe
                     and beautiful. The apartment was comfortable and the host
                     was kind and responsive to our requests.
                   </p>
                 </div>
               </Slider>
+              <div className="flex items-center gap-x-6 mt-16">
+                {/* Current */}
+                <span className="text-base font-medium text-primaryText font-jost">
+                  {String(currentSlide + 1).padStart(2, "0")}
+                </span>
+
+                {/* Segmented Progress (Clickable) */}
+                <div className="flex-1 flex max-w-82.5">
+                  {slides.map((_, index) => (
+                    <div
+                      key={index}
+                      onClick={() => sliderRef.current.slickGoTo(index)}
+                      className={`h-0.75 flex-1 rounded-full transition-colors duration-200 ease-in-out ${index === currentSlide ? "cursor-grab" : "cursor-pointer"}`}
+                      style={{
+                        backgroundColor:
+                          index === currentSlide ? "#051036" : "#D9D9D9",
+                      }}
+                    />
+                  ))}
+                </div>
+
+                {/* Total */}
+                <span className="text-base font-medium text-primaryText font-jost">
+                  {String(totalSlides).padStart(2, "0")}
+                </span>
+              </div>
             </div>
           </div>
         </Container>
