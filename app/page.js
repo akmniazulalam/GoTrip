@@ -15,6 +15,11 @@ import reviewer from "../public/1 (1).webp";
 import BlogOne from "../public/1 (2).webp";
 import BlogTwo from "../public/2 (1).webp";
 import BlogThree from "../public/3.webp";
+import NewYork from "../public/1 (3).webp";
+import London from "../public/2 (2).webp";
+import Barcelona from "../public/3 (1).webp";
+import Sydney from "../public/4.webp";
+import Rome from "../public/5.webp";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 
@@ -98,6 +103,17 @@ export default function Home() {
       setCurrentSlide(current);
     },
   };
+  
+  var destinationSliderSettings = {
+    dots: false,
+    arrows: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
 
   return (
     <>
@@ -172,7 +188,7 @@ export default function Home() {
 
       <section className="pt-30 pb-15">
         <Container>
-          <Flex>
+          <Flex className={"mb-10"}>
             <div>
               <h3 className="font-jost text-3xl text-primaryText font-semibold">
                 Popular Destinations
@@ -186,7 +202,28 @@ export default function Home() {
               <RxArrowTopRight className={"ml-1 text-2xl inline"} />
             </button>
           </Flex>
+          <Slider {...destinationSliderSettings}>
+            <div className={"rounded-sm"}>
+              <Image src={NewYork} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+            </div>
+            <div className={"rounded-sm"}>
+              <Image src={London} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+            </div>
+            <div className={"rounded-sm"}>
+              <Image src={Barcelona} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+            </div>
+            <div className={"rounded-sm"}>
+              <Image src={Sydney} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+            </div>
+            <div className={"rounded-sm"}>
+              <Image src={Rome} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+            </div>
+          </Slider>
+        </Container>
+      </section>
 
+      <section className="py-15">
+        <Container>
           <div className="grid grid-cols-2 gap-x-7.5 mt-7.5">
             <div className="bg-[url(../public/1.webp)] bg-no-repeat bg-center bg-cover rounded-sm">
               <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm">
