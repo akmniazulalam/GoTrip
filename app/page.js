@@ -216,7 +216,7 @@ export default function Home() {
               <Image src={Sydney} alt="Sydney" height={400} width={300} className={"rounded-sm"} />
             </div>
             <div className={"rounded-sm"}>
-              <Image src={Rome} alt="Rome" height={400} width={300} className={"rounded-sm"} />
+              <Image src={Rome} alt="Rome" height={400} width={300} className={"rounded-sm h-100"} />
             </div>
           </Slider>
         </Container>
