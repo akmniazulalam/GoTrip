@@ -207,16 +207,16 @@ export default function Home() {
               <Image src={NewYork} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
             </div>
             <div className={"rounded-sm"}>
-              <Image src={London} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+              <Image src={London} alt="London" height={400} width={300} className={"rounded-sm"} />
             </div>
             <div className={"rounded-sm"}>
-              <Image src={Barcelona} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+              <Image src={Barcelona} alt="Barcelona" height={400} width={300} className={"rounded-sm"} />
             </div>
             <div className={"rounded-sm"}>
-              <Image src={Sydney} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+              <Image src={Sydney} alt="Sydney" height={400} width={300} className={"rounded-sm"} />
             </div>
             <div className={"rounded-sm"}>
-              <Image src={Rome} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+              <Image src={Rome} alt="Rome" height={400} width={300} className={"rounded-sm"} />
             </div>
           </Slider>
         </Container>
