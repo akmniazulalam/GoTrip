@@ -89,7 +89,8 @@ export default function Home() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentDestinationSlide, setCurrentDestinationSlide] = useState(0);
-  const [isDesktopDestinationSlider, setIsDesktopDestinationSlider] = useState(false);
+  const [isDesktopDestinationSlider, setIsDesktopDestinationSlider] =
+    useState(false);
   const sliderRef = useRef(null);
   const destinationSliderRef = useRef(null);
   const slides = [1, 2, 3];
@@ -123,7 +124,7 @@ export default function Home() {
       setCurrentSlide(current);
     },
   };
-  
+
   var destinationSliderSettings = {
     dots: false,
     arrows: true,
@@ -134,8 +135,16 @@ export default function Home() {
     // Four 300px cards fit flush inside the 1320px container.
     slidesToShow: 3.8823529412,
     slidesToScroll: 1,
-    nextArrow: <NextArrow maxSlide={isDesktopDestinationSlider ? maxDesktopDestinationSlide : undefined}/>,
-    prevArrow: <PrevArrow minSlide={isDesktopDestinationSlider ? 0 : undefined}/>,
+    nextArrow: (
+      <NextArrow
+        maxSlide={
+          isDesktopDestinationSlider ? maxDesktopDestinationSlide : undefined
+        }
+      />
+    ),
+    prevArrow: (
+      <PrevArrow minSlide={isDesktopDestinationSlider ? 0 : undefined} />
+    ),
     afterChange: (current) => {
       if (isDesktopDestinationSlider && current > maxDesktopDestinationSlide) {
         setCurrentDestinationSlide(maxDesktopDestinationSlide);
@@ -152,25 +161,25 @@ export default function Home() {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: false,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -262,28 +271,175 @@ export default function Home() {
           </Flex>
           <div className="destination-slider">
             <Slider ref={destinationSliderRef} {...destinationSliderSettings}>
-              <div className={`focus:outline-0 destination-slide ${currentDestinationSlide > 0 ? "destination-slide-before" : ""}`}>
-                <Link href={"/"} className="relative group rounded-sm">
-                  <Image src={NewYork} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
-                
-                <div className="absolute top-0 left-0 h-full w-full flex flex-col justify-between pt-7.5 px-5 pb-5 text-center">
-                  <div className={"bg-[#05103666] absolute top-0 left-0 h-full w-full transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"}></div>
-                <h4 className={"text-[26px] text-white font-jost font-semibold mb-5"}>New York</h4>
-                <button className="h-15 w-3xs flex justify-center items-center rounded-sm text-[15px] font-medium text-primaryText bg-white hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">Discover</button>
-                </div>
+              <div
+                className={`focus:outline-0 w-fit! destination-slide ${currentDestinationSlide > 0 ? "destination-slide-before" : ""}`}>
+                <Link href={"/"} className="relative rounded-sm">
+                  <Image
+                    src={NewYork}
+                    alt="NewYork"
+                    height={400}
+                    width={300}
+                    className={"rounded-sm"}
+                  />
+
+                  <div className="absolute top-0 left-0 h-full w-75 rounded-sm flex flex-col justify-between pt-7.5 px-5 pb-5 text-center overflow-hidden group">
+                    <div
+                      className={
+                        "bg-[#05103666] absolute rounded-sm top-0 left-0 h-full w-full transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100"
+                      }></div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100 z-20">
+                      <p className="text-sm text-white font-jost font-medium">
+                        14 Hotel - 22 Cars - 18 Tours - 95 Activity
+                      </p>
+                    </div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-20 group-hover:translate-y-0">
+                      <h4
+                        className={
+                          "text-[26px] text-white font-jost font-semibold mb-5"
+                        }>
+                        New York
+                      </h4>
+                      <button className="h-15 w-65 flex justify-center items-center rounded-sm text-[15px] font-jost font-medium text-primaryText bg-white cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
+                        Discover
+                      </button>
+                    </div>
+                  </div>
                 </Link>
               </div>
-              <div className={`rounded-sm focus:outline-0 destination-slide ${currentDestinationSlide > 1 ? "destination-slide-before" : ""}`}>
-                <Image src={London} alt="London" height={400} width={300} className={"rounded-sm"} />
+              <div
+                className={`rounded-sm focus:outline-0 w-fit! destination-slide ${currentDestinationSlide > 1 ? "destination-slide-before" : ""}`}>
+                <Link href={"/"} className="relative rounded-sm">
+                  <Image
+                    src={London}
+                    alt="London"
+                    height={400}
+                    width={300}
+                    className={"rounded-sm"}
+                  />
+                  <div className="absolute top-0 left-0 h-full w-75 rounded-sm flex flex-col justify-between pt-7.5 px-5 pb-5 text-center overflow-hidden group">
+                    <div
+                      className={
+                        "bg-[#05103666] absolute rounded-sm top-0 left-0 h-full w-full transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100"
+                      }></div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100 z-20">
+                      <p className="text-sm text-white font-jost font-medium">
+                        14 Hotel - 22 Cars - 18 Tours - 95 Activity
+                      </p>
+                    </div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-20 group-hover:translate-y-0">
+                      <h4
+                        className={
+                          "text-[26px] text-white font-jost font-semibold mb-5"
+                        }>
+                        London
+                      </h4>
+                      <button className="h-15 w-65 flex justify-center items-center rounded-sm text-[15px] font-jost font-medium text-primaryText bg-white cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
+                        Discover
+                      </button>
+                    </div>
+                  </div>
+                </Link>
               </div>
-              <div className={`rounded-sm focus:outline-0 destination-slide ${currentDestinationSlide > 2 ? "destination-slide-before" : ""}`}>
-                <Image src={Barcelona} alt="Barcelona" height={400} width={300} className={"rounded-sm"} />
+              <div
+                className={`rounded-sm focus:outline-0 w-fit! destination-slide ${currentDestinationSlide > 2 ? "destination-slide-before" : ""}`}>
+                <Link href={"/"} className="relative rounded-sm">
+                  <Image
+                    src={Barcelona}
+                    alt="Barcelona"
+                    height={400}
+                    width={300}
+                    className={"rounded-sm"}
+                  />
+                  <div className="absolute top-0 left-0 h-full w-75 rounded-sm flex flex-col justify-between pt-7.5 px-5 pb-5 text-center overflow-hidden group">
+                    <div
+                      className={
+                        "bg-[#05103666] absolute rounded-sm top-0 left-0 h-full w-full transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100"
+                      }></div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100 z-20">
+                      <p className="text-sm text-white font-jost font-medium">
+                        14 Hotel - 22 Cars - 18 Tours - 95 Activity
+                      </p>
+                    </div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-20 group-hover:translate-y-0">
+                      <h4
+                        className={
+                          "text-[26px] text-white font-jost font-semibold mb-5"
+                        }>
+                        Barcelona
+                      </h4>
+                      <button className="h-15 w-65 flex justify-center items-center rounded-sm text-[15px] font-jost font-medium text-primaryText bg-white cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
+                        Discover
+                      </button>
+                    </div>
+                  </div>
+                </Link>
               </div>
-              <div className={`rounded-sm focus:outline-0 destination-slide ${currentDestinationSlide > 3 ? "destination-slide-before" : ""}`}>
-                <Image src={Sydney} alt="Sydney" height={400} width={300} className={"rounded-sm"} />
+              <div
+                className={`rounded-sm focus:outline-0 w-fit! destination-slide ${currentDestinationSlide > 3 ? "destination-slide-before" : ""}`}>
+                <Link href={"/"} className="relative rounded-sm">
+                  <Image
+                    src={Sydney}
+                    alt="Sydney"
+                    height={400}
+                    width={300}
+                    className={"rounded-sm"}
+                  />
+                  <div className="absolute top-0 left-0 h-full w-75 rounded-sm flex flex-col justify-between pt-7.5 px-5 pb-5 text-center overflow-hidden group">
+                    <div
+                      className={
+                        "bg-[#05103666] absolute rounded-sm top-0 left-0 h-full w-full transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100"
+                      }></div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100 z-20">
+                      <p className="text-sm text-white font-jost font-medium">
+                        14 Hotel - 22 Cars - 18 Tours - 95 Activity
+                      </p>
+                    </div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-20 group-hover:translate-y-0">
+                      <h4
+                        className={
+                          "text-[26px] text-white font-jost font-semibold mb-5"
+                        }>
+                        Sydney
+                      </h4>
+                      <button className="h-15 w-65 flex justify-center items-center rounded-sm text-[15px] font-jost font-medium text-primaryText bg-white cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
+                        Discover
+                      </button>
+                    </div>
+                  </div>
+                </Link>
               </div>
-              <div className={"rounded-sm focus:outline-0 destination-slide"}>
-                <Image src={Rome} alt="Rome" height={400} width={300} className={"rounded-sm h-100"} />
+              <div className={"rounded-sm focus:outline-0 w-fit! destination-slide"}>
+                <Link href={"/"} className="relative rounded-sm">
+                  <Image
+                    src={Rome}
+                    alt="Rome"
+                    height={400}
+                    width={300}
+                    className={"rounded-sm h-100"}
+                  />
+                  <div className="absolute top-0 left-0 h-full w-75 rounded-sm flex flex-col justify-between pt-7.5 px-5 pb-5 text-center overflow-hidden group">
+                    <div
+                      className={
+                        "bg-[#05103666] absolute rounded-sm top-0 left-0 h-full w-full transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100"
+                      }></div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100 z-20">
+                      <p className="text-sm text-white font-jost font-medium">
+                        14 Hotel - 22 Cars - 18 Tours - 95 Activity
+                      </p>
+                    </div>
+                    <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-20 group-hover:translate-y-0">
+                      <h4
+                        className={
+                          "text-[26px] text-white font-jost font-semibold mb-5"
+                        }>
+                        Rome
+                      </h4>
+                      <button className="h-15 w-65 flex justify-center items-center rounded-sm text-[15px] font-jost font-medium text-primaryText bg-white cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
+                        Discover
+                      </button>
+                    </div>
+                  </div>
+                </Link>
               </div>
             </Slider>
           </div>
