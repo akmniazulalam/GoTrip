@@ -28,6 +28,7 @@ import PrevArrow from "./(components)/PrevArrow";
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Hotel");
   const [openTab, setOpenTab] = useState("all");
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
 
   const tabs = [
     { city: "Hawai", properties: "12,683 properties", category: "regions" },
@@ -96,6 +97,17 @@ export default function Home() {
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
   const maxDesktopDestinationSlide = 1;
+  const heroSlideClass = `hero-slide-up ${isHeroVisible ? "is-visible" : ""}`;
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setIsHeroVisible(true);
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1025px)");
@@ -188,13 +200,13 @@ export default function Home() {
         <div className="pt-80 pb-52.5 bg-linear-[270deg] from-[rgba(5,16,54,0.5)] to-[#051036d9]">
           <Container>
             <div className="text-center opacity-100 z-50">
-              <h1 className="font-semibold font-jost text-6xl text-white">
+              <h1 className={`${heroSlideClass} hero-slide-up-title font-semibold font-jost text-6xl text-white`}>
                 Find Next Place To Visit
               </h1>
-              <p className="font-jost text-white font-medium text-base leading-7.5 pt-4 pb-15">
+              <p className={`${heroSlideClass} hero-slide-up-text font-jost text-white font-medium text-base leading-7.5 pt-4 pb-15`}>
                 Discover amzaing places at exclusive deals
               </p>
-              <div className="flex items-center gap-x-7 justify-center">
+              <div className={`${heroSlideClass} hero-slide-up-tabs flex items-center gap-x-7 justify-center`}>
                 {[
                   { name: "Hotel" },
                   { name: "Tour" },
@@ -216,7 +228,7 @@ export default function Home() {
                   </button>
                 ))}
               </div>
-              <div className="mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%]">
+              <div className={`${heroSlideClass} hero-slide-up-search mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%]`}>
                 <div className="px-7 py-1.5 w-fit text-left">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Location ({activeTab})
@@ -533,6 +545,7 @@ export default function Home() {
           </div>
         </Container>
       </section>
+      
       <section className="bg-[#E5F0FD] py-30">
         <Container>
           <div className="flex justify-between">
