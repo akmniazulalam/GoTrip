@@ -88,9 +88,27 @@ export default function Home() {
   }, []);
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentDestinationSlide, setCurrentDestinationSlide] = useState(0);
+  const [isDesktopDestinationSlider, setIsDesktopDestinationSlider] = useState(false);
   const sliderRef = useRef(null);
+  const destinationSliderRef = useRef(null);
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
+  const maxDesktopDestinationSlide = 1;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1025px)");
+    const updateDestinationSliderMode = () => {
+      setIsDesktopDestinationSlider(mediaQuery.matches);
+    };
+
+    updateDestinationSliderMode();
+    mediaQuery.addEventListener("change", updateDestinationSliderMode);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateDestinationSliderMode);
+    };
+  }, []);
 
   var settings = {
     dots: false,
@@ -108,25 +126,32 @@ export default function Home() {
   
   var destinationSliderSettings = {
     dots: false,
-    className: "center",
-    centerMode: true,
-    centerPadding: "0px",
     arrows: true,
-    infinite: true,
-    autoplay: true,
+    infinite: false,
+    autoplay: false,
     autoplaySpeed: 2000,
     speed: 500,
-    slidesToShow: 4,
+    // Four 300px cards fit flush inside the 1320px container.
+    slidesToShow: 3.8823529412,
     slidesToScroll: 1,
-    nextArrow: <NextArrow/>,
-    prevArrow: <PrevArrow/>,
+    nextArrow: <NextArrow maxSlide={isDesktopDestinationSlider ? maxDesktopDestinationSlide : undefined}/>,
+    prevArrow: <PrevArrow minSlide={isDesktopDestinationSlider ? 0 : undefined}/>,
+    afterChange: (current) => {
+      if (isDesktopDestinationSlider && current > maxDesktopDestinationSlide) {
+        setCurrentDestinationSlide(maxDesktopDestinationSlide);
+        destinationSliderRef.current?.slickGoTo(maxDesktopDestinationSlide);
+        return;
+      }
+
+      setCurrentDestinationSlide(current);
+    },
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },
@@ -219,7 +244,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pt-30 pb-15">
+      <section className="pt-30 pb-15 overflow-hidden">
         <Container>
           <Flex className={"mb-10"}>
             <div>
@@ -235,23 +260,33 @@ export default function Home() {
               <RxArrowTopRight className={"ml-1 text-2xl inline"} />
             </button>
           </Flex>
-          <Slider {...destinationSliderSettings}>
-            <div className={"rounded-sm"}>
-              <Image src={NewYork} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
-            </div>
-            <div className={"rounded-sm"}>
-              <Image src={London} alt="London" height={400} width={300} className={"rounded-sm"} />
-            </div>
-            <div className={"rounded-sm"}>
-              <Image src={Barcelona} alt="Barcelona" height={400} width={300} className={"rounded-sm"} />
-            </div>
-            <div className={"rounded-sm"}>
-              <Image src={Sydney} alt="Sydney" height={400} width={300} className={"rounded-sm"} />
-            </div>
-            <div className={"rounded-sm"}>
-              <Image src={Rome} alt="Rome" height={400} width={300} className={"rounded-sm h-100"} />
-            </div>
-          </Slider>
+          <div className="destination-slider">
+            <Slider ref={destinationSliderRef} {...destinationSliderSettings}>
+              <div className={`focus:outline-0 destination-slide ${currentDestinationSlide > 0 ? "destination-slide-before" : ""}`}>
+                <Link href={"/"} className="relative group rounded-sm">
+                  <Image src={NewYork} alt="NewYork" height={400} width={300} className={"rounded-sm"} />
+                
+                <div className="absolute top-0 left-0 h-full w-full flex flex-col justify-between pt-7.5 px-5 pb-5 text-center">
+                  <div className={"bg-[#05103666] absolute top-0 left-0 h-full w-full transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"}></div>
+                <h4 className={"text-[26px] text-white font-jost font-semibold mb-5"}>New York</h4>
+                <button className="h-15 w-3xs flex justify-center items-center rounded-sm text-[15px] font-medium text-primaryText bg-white hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">Discover</button>
+                </div>
+                </Link>
+              </div>
+              <div className={`rounded-sm focus:outline-0 destination-slide ${currentDestinationSlide > 1 ? "destination-slide-before" : ""}`}>
+                <Image src={London} alt="London" height={400} width={300} className={"rounded-sm"} />
+              </div>
+              <div className={`rounded-sm focus:outline-0 destination-slide ${currentDestinationSlide > 2 ? "destination-slide-before" : ""}`}>
+                <Image src={Barcelona} alt="Barcelona" height={400} width={300} className={"rounded-sm"} />
+              </div>
+              <div className={`rounded-sm focus:outline-0 destination-slide ${currentDestinationSlide > 3 ? "destination-slide-before" : ""}`}>
+                <Image src={Sydney} alt="Sydney" height={400} width={300} className={"rounded-sm"} />
+              </div>
+              <div className={"rounded-sm focus:outline-0 destination-slide"}>
+                <Image src={Rome} alt="Rome" height={400} width={300} className={"rounded-sm h-100"} />
+              </div>
+            </Slider>
+          </div>
         </Container>
       </section>
 

@@ -31,3 +31,31 @@ body {
 .testimonial-slider .slick-slider .slick-list{
   cursor: grab;
 }
+
+.destination-slider {
+  --destination-outside-space: max(calc((100vw - 82.5rem) / 2), 0px);
+  --destination-card-gap: calc((82.5rem / 3.8823529412) - 300px);
+}
+
+.destination-slider .slick-list {
+  overflow: visible;
+  clip-path: inset(
+    0 calc(-1 * var(--destination-outside-space)) 0
+      calc(-1 * var(--destination-outside-space))
+  );
+}
+
+.destination-slide img {
+  transition: transform 500ms ease;
+}
+
+@media (min-width: 1025px) {
+  .destination-slide-before img {
+    transform: translateX(var(--destination-card-gap));
+  }
+}
+
+.slick-disabled {
+  color: #1010104d;
+  /* pointer-events: none; */
+}
