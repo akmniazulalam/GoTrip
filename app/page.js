@@ -253,7 +253,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pt-30 pb-15 overflow-hidden">
+      <section className="pt-30 pb-10 overflow-hidden">
         <Container>
           <Flex className={"mb-10"}>
             <div>
