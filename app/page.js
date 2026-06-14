@@ -20,7 +20,7 @@ import London from "../public/2 (2).webp";
 import Barcelona from "../public/3 (1).webp";
 import Sydney from "../public/4.webp";
 import Rome from "../public/5.webp";
-import { FaStar } from "react-icons/fa";
+import { FaCaretDown, FaCaretUp, FaStar } from "react-icons/fa";
 import Link from "next/link";
 import NextArrow from "./(components)/NextArrow";
 import PrevArrow from "./(components)/PrevArrow";
@@ -95,7 +95,7 @@ export default function Home() {
       }
     };
   }, []);
-
+  const [isOpen, setIsOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentDestinationSlide, setCurrentDestinationSlide] = useState(0);
   const [isDesktopDestinationSlider, setIsDesktopDestinationSlider] =
@@ -103,6 +103,7 @@ export default function Home() {
   const sliderRef = useRef(null);
   const destinationSliderRef = useRef(null);
   const destinationSectionRef = useRef(null);
+  const dropdownRef = useRef(null);
   const promoSectionRef = useRef(null);
   const featureSectionRef = useRef(null);
   const testimonialSectionRef = useRef(null);
@@ -130,6 +131,20 @@ export default function Home() {
   const blogSlideLeftClass = `section-slide-left ${
     isBlogGridVisible ? "is-visible" : ""
   }`;
+
+  useEffect(() => {
+    const outsideClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", outsideClick)
+     
+    return () => {
+      document.removeEventListener("mousedown", outsideClick)
+    }
+  }, [])
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
@@ -715,6 +730,47 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </Container>
+      </section>
+
+      <section className={"py-15"}>
+        <Container>
+          <Flex
+            className={` mb-10`}>
+            <div>
+              <h3 className="font-jost text-3xl text-primaryText font-semibold">
+                Recommended
+              </h3>
+              <p className="font-jost text-pText text-base leading-7.5 mt-2">
+                Interdum et malesuada fames ac ante ipsum
+              </p>
+            </div>
+            <div ref={dropdownRef} className="relative">
+              <button
+                className={`w-35 h-12.5 px-5 border border-[#DDDDDD] rounded-sm font-jost font-medium text-base text-primaryText flex justify-between items-center cursor-pointer ${isOpen && "focus:outline-2"} transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]`}
+                onClick={() => setIsOpen(!isOpen)}>
+                Hotel
+                {isOpen ? <FaCaretUp /> : <FaCaretDown />}
+              </button>
+              {isOpen && (
+                <div className="absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 py-3.5 px-5 bg-white shadow-[0px_25px_70px_rgba(1, 33, 58, 0.07)] min-w-40 border border-[#DDDDDD] rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
+                <div className="-my-2 text-sm font-medium font-jost text-primaryText">
+                  {[
+                    "Animation",
+                    "Design",
+                    "Illustration",
+                    "Lifestyle",
+                    "Business",
+                  ].map((item) => (
+                    <div key={item} className="py-2">
+                      <Link href={"/"}>{item}</Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              )}
+            </div>
+          </Flex>
         </Container>
       </section>
 
