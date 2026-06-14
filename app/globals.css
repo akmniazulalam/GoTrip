@@ -119,6 +119,18 @@ body {
   animation-delay: 0.3s;
 }
 
+.section-slide-up.section-slide-up-testimonial-content,
+.section-slide-up.section-slide-up-testimonial-content.is-visible {
+  transition-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+
+.section-slide-up.section-slide-up-testimonial-slider,
+.section-slide-up.section-slide-up-testimonial-slider.is-visible {
+  transition-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .section-slide-up {
     opacity: 1;

@@ -33,6 +33,8 @@ export default function Home() {
     useState(false);
   const [isPromoSectionVisible, setIsPromoSectionVisible] = useState(false);
   const [isFeatureSectionVisible, setIsFeatureSectionVisible] = useState(false);
+  const [isTestimonialSectionVisible, setIsTestimonialSectionVisible] =
+    useState(false);
 
   const tabs = [
     { city: "Hawai", properties: "12,683 properties", category: "regions" },
@@ -101,6 +103,7 @@ export default function Home() {
   const destinationSectionRef = useRef(null);
   const promoSectionRef = useRef(null);
   const featureSectionRef = useRef(null);
+  const testimonialSectionRef = useRef(null);
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
   const maxDesktopDestinationSlide = 1;
@@ -113,6 +116,9 @@ export default function Home() {
   }`;
   const featureRevealClass = `section-slide-up ${
     isFeatureSectionVisible ? "is-visible" : ""
+  }`;
+  const testimonialRevealClass = `section-slide-up ${
+    isTestimonialSectionVisible ? "is-visible" : ""
   }`;
 
   useEffect(() => {
@@ -203,6 +209,37 @@ export default function Home() {
       ([entry]) => {
         if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
           setIsFeatureSectionVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.5,
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = testimonialSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsTestimonialSectionVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          setIsTestimonialSectionVisible(true);
           observer.unobserve(entry.target);
         }
       },
@@ -670,10 +707,11 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="bg-[#E5F0FD] py-30">
+      <section ref={testimonialSectionRef} className="bg-[#E5F0FD] py-30">
         <Container>
           <div className="flex justify-between">
-            <div className="py-5 px-4 w-[40%]">
+            <div
+              className={`${testimonialRevealClass} section-slide-up-testimonial-content py-5 px-4 w-[40%]`}>
               <h2 className="font-jost font-semibold text-3xl text-primaryText w-[70%] leading-11">
                 What our customers are saying us?
               </h2>
@@ -708,7 +746,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-[50%] py-5 testimonial-slider">
+            <div
+              className={`${testimonialRevealClass} section-slide-up-testimonial-slider w-[50%] py-5 testimonial-slider`}>
               <Slider ref={sliderRef} {...settings}>
                 <div>
                   <div className="flex gap-x-7.5 items-center">
