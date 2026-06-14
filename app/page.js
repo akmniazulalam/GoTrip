@@ -20,10 +20,15 @@ import London from "../public/2 (2).webp";
 import Barcelona from "../public/3 (1).webp";
 import Sydney from "../public/4.webp";
 import Rome from "../public/5.webp";
+import HotelOne from "../public/hotelOne.webp";
+import HotelTwo from "../public/hotelTwo.webp";
+import HotelThree from "../public/hotelThree.webp";
+import HotelFour from "../public/hotelFour.webp";
 import { FaCaretDown, FaCaretUp, FaStar } from "react-icons/fa";
 import Link from "next/link";
 import NextArrow from "./(components)/NextArrow";
 import PrevArrow from "./(components)/PrevArrow";
+import { IoMdHeartEmpty } from "react-icons/io";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Hotel");
@@ -96,6 +101,7 @@ export default function Home() {
     };
   }, []);
   const [isOpen, setIsOpen] = useState(false);
+  const [recommend, setRecommend] = useState("Hotel");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentDestinationSlide, setCurrentDestinationSlide] = useState(0);
   const [isDesktopDestinationSlider, setIsDesktopDestinationSlider] =
@@ -135,16 +141,16 @@ export default function Home() {
   useEffect(() => {
     const outsideClick = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setIsOpen(false)
+        setIsOpen(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", outsideClick)
-     
+    document.addEventListener("mousedown", outsideClick);
+
     return () => {
-      document.removeEventListener("mousedown", outsideClick)
-    }
-  }, [])
+      document.removeEventListener("mousedown", outsideClick);
+    };
+  }, []);
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
@@ -368,6 +374,17 @@ export default function Home() {
     afterChange: (current) => {
       setCurrentSlide(current);
     },
+  };
+
+  var recommendSettings = {
+    dots: true,
+    arrows: true,
+    infinite: false,
+    autoplay: false,
+    autoplaySpeed: 2000,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
   };
 
   var destinationSliderSettings = {
@@ -733,10 +750,9 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className={"py-15"}>
+      <section className={"py-15 recommend"}>
         <Container>
-          <Flex
-            className={` mb-10`}>
+          <Flex className={` mb-10`}>
             <div>
               <h3 className="font-jost text-3xl text-primaryText font-semibold">
                 Recommended
@@ -749,28 +765,475 @@ export default function Home() {
               <button
                 className={`w-35 h-12.5 px-5 border border-[#DDDDDD] rounded-sm font-jost font-medium text-base text-primaryText flex justify-between items-center cursor-pointer ${isOpen && "focus:outline-2"} transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]`}
                 onClick={() => setIsOpen(!isOpen)}>
-                Hotel
-                {isOpen ? <FaCaretUp /> : <FaCaretDown />}
+                {recommend}
+                {isOpen ? (
+                  <FaCaretUp className="transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]" />
+                ) : (
+                  <FaCaretDown className="transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]" />
+                )}
               </button>
               {isOpen && (
                 <div className="absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 py-3.5 px-5 bg-white shadow-[0px_25px_70px_rgba(1, 33, 58, 0.07)] min-w-40 border border-[#DDDDDD] rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
-                <div className="-my-2 text-sm font-medium font-jost text-primaryText">
-                  {[
-                    "Animation",
-                    "Design",
-                    "Illustration",
-                    "Lifestyle",
-                    "Business",
-                  ].map((item) => (
-                    <div key={item} className="py-2">
-                      <Link href={"/"}>{item}</Link>
-                    </div>
-                  ))}
+                  <div className="-my-2 text-sm font-medium font-jost text-primaryText">
+                    {[
+                      "Animation",
+                      "Design",
+                      "Illustration",
+                      "Lifestyle",
+                      "Business",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="py-2 hover:text-hoverText transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer"
+                        onClick={() => setRecommend(item)}>
+                        <Link href={"/"}>{item}</Link>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
               )}
             </div>
           </Flex>
+          <Slider {...recommendSettings}>
+            <div className="relative w-75! group">
+              <Link href={"/"}>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src={HotelOne}
+                    alt="HotelOne"
+                    width={300}
+                    height={300}
+                    className="rounded-sm w-75 object-cover h-75 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"
+                  />
+                </div>
+                <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
+                  <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
+                </div>
+                <div className="absolute top-5 left-0">
+                  <div className="rounded-tr-sm rounded-br-sm bg-primaryText uppercase font-jost font-medium text-white py-1.5 px-4 text-[12px]">
+                    Breakfast included
+                  </div>
+                </div>
+                <div className="mt-2.5">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
+                    <span
+                      className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+                      The Montcalm At Brewery London City
+                    </span>
+                  </h4>
+                  <p className="mt-1.5 text-sm text-pText font-jost">
+                    Westminster Borough, London
+                  </p>
+                  <div className="mt-5 flex items-center">
+                    <div className="text-[12px] font-semibold text-white rounded-sm bg-hoverText h-7.5 w-7.5 flex justify-center items-center">
+                      4.8
+                    </div>
+                    <div className="text-primaryText text-sm font-medium font-jost ml-2.5">
+                      Exceptional
+                    </div>
+                    <div className="text-pText text-sm font-medium font-jost ml-2.5">
+                      3,014 reviews
+                    </div>
+                  </div>
+                  <div
+                    className="mt-2 font-medium font-jost text-primaryText group-hover:text-hoverText transition-all duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]">
+                    Starting from <span className="text-hoverText">US$72</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="relative w-75! group">
+              <Link href={"/"}>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src={HotelTwo}
+                    alt="HotelTwo"
+                    width={300}
+                    height={300}
+                    className="rounded-sm w-75 object-cover h-75 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"
+                  />
+                </div>
+                <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
+                  <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
+                </div>
+                <div className="mt-2.5">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
+                    <span
+                      className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+                      Staycity Aparthotels Deptford Bridge Station
+                    </span>
+                  </h4>
+                  <p className="mt-1.5 text-sm text-pText font-jost">
+                    Ciutat Vella, Barcelona
+                  </p>
+                  <div className="mt-5 flex items-center">
+                    <div className="text-[12px] font-semibold text-white rounded-sm bg-hoverText h-7.5 w-7.5 flex justify-center items-center">
+                      4.8
+                    </div>
+                    <div className="text-primaryText text-sm font-medium font-jost ml-2.5">
+                      Exceptional
+                    </div>
+                    <div className="text-pText text-sm font-medium font-jost ml-2.5">
+                      3,014 reviews
+                    </div>
+                  </div>
+                  <div
+                    className="mt-2 font-medium font-jost text-primaryText group-hover:text-hoverText transition-all duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]">
+                    Starting from <span className="text-hoverText">US$72</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="relative w-75! group">
+              <Link href={"/"}>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src={HotelThree}
+                    alt="HotelThree"
+                    width={300}
+                    height={300}
+                    className="rounded-sm w-75 object-cover h-75 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"
+                  />
+                </div>
+                <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
+                  <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
+                </div>
+                <div className="absolute top-5 left-0">
+                  <div className="rounded-tr-sm rounded-br-sm bg-hoverText uppercase font-jost font-medium text-white py-1.5 px-4 text-[12px]">
+                    Best Seller
+                  </div>
+                </div>
+                <div className="mt-2.5">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
+                    <span
+                      className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+                      The Westin New York at Times Square
+                    </span>
+                  </h4>
+                  <p className="mt-1.5 text-sm text-pText font-jost">
+                    Manhattan, New York
+                  </p>
+                  <div className="mt-5 flex items-center">
+                    <div className="text-[12px] font-semibold text-white rounded-sm bg-hoverText h-7.5 w-7.5 flex justify-center items-center">
+                      4.8
+                    </div>
+                    <div className="text-primaryText text-sm font-medium font-jost ml-2.5">
+                      Exceptional
+                    </div>
+                    <div className="text-pText text-sm font-medium font-jost ml-2.5">
+                      3,014 reviews
+                    </div>
+                  </div>
+                  <div
+                    className="mt-2 font-medium font-jost text-primaryText group-hover:text-hoverText transition-all duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]">
+                    Starting from <span className="text-hoverText">US$72</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="relative w-75! group">
+              <Link href={"/"}>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src={HotelFour}
+                    alt="HotelFour"
+                    width={300}
+                    height={300}
+                    className="rounded-sm w-75 object-cover h-75 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"
+                  />
+                </div>
+                <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
+                  <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
+                </div>
+                <div className="absolute top-5 left-0">
+                  <div className="rounded-tr-sm rounded-br-sm bg-[#F8D448] uppercase font-jost font-medium text-primaryText py-1.5 px-4 text-[12px]">
+                    Top Rated
+                  </div>
+                </div>
+                <div className="mt-2.5">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
+                    <span
+                      className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+                      DoubleTree by Hilton Hotel New York Times Square West
+                    </span>
+                  </h4>
+                  <p className="mt-1.5 text-sm text-pText font-jost">
+                    Vaticano Prati, Rome
+                  </p>
+                  <div className="mt-5 flex items-center">
+                    <div className="text-[12px] font-semibold text-white rounded-sm bg-hoverText h-7.5 w-7.5 flex justify-center items-center">
+                      4.8
+                    </div>
+                    <div className="text-primaryText text-sm font-medium font-jost ml-2.5">
+                      Exceptional
+                    </div>
+                    <div className="text-pText text-sm font-medium font-jost ml-2.5">
+                      3,014 reviews
+                    </div>
+                  </div>
+                  <div
+                    className="mt-2 font-medium font-jost text-primaryText group-hover:text-hoverText transition-all duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]">
+                    Starting from <span className="text-hoverText">US$72</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="relative w-75! group">
+              <Link href={"/"}>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src={HotelOne}
+                    alt="HotelOne"
+                    width={300}
+                    height={300}
+                    className="rounded-sm w-75 object-cover h-75 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"
+                  />
+                </div>
+                <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
+                  <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
+                </div>
+                <div className="absolute top-5 left-0">
+                  <div className="rounded-tr-sm rounded-br-sm bg-primaryText uppercase font-jost font-medium text-white py-1.5 px-4 text-[12px]">
+                    Breakfast included
+                  </div>
+                </div>
+                <div className="mt-2.5">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
+                    <span
+                      className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+                      The Montcalm At Brewery London City
+                    </span>
+                  </h4>
+                  <p className="mt-1.5 text-sm text-pText font-jost">
+                    Westminster Borough, London
+                  </p>
+                  <div className="mt-5 flex items-center">
+                    <div className="text-[12px] font-semibold text-white rounded-sm bg-hoverText h-7.5 w-7.5 flex justify-center items-center">
+                      4.8
+                    </div>
+                    <div className="text-primaryText text-sm font-medium font-jost ml-2.5">
+                      Exceptional
+                    </div>
+                    <div className="text-pText text-sm font-medium font-jost ml-2.5">
+                      3,014 reviews
+                    </div>
+                  </div>
+                  <div
+                    className="mt-2 font-medium font-jost text-primaryText group-hover:text-hoverText transition-all duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]">
+                    Starting from <span className="text-hoverText">US$72</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="relative w-75! group">
+              <Link href={"/"}>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src={HotelTwo}
+                    alt="HotelTwo"
+                    width={300}
+                    height={300}
+                    className="rounded-sm w-75 object-cover h-75 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"
+                  />
+                </div>
+                <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
+                  <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
+                </div>
+                <div className="mt-2.5">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
+                    <span
+                      className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+                      Staycity Aparthotels Deptford Bridge Station
+                    </span>
+                  </h4>
+                  <p className="mt-1.5 text-sm text-pText font-jost">
+                    Ciutat Vella, Barcelona
+                  </p>
+                  <div className="mt-5 flex items-center">
+                    <div className="text-[12px] font-semibold text-white rounded-sm bg-hoverText h-7.5 w-7.5 flex justify-center items-center">
+                      4.8
+                    </div>
+                    <div className="text-primaryText text-sm font-medium font-jost ml-2.5">
+                      Exceptional
+                    </div>
+                    <div className="text-pText text-sm font-medium font-jost ml-2.5">
+                      3,014 reviews
+                    </div>
+                  </div>
+                  <div
+                    className="mt-2 font-medium font-jost text-primaryText group-hover:text-hoverText transition-all duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]">
+                    Starting from <span className="text-hoverText">US$72</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="relative w-75! group">
+              <Link href={"/"}>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src={HotelThree}
+                    alt="HotelThree"
+                    width={300}
+                    height={300}
+                    className="rounded-sm w-75 object-cover h-75 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"
+                  />
+                </div>
+                <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
+                  <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
+                </div>
+                <div className="absolute top-5 left-0">
+                  <div className="rounded-tr-sm rounded-br-sm bg-hoverText uppercase font-jost font-medium text-white py-1.5 px-4 text-[12px]">
+                    Best Seller
+                  </div>
+                </div>
+                <div className="mt-2.5">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
+                    <span
+                      className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+                      The Westin New York at Times Square
+                    </span>
+                  </h4>
+                  <p className="mt-1.5 text-sm text-pText font-jost">
+                    Manhattan, New York
+                  </p>
+                  <div className="mt-5 flex items-center">
+                    <div className="text-[12px] font-semibold text-white rounded-sm bg-hoverText h-7.5 w-7.5 flex justify-center items-center">
+                      4.8
+                    </div>
+                    <div className="text-primaryText text-sm font-medium font-jost ml-2.5">
+                      Exceptional
+                    </div>
+                    <div className="text-pText text-sm font-medium font-jost ml-2.5">
+                      3,014 reviews
+                    </div>
+                  </div>
+                  <div
+                    className="mt-2 font-medium font-jost text-primaryText group-hover:text-hoverText transition-all duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]">
+                    Starting from <span className="text-hoverText">US$72</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            <div className="relative w-75! group">
+              <Link href={"/"}>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src={HotelFour}
+                    alt="HotelFour"
+                    width={300}
+                    height={300}
+                    className="rounded-sm w-75 object-cover h-75 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]"
+                  />
+                </div>
+                <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
+                  <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
+                </div>
+                <div className="absolute top-5 left-0">
+                  <div className="rounded-tr-sm rounded-br-sm bg-[#F8D448] uppercase font-jost font-medium text-primaryText py-1.5 px-4 text-[12px]">
+                    Top Rated
+                  </div>
+                </div>
+                <div className="mt-2.5">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
+                    <span
+                      className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+                      DoubleTree by Hilton Hotel New York Times Square West
+                    </span>
+                  </h4>
+                  <p className="mt-1.5 text-sm text-pText font-jost">
+                    Vaticano Prati, Rome
+                  </p>
+                  <div className="mt-5 flex items-center">
+                    <div className="text-[12px] font-semibold text-white rounded-sm bg-hoverText h-7.5 w-7.5 flex justify-center items-center">
+                      4.8
+                    </div>
+                    <div className="text-primaryText text-sm font-medium font-jost ml-2.5">
+                      Exceptional
+                    </div>
+                    <div className="text-pText text-sm font-medium font-jost ml-2.5">
+                      3,014 reviews
+                    </div>
+                  </div>
+                  <div
+                    className="mt-2 font-medium font-jost text-primaryText group-hover:text-hoverText transition-all duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]">
+                    Starting from <span className="text-hoverText">US$72</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </Slider>
         </Container>
       </section>
 

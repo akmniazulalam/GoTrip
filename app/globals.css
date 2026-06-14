@@ -183,6 +183,21 @@ body {
   animation-delay: 0.3s;
 }
 
+.recommend .slick-dots {
+    bottom: -70px;
+}
+
+.recommend .slick-dots li {
+  margin: 0;
+}
+.recommend li.slick-active {
+    transform: scale(1.5);
+}
+
+.recommend .slick-dots li.slick-active button:before {
+  color: #3554D1 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .section-slide-up,
   .section-slide-left {
