@@ -101,17 +101,20 @@ body {
   animation-delay: 0.1s;
 }
 
-.section-slide-up-feature-one {
+.section-slide-up.section-slide-up-feature-one,
+.section-slide-up.section-slide-up-feature-one.is-visible {
   transition-delay: 0.1s;
   animation-delay: 0.1s;
 }
 
-.section-slide-up-feature-two {
+.section-slide-up.section-slide-up-feature-two,
+.section-slide-up.section-slide-up-feature-two.is-visible {
   transition-delay: 0.2s;
   animation-delay: 0.2s;
 }
 
-.section-slide-up-feature-three {
+.section-slide-up.section-slide-up-feature-three,
+.section-slide-up.section-slide-up-feature-three.is-visible {
   transition-delay: 0.3s;
   animation-delay: 0.3s;
 }
