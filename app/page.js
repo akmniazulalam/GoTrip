@@ -129,13 +129,13 @@ export default function Home() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
           setIsDestinationSectionVisible(true);
           observer.unobserve(entry.target);
         }
       },
       {
-        threshold: 0.18,
+        threshold: 0.5,
       }
     );
 
