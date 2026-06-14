@@ -31,6 +31,7 @@ export default function Home() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isDestinationSectionVisible, setIsDestinationSectionVisible] =
     useState(false);
+  const [isPromoSectionVisible, setIsPromoSectionVisible] = useState(false);
 
   const tabs = [
     { city: "Hawai", properties: "12,683 properties", category: "regions" },
@@ -97,12 +98,16 @@ export default function Home() {
   const sliderRef = useRef(null);
   const destinationSliderRef = useRef(null);
   const destinationSectionRef = useRef(null);
+  const promoSectionRef = useRef(null);
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
   const maxDesktopDestinationSlide = 1;
   const heroSlideClass = `hero-slide-up ${isHeroVisible ? "is-visible" : ""}`;
   const destinationRevealClass = `section-slide-up ${
     isDestinationSectionVisible ? "is-visible" : ""
+  }`;
+  const promoRevealClass = `section-slide-up ${
+    isPromoSectionVisible ? "is-visible" : ""
   }`;
 
   useEffect(() => {
@@ -131,6 +136,37 @@ export default function Home() {
       ([entry]) => {
         if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
           setIsDestinationSectionVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = promoSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsPromoSectionVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          setIsPromoSectionVisible(true);
           observer.unobserve(entry.target);
         }
       },
@@ -495,9 +531,9 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="py-15">
+      <section ref={promoSectionRef} className="py-15">
         <Container>
-          <div className="grid grid-cols-2 gap-x-7.5 mt-7.5">
+          <div className={`${promoRevealClass} section-slide-up-promo grid grid-cols-2 gap-x-7.5 mt-7.5`}>
             <div className="bg-[url(../public/1.webp)] bg-no-repeat bg-center bg-cover rounded-sm">
               <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm">
                 <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5 w-1/2">
