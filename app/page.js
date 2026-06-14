@@ -29,6 +29,8 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("Hotel");
   const [openTab, setOpenTab] = useState("all");
   const [isHeroVisible, setIsHeroVisible] = useState(false);
+  const [isDestinationSectionVisible, setIsDestinationSectionVisible] =
+    useState(false);
 
   const tabs = [
     { city: "Hawai", properties: "12,683 properties", category: "regions" },
@@ -94,10 +96,14 @@ export default function Home() {
     useState(false);
   const sliderRef = useRef(null);
   const destinationSliderRef = useRef(null);
+  const destinationSectionRef = useRef(null);
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
   const maxDesktopDestinationSlide = 1;
   const heroSlideClass = `hero-slide-up ${isHeroVisible ? "is-visible" : ""}`;
+  const destinationRevealClass = `section-slide-up ${
+    isDestinationSectionVisible ? "is-visible" : ""
+  }`;
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
@@ -106,6 +112,37 @@ export default function Home() {
 
     return () => {
       cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = destinationSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsDestinationSectionVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsDestinationSectionVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.18,
+      }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -265,9 +302,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pt-30 pb-10 overflow-hidden">
+      <section ref={destinationSectionRef} className="pt-30 pb-10 overflow-hidden">
         <Container>
-          <Flex className={"mb-10"}>
+          <Flex className={`${destinationRevealClass} section-slide-up-flex mb-10`}>
             <div>
               <h3 className="font-jost text-3xl text-primaryText font-semibold">
                 Popular Destinations
@@ -281,7 +318,7 @@ export default function Home() {
               <RxArrowTopRight className={"ml-1 text-2xl inline"} />
             </button>
           </Flex>
-          <div className="destination-slider">
+          <div className={`${destinationRevealClass} section-slide-up-slider destination-slider`}>
             <Slider ref={destinationSliderRef} {...destinationSliderSettings}>
               <div
                 className={`focus:outline-0 w-fit! destination-slide ${currentDestinationSlide > 0 ? "destination-slide-before" : ""}`}>
