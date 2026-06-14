@@ -35,6 +35,8 @@ export default function Home() {
   const [isFeatureSectionVisible, setIsFeatureSectionVisible] = useState(false);
   const [isTestimonialSectionVisible, setIsTestimonialSectionVisible] =
     useState(false);
+  const [isBlogSectionVisible, setIsBlogSectionVisible] = useState(false);
+  const [isBlogGridVisible, setIsBlogGridVisible] = useState(false);
 
   const tabs = [
     { city: "Hawai", properties: "12,683 properties", category: "regions" },
@@ -104,6 +106,8 @@ export default function Home() {
   const promoSectionRef = useRef(null);
   const featureSectionRef = useRef(null);
   const testimonialSectionRef = useRef(null);
+  const blogSectionRef = useRef(null);
+  const blogGridRef = useRef(null);
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
   const maxDesktopDestinationSlide = 1;
@@ -119,6 +123,12 @@ export default function Home() {
   }`;
   const testimonialRevealClass = `section-slide-up ${
     isTestimonialSectionVisible ? "is-visible" : ""
+  }`;
+  const blogSlideUpClass = `section-slide-up ${
+    isBlogSectionVisible ? "is-visible" : ""
+  }`;
+  const blogSlideLeftClass = `section-slide-left ${
+    isBlogGridVisible ? "is-visible" : ""
   }`;
 
   useEffect(() => {
@@ -249,6 +259,68 @@ export default function Home() {
     );
 
     observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = blogSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsBlogSectionVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          setIsBlogSectionVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.5,
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const grid = blogGridRef.current;
+
+    if (!grid) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsBlogGridVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          setIsBlogGridVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.5,
+      },
+    );
+
+    observer.observe(grid);
 
     return () => {
       observer.disconnect();
@@ -850,82 +922,88 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="pt-30 pb-15">
+      <section ref={blogSectionRef} className="pt-30 pb-15">
         <Container>
-          <div className="text-center">
+          <div
+            className={`${blogSlideUpClass} section-slide-up-blog-heading text-center`}>
             <h2 className="font-jost font-semibold text-3xl text-primaryText leading-11">
               Get inspiration for your next trip
             </h2>
             <p className="text-base leading-7.5 text-pText mt-1 font-jost">
               Interdum et malesuada fames
             </p>
-            <div className="pt-10 grid grid-cols-3 gap-7.5">
-              <Link href={"/"}>
-                <div className="group">
-                  <div className="overflow-hidden rounded-lg">
-                    <Image
-                      src={BlogOne}
-                      alt="BlogOne"
-                      height={308}
-                      width={410}
-                      className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
-                    />
-                  </div>
-                  <div className="mt-5 text-left">
-                    <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
-                      10 European ski destinations you should visit this winter
-                    </h4>
-                    <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
-                      April 06, 2022
-                    </p>
-                  </div>
+          </div>
+          <div ref={blogGridRef} className="pt-10 grid grid-cols-3 gap-7.5">
+            <Link
+              href={"/"}
+              className={`${blogSlideLeftClass} section-slide-left-blog-one block`}>
+              <div className="group">
+                <div className="overflow-hidden rounded-lg">
+                  <Image
+                    src={BlogOne}
+                    alt="BlogOne"
+                    height={308}
+                    width={410}
+                    className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
+                  />
                 </div>
-              </Link>
-              <Link href={"/"}>
-                <div className="group">
-                  <div className="overflow-hidden rounded-lg">
-                    <Image
-                      src={BlogTwo}
-                      alt="BlogOne"
-                      height={308}
-                      width={410}
-                      className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
-                    />
-                  </div>
-                  <div className="mt-5 text-left">
-                    <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
-                      Booking travel during Corona: good advice in an uncertain
-                      time
-                    </h4>
-                    <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
-                      April 06, 2022
-                    </p>
-                  </div>
+                <div className="mt-5 text-left">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
+                    10 European ski destinations you should visit this winter
+                  </h4>
+                  <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
+                    April 06, 2022
+                  </p>
                 </div>
-              </Link>
-              <Link href={"/"}>
-                <div className="group">
-                  <div className="overflow-hidden rounded-lg">
-                    <Image
-                      src={BlogThree}
-                      alt="BlogOne"
-                      height={308}
-                      width={410}
-                      className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
-                    />
-                  </div>
-                  <div className="mt-5 text-left">
-                    <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
-                      Where can I go? 5 amazing countries that are open right
-                      now
-                    </h4>
-                    <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
-                      April 06, 2022
-                    </p>
-                  </div>
+              </div>
+            </Link>
+            <Link
+              href={"/"}
+              className={`${blogSlideLeftClass} section-slide-left-blog-two block`}>
+              <div className="group">
+                <div className="overflow-hidden rounded-lg">
+                  <Image
+                    src={BlogTwo}
+                    alt="BlogOne"
+                    height={308}
+                    width={410}
+                    className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
+                  />
                 </div>
-              </Link>
-            </div>
+                <div className="mt-5 text-left">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
+                    Booking travel during Corona: good advice in an uncertain
+                    time
+                  </h4>
+                  <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
+                    April 06, 2022
+                  </p>
+                </div>
+              </div>
+            </Link>
+            <Link
+              href={"/"}
+              className={`${blogSlideLeftClass} section-slide-left-blog-three block`}>
+              <div className="group">
+                <div className="overflow-hidden rounded-lg">
+                  <Image
+                    src={BlogThree}
+                    alt="BlogOne"
+                    height={308}
+                    width={410}
+                    className="w-full rounded-lg group-hover:scale-110 group-hover:rounded-lg transition-transform duration-300 ease-in-out object-cover"
+                  />
+                </div>
+                <div className="mt-5 text-left">
+                  <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5">
+                    Where can I go? 5 amazing countries that are open right now
+                  </h4>
+                  <p className="mt-1.5 font-jost text-pText text-[15px] leading-6.5">
+                    April 06, 2022
+                  </p>
+                </div>
+              </div>
+            </Link>
           </div>
         </Container>
       </section>
