@@ -141,7 +141,7 @@ export default function Home() {
       },
       {
         threshold: 0.5,
-      }
+      },
     );
 
     observer.observe(section);
@@ -172,7 +172,7 @@ export default function Home() {
       },
       {
         threshold: 0.5,
-      }
+      },
     );
 
     observer.observe(section);
@@ -273,13 +273,16 @@ export default function Home() {
         <div className="pt-80 pb-52.5 bg-linear-[270deg] from-[rgba(5,16,54,0.5)] to-[#051036d9]">
           <Container>
             <div className="text-center opacity-100 z-50">
-              <h1 className={`${heroSlideClass} hero-slide-up-title font-semibold font-jost text-6xl text-white`}>
+              <h1
+                className={`${heroSlideClass} hero-slide-up-title font-semibold font-jost text-6xl text-white`}>
                 Find Next Place To Visit
               </h1>
-              <p className={`${heroSlideClass} hero-slide-up-text font-jost text-white font-medium text-base leading-7.5 pt-4 pb-15`}>
+              <p
+                className={`${heroSlideClass} hero-slide-up-text font-jost text-white font-medium text-base leading-7.5 pt-4 pb-15`}>
                 Discover amzaing places at exclusive deals
               </p>
-              <div className={`${heroSlideClass} hero-slide-up-tabs flex items-center gap-x-7 justify-center`}>
+              <div
+                className={`${heroSlideClass} hero-slide-up-tabs flex items-center gap-x-7 justify-center`}>
                 {[
                   { name: "Hotel" },
                   { name: "Tour" },
@@ -301,7 +304,8 @@ export default function Home() {
                   </button>
                 ))}
               </div>
-              <div className={`${heroSlideClass} hero-slide-up-search mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%]`}>
+              <div
+                className={`${heroSlideClass} hero-slide-up-search mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%]`}>
                 <div className="px-7 py-1.5 w-fit text-left">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Location ({activeTab})
@@ -338,9 +342,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={destinationSectionRef} className="pt-30 pb-10 overflow-hidden">
+      <section
+        ref={destinationSectionRef}
+        className="pt-30 pb-10 overflow-hidden">
         <Container>
-          <Flex className={`${destinationRevealClass} section-slide-up-flex mb-10`}>
+          <Flex
+            className={`${destinationRevealClass} section-slide-up-flex mb-10`}>
             <div>
               <h3 className="font-jost text-3xl text-primaryText font-semibold">
                 Popular Destinations
@@ -354,7 +361,8 @@ export default function Home() {
               <RxArrowTopRight className={"ml-1 text-2xl inline"} />
             </button>
           </Flex>
-          <div className={`${destinationRevealClass} section-slide-up-slider destination-slider`}>
+          <div
+            className={`${destinationRevealClass} section-slide-up-slider destination-slider`}>
             <Slider ref={destinationSliderRef} {...destinationSliderSettings}>
               <div
                 className={`focus:outline-0 w-fit! destination-slide ${currentDestinationSlide > 0 ? "destination-slide-before" : ""}`}>
@@ -493,7 +501,10 @@ export default function Home() {
                   </div>
                 </Link>
               </div>
-              <div className={"rounded-sm focus:outline-0 w-fit! destination-slide"}>
+              <div
+                className={
+                  "rounded-sm focus:outline-0 w-fit! destination-slide"
+                }>
                 <Link href={"/"} className="relative rounded-sm">
                   <Image
                     src={Rome}
@@ -533,7 +544,8 @@ export default function Home() {
 
       <section ref={promoSectionRef} className="py-15">
         <Container>
-          <div className={`${promoRevealClass} section-slide-up-promo grid grid-cols-2 gap-x-7.5 mt-7.5`}>
+          <div
+            className={`${promoRevealClass} section-slide-up-promo grid grid-cols-2 gap-x-7.5 mt-7.5`}>
             <div className="bg-[url(../public/1.webp)] bg-no-repeat bg-center bg-cover rounded-sm">
               <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm">
                 <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5 w-1/2">
@@ -618,7 +630,7 @@ export default function Home() {
           </div>
         </Container>
       </section>
-      
+
       <section className="bg-[#E5F0FD] py-30">
         <Container>
           <div className="flex justify-between">
