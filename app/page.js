@@ -32,6 +32,7 @@ export default function Home() {
   const [isDestinationSectionVisible, setIsDestinationSectionVisible] =
     useState(false);
   const [isPromoSectionVisible, setIsPromoSectionVisible] = useState(false);
+  const [isFeatureSectionVisible, setIsFeatureSectionVisible] = useState(false);
 
   const tabs = [
     { city: "Hawai", properties: "12,683 properties", category: "regions" },
@@ -99,6 +100,7 @@ export default function Home() {
   const destinationSliderRef = useRef(null);
   const destinationSectionRef = useRef(null);
   const promoSectionRef = useRef(null);
+  const featureSectionRef = useRef(null);
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
   const maxDesktopDestinationSlide = 1;
@@ -108,6 +110,9 @@ export default function Home() {
   }`;
   const promoRevealClass = `section-slide-up ${
     isPromoSectionVisible ? "is-visible" : ""
+  }`;
+  const featureRevealClass = `section-slide-up ${
+    isFeatureSectionVisible ? "is-visible" : ""
   }`;
 
   useEffect(() => {
@@ -167,6 +172,37 @@ export default function Home() {
       ([entry]) => {
         if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
           setIsPromoSectionVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.5,
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = featureSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsFeatureSectionVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          setIsFeatureSectionVisible(true);
           observer.unobserve(entry.target);
         }
       },
@@ -573,10 +609,11 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="pt-15 pb-30">
+      <section ref={featureSectionRef} className="pt-15 pb-30">
         <Container>
           <div className="grid grid-cols-3">
-            <div className="text-center">
+            <div
+              className={`${featureRevealClass} section-slide-up-feature-one text-center`}>
               <Image
                 src={featureOne}
                 alt="featureOne"
@@ -593,7 +630,8 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="text-center">
+            <div
+              className={`${featureRevealClass} section-slide-up-feature-two text-center`}>
               <Image
                 src={featureTwo}
                 alt="featureTwo"
@@ -610,7 +648,8 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="text-center">
+            <div
+              className={`${featureRevealClass} section-slide-up-feature-three text-center`}>
               <Image
                 src={featureThree}
                 alt="featureThree"

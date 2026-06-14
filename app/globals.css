@@ -101,6 +101,21 @@ body {
   animation-delay: 0.1s;
 }
 
+.section-slide-up-feature-one {
+  transition-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+
+.section-slide-up-feature-two {
+  transition-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.section-slide-up-feature-three {
+  transition-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .section-slide-up {
     opacity: 1;
