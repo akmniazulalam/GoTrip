@@ -44,6 +44,8 @@ export default function Home() {
     useState(false);
   const [isBlogSectionVisible, setIsBlogSectionVisible] = useState(false);
   const [isBlogGridVisible, setIsBlogGridVisible] = useState(false);
+  const [isRecommendSectionVisible, setIsRecommendSectionVisible] =
+    useState(false);
 
   const tabs = [
     { city: "Hawai", properties: "12,683 properties", category: "regions" },
@@ -117,6 +119,7 @@ export default function Home() {
   const testimonialSectionRef = useRef(null);
   const blogSectionRef = useRef(null);
   const blogGridRef = useRef(null);
+  const recommendSectionRef = useRef(null);
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
   const maxDesktopDestinationSlide = 1;
@@ -138,6 +141,9 @@ export default function Home() {
   }`;
   const blogSlideLeftClass = `section-slide-left ${
     isBlogGridVisible ? "is-visible" : ""
+  }`;
+  const recommendRevealClass = `section-slide-up section-slide-up-recommend ${
+    isRecommendSectionVisible ? "is-visible" : ""
   }`;
 
   useEffect(() => {
@@ -344,6 +350,37 @@ export default function Home() {
     );
 
     observer.observe(grid);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const section = recommendSectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsRecommendSectionVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+          setIsRecommendSectionVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.45,
+      },
+    );
+
+    observer.observe(section);
 
     return () => {
       observer.disconnect();
@@ -799,8 +836,8 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className={"py-15 recommend"}>
-        <Container>
+      <section ref={recommendSectionRef} className={"py-15 recommend"}>
+        <Container className={recommendRevealClass}>
           <Flex className={` mb-10`}>
             <div>
               <h3 className="font-jost text-3xl text-primaryText font-semibold">
