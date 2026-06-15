@@ -421,13 +421,15 @@ export default function Home() {
       <Slider {...recommendImageSettings}>
         {recommendImageSlides.map((item) => (
           <div key={item.alt} className="focus:outline-0">
-            <Image
-              src={item.src}
-              alt={item.alt}
-              width={300}
-              height={300}
-              className="rounded-sm w-75 object-cover h-75"
-            />
+            <div className="overflow-hidden rounded-sm">
+              <Image
+                src={item.src}
+                alt={item.alt}
+                width={300}
+                height={300}
+                className="recommend-image rounded-sm w-75 object-cover h-75"
+              />
+            </div>
           </div>
         ))}
       </Slider>
@@ -899,11 +901,11 @@ export default function Home() {
               </Link>
             </div>
             <div className="relative w-75! group">
+              <Link href={"/"}>
               {renderRecommendImageSlider()}
               <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
                 <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
               </div>
-              <Link href={"/"}>
                 <div className="mt-2.5">
                   <h4 className="text-[18px] text-primaryText font-jost font-medium leading-7.5 w-[95%]">
                     <span

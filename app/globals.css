@@ -191,7 +191,7 @@ body {
   margin: 0;
 }
 .recommend li.slick-active {
-    transform: scale(1.3);
+    transform: scale(1.8);
 }
 
 .recommend .slick-dots li.slick-active button:before {
@@ -202,21 +202,52 @@ body {
   position: relative;
 }
 
-.recommend-image-slider .recommend-image-arrow {
-  opacity: 0;
-  transition:
-    opacity 300ms cubic-bezier(0.215, 0.61, 0.355, 1),
-    background-color 300ms ease,
-    color 300ms ease,
-    transform 300ms ease;
+.recommend-image-slider .slick-list,
+.recommend-image-slider .slick-slide > div {
+  overflow: hidden;
+  border-radius: 2px;
 }
 
-.recommend-image-slider:hover .recommend-image-arrow {
+/* Base style for nested slider images with GPU acceleration and transition delay on zoom-out */
+.recommend-image {
+  will-change: transform;
+  transform: scale(1) translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  transition: transform 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-delay: 150ms;
+}
+
+/* Card hover triggers image zoom */
+.group:hover .recommend-image {
+  transform: scale(1.1) translate3d(0, 0, 0);
+  transition-delay: 0s;
+}
+
+/* Disable transition on cloned slides to prevent layout snapping issues */
+.recommend-image-slider .slick-cloned .recommend-image {
+  transition: none !important;
+}
+
+.recommend-image-slider .recommend-image-arrow {
+  opacity: 0;
+  /* Keep arrow position static to prevent any shaking/jitter during scale/layout updates */
+  transform: translateY(-50%) translateZ(0); 
+  will-change: opacity;
+  transition:
+    opacity 360ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    background-color 300ms ease,
+    color 300ms ease;
+}
+
+/* Trigger arrow visibility on entire card hover */
+.group:hover .recommend-image-slider .recommend-image-arrow {
   opacity: 1;
 }
 
 .recommend-image-slider .slick-dots {
   bottom: 25px;
+  opacity: 1;
+  transition: opacity 360ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .recommend-image-slider .slick-dots li {
@@ -237,15 +268,17 @@ body {
   height: 8px;
   line-height: 8px;
   opacity: 0;
+  transition: opacity 360ms cubic-bezier(0.215, 0.61, 0.355, 1);
   width: 8px;
 }
 
-.recommend-image-slider:hover .slick-dots li button:before {
+/* Trigger slick-dots visibility on entire card hover */
+.group:hover .recommend-image-slider .slick-dots li button:before {
   opacity: 0.7;
 }
 
 .recommend-image-slider .slick-dots li.slick-active button:before,
-.recommend-image-slider:hover .slick-dots li.slick-active button:before {
+.group:hover .recommend-image-slider .slick-dots li.slick-active button:before {
   color: #ffffff !important;
   opacity: 1;
 }
@@ -290,4 +323,9 @@ body {
 .slick-disabled {
   color: #1010104d;
   /* pointer-events: none; */
+}
+
+
+.recommend-image-slider .recommend-image-arrow {
+    transform: translateY(-50%)scale(1) !important;
 }
