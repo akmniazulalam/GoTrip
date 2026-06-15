@@ -198,6 +198,58 @@ body {
   color: #3554D1 !important;
 }
 
+.recommend-image-slider {
+  position: relative;
+}
+
+.recommend-image-slider .recommend-image-arrow {
+  opacity: 0;
+  transition:
+    opacity 300ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    background-color 300ms ease,
+    color 300ms ease,
+    transform 300ms ease;
+}
+
+.recommend-image-slider:hover .recommend-image-arrow {
+  opacity: 1;
+}
+
+.recommend-image-slider .slick-dots {
+  bottom: 14px;
+}
+
+.recommend-image-slider .slick-dots li {
+  height: 8px;
+  width: 8px;
+  margin: 0 3px;
+}
+
+.recommend-image-slider .slick-dots li button {
+  height: 8px;
+  width: 8px;
+  padding: 0;
+}
+
+.recommend-image-slider .slick-dots li button:before {
+  color: #ffffff !important;
+  font-size: 8px;
+  height: 8px;
+  line-height: 8px;
+  opacity: 0;
+  width: 8px;
+}
+
+.recommend-image-slider:hover .slick-dots li button:before {
+  opacity: 0.7;
+}
+
+.recommend-image-slider .slick-dots li.slick-active button:before,
+.recommend-image-slider:hover .slick-dots li.slick-active button:before {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .section-slide-up,
   .section-slide-left {
