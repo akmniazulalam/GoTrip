@@ -28,6 +28,8 @@ import { FaCaretDown, FaCaretUp, FaStar } from "react-icons/fa";
 import Link from "next/link";
 import NextArrow from "./(components)/NextArrow";
 import PrevArrow from "./(components)/PrevArrow";
+import RecommendNext from "./(components)/RecommendNext";
+import RecommendPrev from "./(components)/RecommendPrev";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 export default function Home() {
@@ -385,6 +387,8 @@ export default function Home() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    nextArrow: <RecommendNext />,
+    prevArrow: <RecommendPrev />,
   };
 
   var destinationSliderSettings = {
@@ -1237,7 +1241,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={featureSectionRef} className="pt-15 pb-30">
+      <section ref={featureSectionRef} className="pt-24 pb-30">
         <Container>
           <div className="grid grid-cols-3">
             <div
