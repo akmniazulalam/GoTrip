@@ -6,7 +6,7 @@ const PrevArrow = ({onClick, currentSlide = 0, minSlide, compact = false, classN
     className.includes("slick-disabled") ||
     (typeof minSlide === "number" && currentSlide <= minSlide);
   const sizeClass = compact ? "h-7.5 w-7.5 text-[10px]" : "h-10 w-10 text-sm";
-  const positionClass = compact ? "left-2" : "-left-5";
+  const positionClass = compact ? "left-5" : "-left-5";
   const scopeClass = compact ? "recommend-image-arrow" : "";
   const handleClick = (event) => {
     event.preventDefault();

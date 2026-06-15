@@ -6,7 +6,7 @@ const NextArrow = ({onClick, currentSlide = 0, maxSlide, compact = false, classN
     className.includes("slick-disabled") ||
     (typeof maxSlide === "number" && currentSlide >= maxSlide);
   const sizeClass = compact ? "h-7.5 w-7.5 text-[10px]" : "h-10 w-10 text-sm";
-  const positionClass = compact ? "right-2" : "-right-5";
+  const positionClass = compact ? "right-5" : "-right-5";
   const scopeClass = compact ? "recommend-image-arrow" : "";
   const handleClick = (event) => {
     event.preventDefault();

@@ -394,7 +394,7 @@ export default function Home() {
   var recommendImageSettings = {
     dots: true,
     arrows: true,
-    infinite: false,
+    infinite: true,
     autoplay: false,
     speed: 500,
     slidesToShow: 1,

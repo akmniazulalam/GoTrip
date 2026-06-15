@@ -191,7 +191,7 @@ body {
   margin: 0;
 }
 .recommend li.slick-active {
-    transform: scale(1.5);
+    transform: scale(1.3);
 }
 
 .recommend .slick-dots li.slick-active button:before {
@@ -216,13 +216,13 @@ body {
 }
 
 .recommend-image-slider .slick-dots {
-  bottom: 14px;
+  bottom: 25px;
 }
 
 .recommend-image-slider .slick-dots li {
   height: 8px;
   width: 8px;
-  margin: 0 3px;
+  margin: 0 6px;
 }
 
 .recommend-image-slider .slick-dots li button {
