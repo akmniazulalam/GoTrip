@@ -937,7 +937,7 @@ export default function Home() {
                 </div>
               </Link>
             </div>
-            <div className="relative w-75! group">
+            <div className="relative w-75! group flex flex-col h-[478px]">
               <Link href={"/"} className="recoSlider">
               {renderRecommendImageSlider()}
               <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
