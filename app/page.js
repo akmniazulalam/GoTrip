@@ -938,7 +938,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="relative w-75! group">
-              <Link href={"/"}>
+              <Link href={"/"} className="recoSlider">
               {renderRecommendImageSlider()}
               <div className="absolute top-5 right-5 h-7.5 w-7.5 bg-white rounded-full flex justify-center items-center group/wish hover:bg-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer">
                 <IoMdHeartEmpty className="text-primaryText group-hover/wish:text-white" />
