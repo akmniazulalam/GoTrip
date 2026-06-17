@@ -814,7 +814,8 @@ export default function Home() {
                 <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5 w-1/2">
                   Things to do on your trip
                 </h4>
-                <button className="bg-white rounded-sm font-jost font-medium text-primaryText py-3 px-12 cursor-pointer">
+                <button className="bg-white rounded-sm font-jost font-medium text-primaryText py-3 px-12 cursor-pointer
+                hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
                   Experiences
                 </button>
               </div>
@@ -827,7 +828,7 @@ export default function Home() {
                 <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5">
                   Up to 70% Discount!
                 </h4>
-                <button className="bg-white rounded-sm font-jost font-medium text-primaryText py-3 px-12 cursor-pointer">
+                <button className="bg-white rounded-sm font-jost font-medium text-primaryText py-3 px-12 cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
                   Learn More
                 </button>
               </div>
