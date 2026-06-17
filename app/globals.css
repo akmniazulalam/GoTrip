@@ -334,6 +334,10 @@ body {
     width: 340px !important;
 }
 
+.recoSlider .slick-list {
+    height: 478px !important;
+}
+
 .recommend-image-slider .recommend-image-arrow {
     transform: translateY(-50%)scale(1) !important;
 }
