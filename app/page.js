@@ -422,7 +422,7 @@ export default function Home() {
     autoplay: false,
     autoplaySpeed: 2000,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3.8823529412,
     slidesToScroll: 1,
     nextArrow: <RecommendNext />,
     prevArrow: <RecommendPrev />,
@@ -464,6 +464,7 @@ export default function Home() {
                 alt={item.alt}
                 width={300}
                 height={300}
+                loading="eager"
                 className="recommend-image rounded-sm w-75 object-cover h-75"
               />
             </div>
@@ -881,7 +882,7 @@ export default function Home() {
               )}
             </div>
           </Flex>
-          <Slider {...recommendSettings}>
+          <Slider className="recommend-main-slider" {...recommendSettings}>
             <div className="relative w-75! group">
               <Link href={"/"}>
                 <div className="overflow-hidden rounded-sm">
