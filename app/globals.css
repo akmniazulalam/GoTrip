@@ -334,8 +334,16 @@ body {
     width: 340px !important;
 }
 
-.recoSlider .slick-list {
+.recommend .slick-list {
     height: 478px !important;
+}
+
+.recommend-image-arrow {
+  top: 35%;
+}
+
+.recommend-image-slider .slick-dots {
+    bottom: 42%;
 }
 
 .recommend-image-slider .recommend-image-arrow {
