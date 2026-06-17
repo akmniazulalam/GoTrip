@@ -111,6 +111,7 @@ export default function Home() {
   const [isDesktopDestinationSlider, setIsDesktopDestinationSlider] =
     useState(false);
   const sliderRef = useRef(null);
+  const recommendSliderRef = useRef(null);
   const destinationSliderRef = useRef(null);
   const destinationSectionRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -122,6 +123,7 @@ export default function Home() {
   const recommendSectionRef = useRef(null);
   const slides = [1, 2, 3];
   const totalSlides = slides.length;
+  const maxRecommendSlide = 4;
   const maxDesktopDestinationSlide = 1;
   const heroSlideClass = `hero-slide-up ${isHeroVisible ? "is-visible" : ""}`;
   const destinationRevealClass = `section-slide-up ${
@@ -424,8 +426,14 @@ export default function Home() {
     speed: 500,
     slidesToShow: 3.8823529412,
     slidesToScroll: 1,
-    nextArrow: <RecommendNext />,
+    nextArrow: <RecommendNext maxSlide={maxRecommendSlide} />,
     prevArrow: <RecommendPrev />,
+    appendDots: (dots) => <ul>{dots.slice(0, maxRecommendSlide + 1)}</ul>,
+    afterChange: (current) => {
+      if (current > maxRecommendSlide) {
+        recommendSliderRef.current?.slickGoTo(maxRecommendSlide);
+      }
+    },
   };
 
   var recommendImageSettings = {
@@ -861,7 +869,7 @@ export default function Home() {
                 )}
               </button>
               {isOpen && (
-                <div className="absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 py-3.5 px-5 bg-white shadow-[0px_25px_70px_rgba(1, 33, 58, 0.07)] min-w-40 border border-[#DDDDDD] rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
+                <div className="absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 z-30 py-3.5 px-5 bg-white shadow-[0px_25px_70px_rgba(1, 33, 58, 0.07)] min-w-40 border border-[#DDDDDD] rounded-sm transition-all duration-200 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
                   <div className="-my-2 text-sm font-medium font-jost text-primaryText">
                     {[
                       "Animation",
@@ -882,7 +890,7 @@ export default function Home() {
               )}
             </div>
           </Flex>
-          <Slider className="recommend-main-slider" {...recommendSettings}>
+          <Slider ref={recommendSliderRef} className="recommend-main-slider" {...recommendSettings}>
             <div className="relative w-75! group">
               <Link href={"/"}>
                 <div className="overflow-hidden rounded-sm">

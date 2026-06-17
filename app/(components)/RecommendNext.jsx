@@ -1,8 +1,10 @@
 import React from 'react'
 import { LiaArrowRightSolid } from 'react-icons/lia'
 
-const RecommendNext = ({onClick, className = ""}) => {
-  const isDisabled = className.includes("slick-disabled");
+const RecommendNext = ({onClick, currentSlide = 0, maxSlide, className = ""}) => {
+  const isDisabled =
+    className.includes("slick-disabled") ||
+    (typeof maxSlide === "number" && currentSlide >= maxSlide);
 
   return (
     <button
