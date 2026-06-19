@@ -13,6 +13,7 @@ const Header = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
   const [categoriesDropdown, setCategoriesDropdown] = useState(false);
   const [activeCategoryTab, setActiveCategoryTab] = useState("Hotel");
+  const [categoryPanelVisible, setCategoryPanelVisible] = useState(true);
   const [blogDropdown, setBlogDropdown] = useState(false);
   const [pagesDropdown, setPagesDropdown] = useState(false);
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
@@ -44,6 +45,14 @@ const Header = () => {
   };
   const handleCategories = () => {
     setCategoriesDropdown(true);
+  };
+  const handleCategoryTab = (tab) => {
+    setCategoryPanelVisible(false);
+
+    window.setTimeout(() => {
+      setActiveCategoryTab(tab);
+      setCategoryPanelVisible(true);
+    }, 120);
   };
   const handleBlog = () => {
     setBlogDropdown(!blogDropdown);
@@ -209,13 +218,28 @@ const Header = () => {
     Flights: [
       {
         title: "Flight List",
-        links: ["Flight List", "Flight List v1"],
+        links: ["Flight List v1"],
       },
     ],
   };
 
   const getCategoryHref = (label) =>
     `/${label.toLowerCase().replaceAll(" ", "-")}`;
+
+  const categoryPanelImages = categoryTabs.reduce((images, tab) => {
+    images[tab] = {
+      src: "/7.webp",
+      alt: `Things to do on your trip - ${tab}`,
+      href: getCategoryHref(tab),
+    };
+
+    return images;
+  }, {});
+
+  const activeCategoryPanel = {
+    columns: categoryMenus[activeCategoryTab],
+    image: categoryPanelImages[activeCategoryTab],
+  };
 
   return (
     <div
@@ -235,11 +259,11 @@ const Header = () => {
                 onMouseEnter={handleHome}
                 onMouseLeave={() => setHomeDropdown(false)}
                 className="relative">
-                <div className="flex gap-2 items-center py-5 cursor-pointer">
+                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
                   Home <FaCaretDown />
                 </div>
                 {homeDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-7.5 shadow-[0px_10px_30px_0px_#05103608] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_30px_0px_#05103608] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
                     {[
                       { name: "Home 1", href: "/" },
                       { name: "Home 2", href: "/about" },
@@ -269,71 +293,76 @@ const Header = () => {
                 onMouseEnter={handleCategories}
                 onMouseLeave={() => setCategoriesDropdown(false)}
                 className="relative">
-                <div className="flex gap-2 items-center py-5 cursor-pointer">
+                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
                   Categories <FaCaretDown />
                 </div>
                 {categoriesDropdown && (
-                  <div className="absolute top-16 -left-38 w-240 max-w-[calc(100vw-32px)] bg-white rounded-sm text-primaryText p-6 lg:p-7.5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)]">
-                    <div className="grid grid-cols-1 gap-7.5 lg:grid-cols-[1fr_337px]">
-                      <div className="min-w-0">
-                        <div className="flex flex-wrap items-center gap-x-9 gap-y-3">
-                          {categoryTabs.map((tab) => (
-                            <button
-                              key={tab}
-                              type="button"
-                              onClick={() => setActiveCategoryTab(tab)}
-                              onMouseEnter={() => setActiveCategoryTab(tab)}
-                              className={`relative pb-2 text-base font-medium font-jost transition-all duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] cursor-pointer ${
-                                activeCategoryTab === tab
-                                  ? "text-hoverText after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:bg-hoverText after:content-['']"
-                                  : "text-pText hover:text-hoverText"
-                              }`}>
-                              {tab}
-                            </button>
-                          ))}
-                        </div>
+                  <div className="absolute top-16 -left-3 w-200 max-w-[calc(100vw-32px)] bg-white rounded-sm text-primaryText p-6 lg:p-7.5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)]">
+                    <div className="flex flex-wrap items-center gap-x-9 gap-y-3">
+                      {categoryTabs.map((tab) => (
+                        <button
+                          key={tab}
+                          type="button"
+                          onClick={() => handleCategoryTab(tab)}
+                          className={`relative pb-2 text-base font-medium font-jost transition-all duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] cursor-pointer ${
+                            activeCategoryTab === tab
+                              ? "text-hoverText after:absolute after:left-0 after:bottom-1.25 after:h-0.5 after:w-full after:bg-hoverText after:content-['']"
+                              : "text-pText hover:text-hoverText"
+                          }`}>
+                          {tab}
+                        </button>
+                      ))}
+                    </div>
 
-                        <div className="mt-10 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
-                          {categoryMenus[activeCategoryTab].map((column) => (
-                            <div key={column.title}>
-                              <h3 className="mb-4 text-base font-medium font-jost text-primaryText">
-                                {column.title}
-                              </h3>
-                              <ul className="space-y-3">
-                                {column.links.map((item) => (
-                                  <li key={item}>
-                                    <Link
-                                      href={getCategoryHref(item)}
-                                      onClick={() => setCategoriesDropdown(false)}
-                                      className="block text-base font-jost text-primaryText transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] hover:text-hoverText">
-                                      {item}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
+                    <div
+                      key={activeCategoryTab}
+                      className={`mt-10 grid grid-cols-1 gap-7.5 transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] lg:grid-cols-[1fr_280px] lg:items-start ${
+                        categoryPanelVisible
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-2 opacity-0"
+                      }`}>
+                      <div className="grid min-w-0 grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+                        {activeCategoryPanel.columns.map((column) => (
+                          <div key={column.title}>
+                            <h3 className="mb-4 text-base font-medium font-jost text-primaryText">
+                              {column.title}
+                            </h3>
+                            <ul className="space-y-3">
+                              {column.links.map((item) => (
+                                <li key={item}>
+                                  <Link
+                                    href={getCategoryHref(item)}
+                                    onClick={() => setCategoriesDropdown(false)}
+                                    className="block text-base font-jost text-primaryText transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] hover:text-hoverText">
+                                    {item}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
 
                       <Link
-                        href="/activity"
+                        key={`${activeCategoryTab}-image-link`}
+                        href={activeCategoryPanel.image.href}
                         onClick={() => setCategoriesDropdown(false)}
-                        className="group relative hidden h-93.75 overflow-hidden rounded-sm lg:block">
+                        className="group relative hidden h-78.75 overflow-hidden rounded-sm lg:block">
                         <Image
-                          src="/7.webp"
-                          alt="Things to do on your trip"
+                          key={`${activeCategoryTab}-image`}
+                          src={activeCategoryPanel.image.src}
+                          alt={activeCategoryPanel.image.alt}
                           fill
-                          sizes="337px"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="280px"
+                          className="object-cover transition-transform duration-300 group-hover:scale-110 ease-[cubic-bezier(0.165,0.84,0.44,1)]"
                         />
-                        <div className="absolute inset-x-9 top-8">
-                          <p className="text-[28px] leading-[1.35] font-medium font-jost text-white">
+                        <div className="absolute inset-x-7 top-7">
+                          <p className="text-[25px] leading-[1.35] font-medium font-jost text-white">
                             Things to do on
                             <br />
                             your trip
                           </p>
-                          <span className="mt-7 inline-flex h-15 min-w-42 items-center justify-center rounded-sm bg-white px-6 text-base font-medium font-jost text-primaryText hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
+                          <span className="mt-6 inline-flex h-13 min-w-38 items-center justify-center rounded-sm bg-white px-5 text-base font-medium font-jost text-primaryText hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
                             Experiences
                           </span>
                         </div>
@@ -352,7 +381,7 @@ const Header = () => {
                 onMouseEnter={handleBlog}
                 onMouseLeave={() => setBlogDropdown(false)}
                 className="relative">
-                <div className="flex gap-2 items-center py-5 cursor-pointer">
+                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
                   Blog <FaCaretDown />
                 </div>
                 {blogDropdown && (
@@ -379,7 +408,7 @@ const Header = () => {
                 onMouseEnter={handlePages}
                 onMouseLeave={() => setPagesDropdown(false)}
                 className="relative">
-                <div className="flex gap-2 items-center py-5 cursor-pointer">
+                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
                   Pages <FaCaretDown />
                 </div>
                 {pagesDropdown && (
@@ -412,7 +441,7 @@ const Header = () => {
                 onMouseEnter={handleDashboard}
                 onMouseLeave={() => setDashboardDropdown(false)}
                 className="relative">
-                <div className="flex gap-2 items-center py-5 cursor-pointer">
+                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
                   Dashboard <FaCaretDown />
                 </div>
                 {dashboardDropdown && (
