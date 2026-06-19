@@ -47,11 +47,15 @@ const Header = () => {
     setCategoriesDropdown(true);
   };
   const handleCategoryTab = (tab) => {
+    if (tab === activeCategoryTab) return;
+
     setCategoryPanelVisible(false);
 
     window.setTimeout(() => {
       setActiveCategoryTab(tab);
-      setCategoryPanelVisible(true);
+      window.requestAnimationFrame(() => {
+        setCategoryPanelVisible(true);
+      });
     }, 120);
   };
   const handleBlog = () => {
@@ -154,7 +158,13 @@ const Header = () => {
     Hotel: [
       {
         title: "Hotel List",
-        links: ["Hotel List v1", "Hotel List v2", "Hotel List v3", "Hotel List v4", "Hotel List v5"],
+        links: [
+          "Hotel List v1",
+          "Hotel List v2",
+          "Hotel List v3",
+          "Hotel List v4",
+          "Hotel List v5",
+        ],
       },
       {
         title: "Hotel Single",
@@ -316,7 +326,7 @@ const Header = () => {
 
                     <div
                       key={activeCategoryTab}
-                      className={`mt-10 grid grid-cols-1 gap-7.5 transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] lg:grid-cols-[1fr_280px] lg:items-start ${
+                      className={`mt-10 grid grid-cols-1 gap-7.5 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:grid-cols-[1fr_280px] lg:items-start ${
                         categoryPanelVisible
                           ? "translate-y-0 opacity-100"
                           : "translate-y-2 opacity-0"
@@ -347,14 +357,14 @@ const Header = () => {
                         key={`${activeCategoryTab}-image-link`}
                         href={activeCategoryPanel.image.href}
                         onClick={() => setCategoriesDropdown(false)}
-                        className="group relative hidden h-78.75 overflow-hidden rounded-sm lg:block">
+                        className="group relative hidden h-78.75 overflow-hidden rounded-sm transform-[translateZ(0)] lg:block">
                         <Image
                           key={`${activeCategoryTab}-image`}
                           src={activeCategoryPanel.image.src}
                           alt={activeCategoryPanel.image.alt}
                           fill
                           sizes="280px"
-                          className="object-cover transition-transform duration-300 group-hover:scale-110 ease-[cubic-bezier(0.165,0.84,0.44,1)]"
+                          className="origin-center object-cover transform-gpu select-none will-change-transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                         />
                         <div className="absolute inset-x-7 top-7">
                           <p className="text-[25px] leading-[1.35] font-medium font-jost text-white">
