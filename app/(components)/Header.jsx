@@ -11,7 +11,8 @@ import England from "../../public/lang.webp";
 
 const Header = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
-  const [categoriesDropdown, setCategoriesDropdown] = useState(true);
+  const [categoriesDropdown, setCategoriesDropdown] = useState(false);
+  const [activeCategoryTab, setActiveCategoryTab] = useState("Hotel");
   const [blogDropdown, setBlogDropdown] = useState(false);
   const [pagesDropdown, setPagesDropdown] = useState(false);
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
@@ -42,7 +43,7 @@ const Header = () => {
     setHomeDropdown(!homeDropdown);
   };
   const handleCategories = () => {
-    setCategoriesDropdown(!categoriesDropdown);
+    setCategoriesDropdown(true);
   };
   const handleBlog = () => {
     setBlogDropdown(!blogDropdown);
@@ -129,6 +130,93 @@ const Header = () => {
     { length: 20 },
     (_, index) => languageItems[index % languageItems.length],
   );
+
+  const categoryTabs = [
+    "Hotel",
+    "Tour",
+    "Activity",
+    "Holiday Rentals",
+    "Car",
+    "Cruise",
+    "Flights",
+  ];
+
+  const categoryMenus = {
+    Hotel: [
+      {
+        title: "Hotel List",
+        links: ["Hotel List v1", "Hotel List v2", "Hotel List v3", "Hotel List v4", "Hotel List v5"],
+      },
+      {
+        title: "Hotel Single",
+        links: ["Hotel Single v1", "Hotel Single v2"],
+      },
+      {
+        title: "Hotel Booking",
+        links: ["Booking Page"],
+      },
+    ],
+    Tour: [
+      {
+        title: "Tour List",
+        links: ["Tour List v1", "Tour List v2"],
+      },
+      {
+        title: "Tour Pages",
+        links: ["Tour Map", "Tour Single"],
+      },
+    ],
+    Activity: [
+      {
+        title: "Activity List",
+        links: ["Activity List v1", "Activity List v2"],
+      },
+      {
+        title: "Activity Pages",
+        links: ["Activity Map", "Activity Single"],
+      },
+    ],
+    "Holiday Rentals": [
+      {
+        title: "Rental List",
+        links: ["Rental List v1", "Rental List v2"],
+      },
+      {
+        title: "Rental Pages",
+        links: ["Rental Map", "Rental Single"],
+      },
+    ],
+    Car: [
+      {
+        title: "Car List",
+        links: ["Car List v1", "Car List v2"],
+      },
+      {
+        title: "Car Pages",
+        links: ["Car Map", "Car Single"],
+      },
+    ],
+    Cruise: [
+      {
+        title: "Cruise List",
+        links: ["Cruise List v1", "Cruise List v2"],
+      },
+      {
+        title: "Cruise Pages",
+        links: ["Cruise Map", "Cruise Single"],
+      },
+    ],
+    Flights: [
+      {
+        title: "Flight List",
+        links: ["Flight List", "Flight List v1"],
+      },
+    ],
+  };
+
+  const getCategoryHref = (label) =>
+    `/${label.toLowerCase().replaceAll(" ", "-")}`;
+
   return (
     <div
       className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? "bg-primaryText" : "bg-transparent"}`}>
@@ -178,15 +266,79 @@ const Header = () => {
                 )}
               </li>
               <li
-                // onMouseEnter={handleCategories}
-                // onMouseLeave={() => setCategoriesDropdown(true)}
+                onMouseEnter={handleCategories}
+                onMouseLeave={() => setCategoriesDropdown(false)}
                 className="relative">
                 <div className="flex gap-2 items-center py-5 cursor-pointer">
                   Categories <FaCaretDown />
                 </div>
                 {categoriesDropdown && (
-                  <div className="w-200 absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-7.5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)]">
-                    <button className="font-medium font-jost text-base text-pText hover:text-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer relative before:absolute before:top-7 before:left-0 before:w-full before:bg-white before:h-0.5 before:content-['']">Hotel</button>
+                  <div className="absolute top-16 -left-38 w-[960px] max-w-[calc(100vw-32px)] bg-white rounded-sm text-primaryText p-6 lg:p-7.5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)]">
+                    <div className="grid grid-cols-1 gap-7.5 lg:grid-cols-[1fr_337px]">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-x-9 gap-y-3">
+                          {categoryTabs.map((tab) => (
+                            <button
+                              key={tab}
+                              type="button"
+                              onClick={() => setActiveCategoryTab(tab)}
+                              onMouseEnter={() => setActiveCategoryTab(tab)}
+                              className={`relative pb-2 text-base font-medium font-jost transition-all duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] cursor-pointer ${
+                                activeCategoryTab === tab
+                                  ? "text-hoverText after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:bg-hoverText after:content-['']"
+                                  : "text-pText hover:text-hoverText"
+                              }`}>
+                              {tab}
+                            </button>
+                          ))}
+                        </div>
+
+                        <div className="mt-10 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+                          {categoryMenus[activeCategoryTab].map((column) => (
+                            <div key={column.title}>
+                              <h3 className="mb-4 text-base font-medium font-jost text-primaryText">
+                                {column.title}
+                              </h3>
+                              <ul className="space-y-3">
+                                {column.links.map((item) => (
+                                  <li key={item}>
+                                    <Link
+                                      href={getCategoryHref(item)}
+                                      onClick={() => setCategoriesDropdown(false)}
+                                      className="block text-base font-jost text-primaryText transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] hover:text-hoverText">
+                                      {item}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <Link
+                        href="/activity"
+                        onClick={() => setCategoriesDropdown(false)}
+                        className="group relative hidden h-[375px] overflow-hidden rounded-sm lg:block">
+                        <Image
+                          src="/7.webp"
+                          alt="Things to do on your trip"
+                          fill
+                          sizes="337px"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-x-9 top-8">
+                          <p className="text-[28px] leading-[1.35] font-medium font-jost text-white">
+                            Things to do on
+                            <br />
+                            your trip
+                          </p>
+                          <span className="mt-7 inline-flex h-15 min-w-42 items-center justify-center rounded-sm bg-white px-6 text-base font-medium font-jost text-primaryText transition-all duration-300 group-hover:text-hoverText">
+                            Experiences
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 )}
               </li>
