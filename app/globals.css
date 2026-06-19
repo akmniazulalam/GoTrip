@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primaryText: #051036;
-  --color-hoverText: #3554D1;
+  --color-hoverText: #3554d1;
   --color-pText: #697488;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -189,18 +189,18 @@ body {
 }
 
 .recommend .slick-dots {
-    bottom: -70px;
+  bottom: -70px;
 }
 
 .recommend .slick-dots li {
   margin: 0;
 }
 .recommend li.slick-active {
-    transform: scale(1.6);
+  transform: scale(1.6);
 }
 
 .recommend .slick-dots li.slick-active button:before {
-  color: #3554D1 !important;
+  color: #3554d1 !important;
 }
 
 .recommend-image-slider {
@@ -236,7 +236,7 @@ body {
 .recommend-image-slider .recommend-image-arrow {
   opacity: 0;
   /* Keep arrow position static to prevent any shaking/jitter during scale/layout updates */
-  transform: translateY(-50%) translateZ(0); 
+  transform: translateY(-50%) translateZ(0);
   will-change: opacity;
   transition:
     opacity 360ms cubic-bezier(0.215, 0.61, 0.355, 1),
@@ -298,7 +298,7 @@ body {
     transition: none;
   }
 }
-.testimonial-slider .slick-slider .slick-list{
+.testimonial-slider .slick-slider .slick-list {
   cursor: grab;
 }
 
@@ -331,9 +331,9 @@ body {
 }
 
 .recommend-main-slider > .slick-list {
-    height: 478px !important;
+  height: 478px !important;
 }
 
 .recommend-image-slider .recommend-image-arrow {
-    transform: translateY(-50%)scale(1) !important;
+  transform: translateY(-50%) scale(1) !important;
 }
