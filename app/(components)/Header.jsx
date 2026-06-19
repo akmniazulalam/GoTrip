@@ -55,18 +55,18 @@ const Header = () => {
   };
 
   useEffect(() => {
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 0);
-  };
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
 
-  handleScroll();
+    handleScroll();
 
-  window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const currencyItems = [
     {
@@ -98,7 +98,6 @@ const Header = () => {
     { length: 20 },
     (_, index) => currencyItems[index % currencyItems.length],
   );
-
 
   const languageItems = [
     {
@@ -212,7 +211,7 @@ const Header = () => {
                   </ul>
                 )}
               </li>
-              
+
               <li>
                 <Link href={"/"} className="flex gap-2 items-center">
                   Destinations
@@ -338,7 +337,10 @@ const Header = () => {
                       <p className="text-xl font-medium text-black font-jost">
                         Select your currency
                       </p>
-                      <RxCross2 className="text-primaryText text-2xl cursor-pointer" onClick={() => setCurrency(false)}/>
+                      <RxCross2
+                        className="text-primaryText text-2xl cursor-pointer"
+                        onClick={() => setCurrency(false)}
+                      />
                     </div>
                     <hr className="text-[#ddd]" />
                     <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
@@ -373,46 +375,50 @@ const Header = () => {
                 className="rounded-full h-5"
               />
               <div ref={languageRef}>
-                <span className="flex gap-2 items-center font-jost text-[15px] cursor-pointer"
-                onClick={() => setLanguage(!language)}>
-                {selectedLanguage.country} <FaCaretDown />
-              </span>
-              {language && (
-                <div className="top-0 left-0 w-full h-full pt-30 z-50 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] fixed">
-                  <div
-                    className="absolute top-0 left-0 h-full w-full z-0 bg-[#05103666]"
-                    onClick={() => setLanguage(false)}></div>
-                  <div
-                    className="w-267.5 bg-white rounded-sm absolute left-1/2 -translate-x-1/2"
-                    onClick={(e) => e.stopPropagation()}>
-                    <div className="px-7.5 py-5 flex justify-between items-center">
-                      <p className="text-xl font-medium text-black font-jost">
-                        Select your language
-                      </p>
-                      <RxCross2 className="text-primaryText text-2xl cursor-pointer" onClick={() => setLanguage(false)}/>
-                    </div>
-                    <hr className="text-[#ddd]" />
-                    <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
-                      {repeatedLanguageGridItems.map((item, index) => (
-                        <div
-                          key={index}
-                          onClick={() => {
-                            setSelectedLanguageIndex(index);
-                            setSelectedLanguage(item);
-                          }}
-                          className={`py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] ${selectedLanguageIndex === index ? "bg-[#F5F5F5]" : ""}`}>
-                          <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">
-                            {item.language}
+                <span
+                  className="flex gap-2 items-center font-jost text-[15px] cursor-pointer"
+                  onClick={() => setLanguage(!language)}>
+                  {selectedLanguage.country} <FaCaretDown />
+                </span>
+                {language && (
+                  <div className="top-0 left-0 w-full h-full pt-30 z-50 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] fixed">
+                    <div
+                      className="absolute top-0 left-0 h-full w-full z-0 bg-[#05103666]"
+                      onClick={() => setLanguage(false)}></div>
+                    <div
+                      className="w-267.5 bg-white rounded-sm absolute left-1/2 -translate-x-1/2"
+                      onClick={(e) => e.stopPropagation()}>
+                      <div className="px-7.5 py-5 flex justify-between items-center">
+                        <p className="text-xl font-medium text-black font-jost">
+                          Select your language
+                        </p>
+                        <RxCross2
+                          className="text-primaryText text-2xl cursor-pointer"
+                          onClick={() => setLanguage(false)}
+                        />
+                      </div>
+                      <hr className="text-[#ddd]" />
+                      <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
+                        {repeatedLanguageGridItems.map((item, index) => (
+                          <div
+                            key={index}
+                            onClick={() => {
+                              setSelectedLanguageIndex(index);
+                              setSelectedLanguage(item);
+                            }}
+                            className={`py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] ${selectedLanguageIndex === index ? "bg-[#F5F5F5]" : ""}`}>
+                            <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">
+                              {item.language}
+                            </div>
+                            <span className="text-sm text-primaryText font-jost">
+                              {item.country}
+                            </span>
                           </div>
-                          <span className="text-sm text-primaryText font-jost">
-                            {item.country}
-                          </span>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
               </div>
               <Link href={"/"}>
                 <button className="px-7.5 text-sm bg-white h-12.5 text-primaryText font-jost rounded-sm mr-2.5 ml-2 cursor-pointer">
