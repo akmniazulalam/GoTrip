@@ -273,7 +273,7 @@ const Header = () => {
                   Categories <FaCaretDown />
                 </div>
                 {categoriesDropdown && (
-                  <div className="absolute top-16 -left-38 w-[960px] max-w-[calc(100vw-32px)] bg-white rounded-sm text-primaryText p-6 lg:p-7.5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)]">
+                  <div className="absolute top-16 -left-38 w-240 max-w-[calc(100vw-32px)] bg-white rounded-sm text-primaryText p-6 lg:p-7.5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)]">
                     <div className="grid grid-cols-1 gap-7.5 lg:grid-cols-[1fr_337px]">
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-x-9 gap-y-3">
@@ -319,7 +319,7 @@ const Header = () => {
                       <Link
                         href="/activity"
                         onClick={() => setCategoriesDropdown(false)}
-                        className="group relative hidden h-[375px] overflow-hidden rounded-sm lg:block">
+                        className="group relative hidden h-93.75 overflow-hidden rounded-sm lg:block">
                         <Image
                           src="/7.webp"
                           alt="Things to do on your trip"
@@ -333,7 +333,7 @@ const Header = () => {
                             <br />
                             your trip
                           </p>
-                          <span className="mt-7 inline-flex h-15 min-w-42 items-center justify-center rounded-sm bg-white px-6 text-base font-medium font-jost text-primaryText transition-all duration-300 group-hover:text-hoverText">
+                          <span className="mt-7 inline-flex h-15 min-w-42 items-center justify-center rounded-sm bg-white px-6 text-base font-medium font-jost text-primaryText hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
                             Experiences
                           </span>
                         </div>
