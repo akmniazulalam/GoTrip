@@ -11,6 +11,7 @@ import England from "../../public/lang.webp";
 
 const Header = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
+  const [categoriesDropdown, setCategoriesDropdown] = useState(false);
   const [blogDropdown, setBlogDropdown] = useState(false);
   const [pagesDropdown, setPagesDropdown] = useState(false);
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
@@ -39,6 +40,9 @@ const Header = () => {
   }, []);
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
+  };
+  const handleCategories = () => {
+    setCategoriesDropdown(!categoriesDropdown);
   };
   const handleBlog = () => {
     setBlogDropdown(!blogDropdown);
@@ -174,11 +178,41 @@ const Header = () => {
                   </ul>
                 )}
               </li>
-              <li>
-                <Link href={"/"} className="flex gap-2 items-center">
+              <li
+                onMouseEnter={handleCategories}
+                onMouseLeave={() => setCategoriesDropdown(false)}
+                className="relative">
+                <div className="flex gap-2 items-center py-5 cursor-pointer">
                   Categories <FaCaretDown />
-                </Link>
+                </div>
+                {categoriesDropdown && (
+                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                    {[
+                      { name: "Home 1", href: "/" },
+                      { name: "Home 2", href: "/about" },
+                      { name: "Home 3", href: "/contact" },
+                      { name: "Home 4", href: "/" },
+                      { name: "Home 5", href: "/" },
+                      { name: "Home 6", href: "/" },
+                      { name: "Home 7", href: "/" },
+                      { name: "Home 8", href: "/" },
+                      { name: "Home 9", href: "/" },
+                      { name: "Home 10", href: "/" },
+                    ].map((item) => (
+                      <li
+                        key={item.name}
+                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                        <Link
+                          href={item.href}
+                          onClick={() => setCategoriesDropdown(false)}>
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
+              
               <li>
                 <Link href={"/"} className="flex gap-2 items-center">
                   Destinations
