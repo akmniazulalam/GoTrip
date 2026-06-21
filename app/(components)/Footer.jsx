@@ -11,27 +11,33 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <>
-      <section className="py-15 bg-[#0D2857]">
+      <section className="py-15 bg-[#0D2857] max-md:py-8">
         <Container>
-          <div className="flex justify-between items-center">
-            <Flex className={"gap-6"}>
-              <Image src={newsletter} alt="newsletter" height={60} width={60} />
+          <div className="flex justify-between items-center max-md:block">
+            <Flex className={"gap-6 max-md:justify-start max-md:gap-4"}>
+              <Image
+                src={newsletter}
+                alt="newsletter"
+                height={60}
+                width={60}
+                className="max-md:h-10 max-md:w-10"
+              />
               <div className="">
-                <h4 className="font-jost text-white text-[26px] font-semibold">
+                <h4 className="font-jost text-white text-[26px] font-semibold max-md:text-[20px] max-md:leading-7">
                   Your Travel Journey Starts Here
                 </h4>
-                <p className="font-jost text-base leading-7.5 text-white">
+                <p className="font-jost text-base leading-7.5 text-white max-md:text-sm max-md:leading-6">
                   Sign up and we'll send the best deals to you
                 </p>
               </div>
             </Flex>
-            <Flex className={"gap-x-2.5"}>
+            <Flex className={"gap-x-2.5 max-md:mt-6 max-md:gap-x-2"}>
               <input
                 type="email"
                 placeholder="Your Email"
-                className="w-102.5 h-15 py-4 px-5 rounded-sm font-jost text-base bg-white text-black focus:outline-0"
+                className="w-102.5 h-15 py-4 px-5 rounded-sm font-jost text-base bg-white text-black focus:outline-0 max-md:h-12 max-md:min-w-0 max-md:flex-1 max-md:px-4 max-md:text-sm"
               />
-              <button className="py-3.5 px-7.5 rounded-sm text-base font-jost font-medium cursor-pointer h-15 bg-hoverText text-white">
+              <button className="py-3.5 px-7.5 rounded-sm text-base font-jost font-medium cursor-pointer h-15 bg-hoverText text-white max-md:h-12 max-md:px-5 max-md:text-sm">
                 Subscribe
               </button>
             </Flex>
@@ -40,7 +46,7 @@ const Footer = () => {
       </section>
       <section className="">
         <Container>
-          <div className="grid grid-cols-5 py-15">
+          <div className="grid grid-cols-5 py-15 max-md:grid-cols-1 max-md:gap-y-8 max-md:py-8">
             <div className="">
               <h3 className="mb-7.5 text-base font-medium font-jost text-black">
                 Contact Us
@@ -141,7 +147,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-fit">
+            <div className="w-fit max-md:hidden">
               <h3 className="mb-7.5 text-base font-medium font-jost text-black">
                 Mobile
               </h3>
@@ -162,12 +168,12 @@ const Footer = () => {
             </div>
           </div>
           <hr className="text-[#DDDDDD]" />
-          <div className="flex py-5 justify-between">
-            <Flex className={"gap-x-7"}>
-              <p className="font-jost text-base text-primaryText">
+          <div className="flex py-5 justify-between max-md:block">
+            <Flex className={"gap-x-7 max-md:block"}>
+              <p className="font-jost text-base text-primaryText max-md:text-sm">
                 © 2026 GoTrip LLC All rights reserved.
               </p>
-              <div className="flex gap-3">
+              <div className="flex gap-3 max-md:mt-3">
                 <Link
                   href={"/"}
                   className="font-jost text-base text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out">
@@ -185,7 +191,7 @@ const Footer = () => {
                 </Link>
               </div>
             </Flex>
-            <Flex>
+            <Flex className={"max-md:mt-5 max-md:flex-wrap max-md:justify-start max-md:gap-y-4"}>
               <button className="flex items-center cursor-pointer">
                 <TfiWorld className="text-primaryText mr-3" />
                 <p className="font-jost font-medium text-sm underline text-primaryText">
@@ -198,7 +204,7 @@ const Footer = () => {
                   USD
                 </p>
               </button>
-              <Flex className={"gap-x-5 items-center ml-6"}>
+              <Flex className={"gap-x-5 items-center ml-6 max-md:ml-0 max-md:w-full max-md:justify-start"}>
                 <Link href={"www.facebook.com"}><FaFacebookF className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
                 <Link href={"www.twitter.com"}><FaTwitter className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
                 <Link href={"www.instagram.com"}><FaInstagram className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>

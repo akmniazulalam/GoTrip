@@ -434,6 +434,17 @@ export default function Home() {
         recommendSliderRef.current?.slickGoTo(maxRecommendSlide);
       }
     },
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          arrows: false,
+          dots: false,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   var recommendImageSettings = {
@@ -532,7 +543,7 @@ export default function Home() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -541,20 +552,20 @@ export default function Home() {
 
   return (
     <>
-      <section className="bg-[url(../public/bg.webp)] bg-no-repeat bg-cover bg-center">
-        <div className="pt-80 pb-52.5 bg-linear-[270deg] from-[rgba(5,16,54,0.5)] to-[#051036d9]">
+      <section className="mobile-hero bg-[url(../public/bg.webp)] bg-no-repeat bg-cover bg-center">
+        <div className="pt-80 pb-52.5 bg-linear-[270deg] from-[rgba(5,16,54,0.5)] to-[#051036d9] max-md:pt-28 max-md:pb-8">
           <Container>
             <div className="text-center opacity-100 z-50">
               <h1
-                className={`${heroSlideClass} hero-slide-up-title font-semibold font-jost text-6xl text-white`}>
+                className={`${heroSlideClass} hero-slide-up-title font-semibold font-jost text-6xl text-white max-md:text-[24px] max-md:leading-8`}>
                 Find Next Place To Visit
               </h1>
               <p
-                className={`${heroSlideClass} hero-slide-up-text font-jost text-white font-medium text-base leading-7.5 pt-4 pb-15`}>
+                className={`${heroSlideClass} hero-slide-up-text font-jost text-white font-medium text-base leading-7.5 pt-4 pb-15 max-md:pt-1 max-md:pb-5 max-md:text-[13px] max-md:leading-5`}>
                 Discover amzaing places at exclusive deals
               </p>
               <div
-                className={`${heroSlideClass} hero-slide-up-tabs flex items-center gap-x-7 justify-center`}>
+                className={`${heroSlideClass} hero-slide-up-tabs flex items-center gap-x-7 justify-center max-md:overflow-x-auto max-md:justify-start max-md:gap-x-5 max-md:px-1 max-md:pb-2`}>
                 {[
                   { name: "Hotel" },
                   { name: "Tour" },
@@ -577,8 +588,8 @@ export default function Home() {
                 ))}
               </div>
               <div
-                className={`${heroSlideClass} hero-slide-up-search mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%]`}>
-                <div className="px-7 py-1.5 w-fit text-left">
+                className={`${heroSlideClass} hero-slide-up-search mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%] max-md:mt-3 max-md:w-full max-md:grid-cols-1 max-md:rounded-sm max-md:p-2 max-md:text-left`}>
+                <div className="px-7 py-1.5 w-fit text-left max-md:w-full max-md:px-3 max-md:py-2">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Location ({activeTab})
                   </h4>
@@ -588,7 +599,7 @@ export default function Home() {
                     className="placeholder:text-[#757575] placeholder:font-jost font-jost text-black text-[15px] focus:outline-0"
                   />
                 </div>
-                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD]">
+                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-2">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Check in - Check out
                   </h4>
@@ -596,7 +607,7 @@ export default function Home() {
                     Wed 2 Mar - Fri 11 Apr
                   </span>
                 </div>
-                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD]">
+                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-2">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Guest
                   </h4>
@@ -604,7 +615,7 @@ export default function Home() {
                     2 adults - 1 childeren - 1 room
                   </span>
                 </div>
-                <button className="px-9 bg-hoverText text-white font-medium text-sm rounded-full cursor-pointer flex items-center gap-x-2 ml-auto hover:bg-primaryText transition-all duration-300 ease-in-out">
+                <button className="px-9 bg-hoverText text-white font-medium text-sm rounded-full cursor-pointer flex items-center gap-x-2 ml-auto hover:bg-primaryText transition-all duration-300 ease-in-out max-md:mt-2 max-md:h-11 max-md:w-full max-md:justify-center max-md:rounded-sm">
                   <FiSearch className="text-white text-xl" />
                   Search
                 </button>
@@ -616,19 +627,19 @@ export default function Home() {
 
       <section
         ref={destinationSectionRef}
-        className="pt-30 pb-10 overflow-hidden">
+        className="mobile-destinations pt-30 pb-10 overflow-hidden max-md:pt-10 max-md:pb-5">
         <Container>
           <Flex
-            className={`${destinationRevealClass} section-slide-up-flex mb-10`}>
+            className={`${destinationRevealClass} section-slide-up-flex mb-10 max-md:mb-5 max-md:items-start`}>
             <div>
-              <h3 className="font-jost text-3xl text-primaryText font-semibold">
+              <h3 className="font-jost text-3xl text-primaryText font-semibold max-md:text-[22px] max-md:leading-7">
                 Popular Destinations
               </h3>
-              <p className="font-jost text-pText text-base leading-7.5 mt-2">
+              <p className="font-jost text-pText text-base leading-7.5 mt-2 max-md:text-sm max-md:leading-6">
                 These popular destinations have a lot to offer
               </p>
             </div>
-            <button className="py-3.5 px-7 bg-[#3554d10d] rounded-sm font-jost font-medium text-base transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] text-hoverText cursor-pointer hover:bg-hoverText hover:text-white">
+            <button className="py-3.5 px-7 bg-[#3554d10d] rounded-sm font-jost font-medium text-base transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] text-hoverText cursor-pointer hover:bg-hoverText hover:text-white max-md:hidden">
               View All Destinations{" "}
               <RxArrowTopRight className={"ml-1 text-2xl inline"} />
             </button>
@@ -814,13 +825,13 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={promoSectionRef} className="py-15">
+      <section ref={promoSectionRef} className="mobile-promo py-15 max-md:py-5">
         <Container>
           <div
-            className={`${promoRevealClass} section-slide-up-promo grid grid-cols-2 gap-x-7.5 mt-7.5`}>
+            className={`${promoRevealClass} section-slide-up-promo grid grid-cols-2 gap-x-7.5 mt-7.5 max-md:mt-0 max-md:grid-cols-1 max-md:gap-y-5`}>
             <div className="bg-[url(../public/1.webp)] bg-no-repeat bg-center bg-cover rounded-sm">
-              <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm">
-                <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5 w-1/2">
+              <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm max-md:min-h-65 max-md:pt-7 max-md:pb-9 max-md:pl-6">
+                <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5 w-1/2 max-md:mb-6 max-md:w-[70%] max-md:text-[22px] max-md:leading-8">
                   Things to do on your trip
                 </h4>
                 <button
@@ -831,11 +842,11 @@ export default function Home() {
               </div>
             </div>
             <div className="bg-[url(../public/2.webp)] bg-no-repeat bg-center bg-cover rounded-sm">
-              <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm">
+              <div className="pt-18 pb-68 pl-18 bg-linear-[180deg] from-[#051036b3] to-[#05103600] rounded-sm max-md:min-h-65 max-md:pt-7 max-md:pb-9 max-md:pl-6">
                 <h6 className="font-jost font-medium text-[15px] text-white mb-3">
                   Enjoy Summer Deals
                 </h6>
-                <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5">
+                <h4 className="text-[40px] font-jost font-semibold text-white mb-7.5 max-md:mb-6 max-md:w-[80%] max-md:text-[22px] max-md:leading-8">
                   Up to 70% Discount!
                 </h4>
                 <button className="bg-white rounded-sm font-jost font-medium text-primaryText py-3 px-12 cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
@@ -847,14 +858,14 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={recommendSectionRef} className={"py-15 recommend"}>
+      <section ref={recommendSectionRef} className={"mobile-recommend py-15 recommend max-md:py-8"}>
         <Container className={recommendRevealClass}>
-          <Flex className={` mb-10`}>
+          <Flex className={` mb-10 max-md:mb-5 max-md:items-start`}>
             <div>
-              <h3 className="font-jost text-3xl text-primaryText font-semibold">
+              <h3 className="font-jost text-3xl text-primaryText font-semibold max-md:text-[22px] max-md:leading-7">
                 Recommended
               </h3>
-              <p className="font-jost text-pText text-base leading-7.5 mt-2">
+              <p className="font-jost text-pText text-base leading-7.5 mt-2 max-md:text-sm max-md:leading-6">
                 Interdum et malesuada fames ac ante ipsum
               </p>
             </div>
@@ -1321,9 +1332,9 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={featureSectionRef} className="pt-24 pb-30">
+      <section ref={featureSectionRef} className="mobile-features pt-24 pb-30 max-md:pt-8 max-md:pb-10">
         <Container>
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-3 max-md:grid-cols-1 max-md:gap-y-9">
             <div
               className={`${featureRevealClass} section-slide-up-feature-one text-center`}>
               <Image
@@ -1331,13 +1342,13 @@ export default function Home() {
                 alt="featureOne"
                 height={70}
                 width={70}
-                className="m-auto"
+                className="m-auto max-md:h-14 max-md:w-14"
               />
-              <div className="mt-7.5">
+              <div className="mt-7.5 max-md:mt-4">
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Best Price Guarantee
                 </h4>
-                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5">
+                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5 max-md:w-[78%] max-md:text-sm max-md:leading-6">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </div>
@@ -1349,13 +1360,13 @@ export default function Home() {
                 alt="featureTwo"
                 height={70}
                 width={70}
-                className="m-auto"
+                className="m-auto max-md:h-14 max-md:w-14"
               />
-              <div className="mt-7.5">
+              <div className="mt-7.5 max-md:mt-4">
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Easy & Quick Booking
                 </h4>
-                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5">
+                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5 max-md:w-[78%] max-md:text-sm max-md:leading-6">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </div>
@@ -1367,13 +1378,13 @@ export default function Home() {
                 alt="featureThree"
                 height={70}
                 width={70}
-                className="m-auto"
+                className="m-auto max-md:h-14 max-md:w-14"
               />
-              <div className="mt-7.5">
+              <div className="mt-7.5 max-md:mt-4">
                 <h4 className="text-[18px] font-jost font-medium text-primaryText">
                   Customer Care 24/7
                 </h4>
-                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5">
+                <p className="font-jost text-[15px] text-pText w-[70%] leading-6.5 mx-auto mt-2.5 max-md:w-[78%] max-md:text-sm max-md:leading-6">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 </p>
               </div>
@@ -1382,20 +1393,20 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={testimonialSectionRef} className="bg-[#E5F0FD] py-30">
+      <section ref={testimonialSectionRef} className="mobile-testimonials bg-[#E5F0FD] py-30 max-md:py-10">
         <Container>
-          <div className="flex justify-between">
+          <div className="flex justify-between max-md:block">
             <div
-              className={`${testimonialRevealClass} section-slide-up-testimonial-content py-5 px-4 w-[40%]`}>
-              <h2 className="font-jost font-semibold text-3xl text-primaryText w-[70%] leading-11">
+              className={`${testimonialRevealClass} section-slide-up-testimonial-content py-5 px-4 w-[40%] max-md:w-full max-md:px-0 max-md:py-0`}>
+              <h2 className="font-jost font-semibold text-3xl text-primaryText w-[70%] leading-11 max-md:w-full max-md:text-[22px] max-md:leading-8">
                 What our customers are saying us?
               </h2>
-              <p className="text-base leading-7.5 text-pText mt-5 font-jost">
+              <p className="text-base leading-7.5 text-pText mt-5 font-jost max-md:mt-3 max-md:text-sm max-md:leading-6">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Maecenas varius tortor nibh, sit amet tempor nibh finibus et.
                 Aenean eu enim justo.
               </p>
-              <div className="pt-15 grid grid-cols-[42%_40%]">
+              <div className="pt-15 grid grid-cols-[42%_40%] max-md:pt-7 max-md:grid-cols-2">
                 <div>
                   <p className="text-3xl font-semibold font-jost text-primaryText">
                     13m+
@@ -1422,10 +1433,10 @@ export default function Home() {
               </div>
             </div>
             <div
-              className={`${testimonialRevealClass} section-slide-up-testimonial-slider w-[50%] py-5 testimonial-slider`}>
+              className={`${testimonialRevealClass} section-slide-up-testimonial-slider w-[50%] py-5 testimonial-slider max-md:w-full max-md:pt-8 max-md:pb-0`}>
               <Slider ref={sliderRef} {...settings}>
                 <div>
-                  <div className="flex gap-x-7.5 items-center">
+                  <div className="flex gap-x-7.5 items-center max-md:gap-x-4">
                     <Image
                       src={reviewer}
                       alt="reviewer"
@@ -1441,14 +1452,14 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <p className="mt-8 w-[94%] font-jost font-medium text-left text-[18px] text-primaryText leading-7.5">
+                  <p className="mt-8 w-[94%] font-jost font-medium text-left text-[18px] text-primaryText leading-7.5 max-md:mt-5 max-md:w-full max-md:text-[15px] max-md:leading-6.5">
                     The place is in a great location in Gumbet. The area is safe
                     and beautiful. The apartment was comfortable and the host
                     was kind and responsive to our requests.
                   </p>
                 </div>
                 <div>
-                  <div className="flex gap-x-7.5 items-center">
+                  <div className="flex gap-x-7.5 items-center max-md:gap-x-4">
                     <Image
                       src={reviewer}
                       alt="reviewer"
@@ -1464,14 +1475,14 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <p className="mt-8 text-left w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
+                  <p className="mt-8 text-left w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5 max-md:mt-5 max-md:w-full max-md:text-[15px] max-md:leading-6.5">
                     The place is in a great location in Gumbet. The area is safe
                     and beautiful. The apartment was comfortable and the host
                     was kind and responsive to our requests.
                   </p>
                 </div>
                 <div>
-                  <div className="flex gap-x-7.5 items-center">
+                  <div className="flex gap-x-7.5 items-center max-md:gap-x-4">
                     <Image
                       src={reviewer}
                       alt="reviewer"
@@ -1487,14 +1498,14 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <p className="mt-8 text-left w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5">
+                  <p className="mt-8 text-left w-[94%] font-jost font-medium text-[18px] text-primaryText leading-7.5 max-md:mt-5 max-md:w-full max-md:text-[15px] max-md:leading-6.5">
                     The place is in a great location in Gumbet. The area is safe
                     and beautiful. The apartment was comfortable and the host
                     was kind and responsive to our requests.
                   </p>
                 </div>
               </Slider>
-              <div className="flex items-center gap-x-6 mt-16">
+              <div className="flex items-center gap-x-6 mt-16 max-md:mt-8">
                 {/* Current */}
                 <span className="text-base font-medium text-primaryText font-jost">
                   {String(currentSlide + 1).padStart(2, "0")}
@@ -1525,18 +1536,18 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={blogSectionRef} className="pt-30 pb-15">
+      <section ref={blogSectionRef} className="mobile-blog pt-30 pb-15 max-md:pt-10 max-md:pb-5">
         <Container>
           <div
-            className={`${blogSlideUpClass} section-slide-up-blog-heading text-center`}>
-            <h2 className="font-jost font-semibold text-3xl text-primaryText leading-11">
+            className={`${blogSlideUpClass} section-slide-up-blog-heading text-center max-md:text-left`}>
+            <h2 className="font-jost font-semibold text-3xl text-primaryText leading-11 max-md:text-[22px] max-md:leading-8">
               Get inspiration for your next trip
             </h2>
-            <p className="text-base leading-7.5 text-pText mt-1 font-jost">
+            <p className="text-base leading-7.5 text-pText mt-1 font-jost max-md:text-sm max-md:leading-6">
               Interdum et malesuada fames
             </p>
           </div>
-          <div ref={blogGridRef} className="pt-10 grid grid-cols-3 gap-7.5">
+          <div ref={blogGridRef} className="pt-10 grid grid-cols-3 gap-7.5 max-md:grid-cols-1 max-md:gap-6 max-md:pt-5">
             <Link
               href={"/"}
               className={`${blogSlideLeftClass} section-slide-left-blog-one block`}>
@@ -1611,16 +1622,16 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="pt-15 pb-30">
+      <section className="mobile-destination-love pt-15 pb-30 max-md:pt-8 max-md:pb-10">
         <Container>
-          <h3 className="font-jost font-semibold text-3xl text-primaryText leading-11">
+          <h3 className="font-jost font-semibold text-3xl text-primaryText leading-11 max-md:text-[22px] max-md:leading-8">
             Destinations we love
           </h3>
-          <p className="text-base leading-7.5 text-pText mt-1 font-jost">
+          <p className="text-base leading-7.5 text-pText mt-1 font-jost max-md:text-sm max-md:leading-6">
             Interdum et malesuada fames ac ante ipsum
           </p>
-          <div className="pt-10">
-            <div className="flex mb-7.5 items-center">
+          <div className="pt-10 max-md:pt-5">
+            <div className="flex mb-7.5 items-center max-md:mb-6 max-md:overflow-x-auto">
               <button
                 type="button"
                 data-filter="all"
@@ -1665,7 +1676,7 @@ export default function Home() {
           </div>
           <div
             ref={containerRef}
-            className="grid grid-rows-4 grid-cols-5 gap-x-5 gap-y-6">
+            className="grid grid-rows-4 grid-cols-5 gap-x-5 gap-y-6 max-md:grid-cols-2 max-md:grid-rows-none max-md:gap-x-7 max-md:gap-y-5">
             {tabs.map((item) => (
               <Link
                 key={item.city}

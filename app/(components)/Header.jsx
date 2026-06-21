@@ -5,7 +5,9 @@ import Link from "next/link";
 import Flex from "./Flex";
 import Image from "next/image";
 import logo from "../../public/logo.png";
+import logoDark from "../../public/logo-dark.svg";
 import { FaCaretDown } from "react-icons/fa";
+import { FiMenu, FiUser } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import England from "../../public/lang.webp";
 
@@ -17,6 +19,8 @@ const Header = () => {
   const [blogDropdown, setBlogDropdown] = useState(false);
   const [pagesDropdown, setPagesDropdown] = useState(false);
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSubmenu, setMobileSubmenu] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [currency, setCurrency] = useState(false);
   const [language, setLanguage] = useState(false);
@@ -40,6 +44,14 @@ const Header = () => {
       document.removeEventListener("mousedown", clickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("mobile-menu-open", mobileMenuOpen);
+
+    return () => {
+      document.body.classList.remove("mobile-menu-open");
+    };
+  }, [mobileMenuOpen]);
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
   };
@@ -251,10 +263,171 @@ const Header = () => {
     image: categoryPanelImages[activeCategoryTab],
   };
 
+  const homeLinks = [
+    { name: "Home 1", href: "/" },
+    { name: "Home 2", href: "/about" },
+    { name: "Home 3", href: "/contact" },
+    { name: "Home 4", href: "/" },
+    { name: "Home 5", href: "/" },
+    { name: "Home 6", href: "/" },
+    { name: "Home 7", href: "/" },
+    { name: "Home 8", href: "/" },
+    { name: "Home 9", href: "/" },
+    { name: "Home 10", href: "/" },
+  ];
+
+  const mobileMenus = [
+    { name: "Home", links: homeLinks },
+    {
+      name: "Categories",
+      links: categoryTabs.map((tab) => ({ name: tab, href: getCategoryHref(tab) })),
+    },
+    { name: "Destinations", href: "/" },
+    {
+      name: "Blog",
+      links: [
+        { name: "Blog list v1", href: "/" },
+        { name: "Blog list v2", href: "/about" },
+        { name: "Blog list v3", href: "/contact" },
+      ],
+    },
+    {
+      name: "Pages",
+      links: [
+        { name: "404", href: "/" },
+        { name: "About", href: "/about" },
+        { name: "Become Expert", href: "/contact" },
+        { name: "Help center", href: "/contact" },
+        { name: "Login", href: "/contact" },
+        { name: "Register", href: "/contact" },
+        { name: "Terms", href: "/contact" },
+        { name: "Invoice", href: "/contact" },
+        { name: "UI elements", href: "/contact" },
+      ],
+    },
+    {
+      name: "Dashboard",
+      links: [
+        { name: "Dashboard", href: "/" },
+        { name: "Booking", href: "/about" },
+        { name: "Settings", href: "/contact" },
+        { name: "Wishlist", href: "/contact" },
+        { name: "Vendor dashboard", href: "/contact" },
+      ],
+    },
+    { name: "Contact", href: "/" },
+  ];
+
+  const activeMobileMenu = mobileMenus.find(
+    (item) => item.name === mobileSubmenu,
+  );
+  const isMobileHeaderSolid = mobileMenuOpen || isScrolled;
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setMobileSubmenu(null);
+  };
+
   return (
-    <div
-      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? "bg-primaryText" : "bg-transparent"}`}>
-      <Container className={"max-w-368"}>
+    <div className="fixed w-full top-0 left-0 z-50">
+      <div
+        className={`transition-all duration-300 md:hidden ${
+          isMobileHeaderSolid
+            ? "bg-white text-primaryText shadow-[0px_1px_0px_#dddddd]"
+            : "bg-transparent text-white"
+        }`}>
+        <div className="flex h-24 items-center justify-between px-6">
+          <Link href={"/"} onClick={closeMobileMenu}>
+            <Image
+              src={isMobileHeaderSolid ? logoDark : logo}
+              alt="GoTrip"
+              height={42}
+              width={120}
+              loading="eager"
+              className="h-13 w-auto"
+            />
+          </Link>
+          <div className="flex items-center gap-6">
+            <Link href={"/"} aria-label="Account">
+              <FiUser className="text-[30px]" />
+            </Link>
+            <button
+              type="button"
+              aria-label="Open menu"
+              aria-expanded={mobileMenuOpen}
+              onClick={() => {
+                setMobileMenuOpen((open) => !open);
+                setMobileSubmenu(null);
+              }}
+              className="flex h-10 w-10 items-center justify-center">
+              {mobileMenuOpen ? (
+                <RxCross2 className="text-[30px]" />
+              ) : (
+                <FiMenu className="text-[34px]" />
+              )}
+            </button>
+          </div>
+        </div>
+        <div
+          className={`fixed left-0 top-24 h-[calc(100dvh-96px)] w-full overflow-y-auto bg-white transition-all duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] ${
+            mobileMenuOpen
+              ? "translate-x-0 opacity-100"
+              : "translate-x-full opacity-0 pointer-events-none"
+          }`}>
+          <div className="min-h-full border-b border-[#DDDDDD] px-6 pb-14 pt-15">
+            {activeMobileMenu ? (
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setMobileSubmenu(null)}
+                  className="mb-7 flex h-15 w-full items-center gap-4 rounded-sm bg-[#F5F6FE] px-7 text-left font-jost text-[24px] font-medium text-hoverText">
+                  <FaCaretDown className="rotate-90 text-[14px]" />
+                  {activeMobileMenu.name}
+                </button>
+                <ul className="space-y-7 px-6">
+                  {activeMobileMenu.links.map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        className="block font-jost text-[23px] font-medium leading-8 text-primaryText">
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <ul className="space-y-8 px-6">
+                {mobileMenus.map((item) => (
+                  <li key={item.name}>
+                    {item.links ? (
+                      <button
+                        type="button"
+                        onClick={() => setMobileSubmenu(item.name)}
+                        className="flex w-full items-center justify-between font-jost text-[24px] font-medium leading-9 text-primaryText">
+                        {item.name}
+                        <FaCaretDown className="-rotate-90 text-[14px]" />
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        className="block font-jost text-[24px] font-medium leading-9 text-primaryText">
+                        {item.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`hidden transition-all duration-300 ease-in-out md:block ${isScrolled ? "bg-primaryText" : "bg-transparent"}`}>
+        <Container className={"max-w-368"}>
         <Flex className={""}>
           <Flex className={"gap-7"}>
             <Image
@@ -603,7 +776,8 @@ const Header = () => {
             </div>
           </Flex>
         </Flex>
-      </Container>
+        </Container>
+      </div>
     </div>
   );
 };
