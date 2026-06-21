@@ -280,7 +280,10 @@ const Header = () => {
     { name: "Home", links: homeLinks },
     {
       name: "Categories",
-      links: categoryTabs.map((tab) => ({ name: tab, href: getCategoryHref(tab) })),
+      links: categoryTabs.map((tab) => ({
+        name: tab,
+        href: getCategoryHref(tab),
+      })),
     },
     { name: "Destinations", href: "/" },
     {
@@ -428,333 +431,280 @@ const Header = () => {
       <div
         className={`hidden transition-all duration-300 ease-in-out md:block ${isScrolled ? "bg-primaryText" : "bg-transparent"}`}>
         <Container className={"max-w-368"}>
-        <Flex className={""}>
-          <Flex className={"gap-7"}>
-            <Image
-              src={logo}
-              alt="logo"
-              height={50}
-              width={143}
-              loading="eager"
-            />
-            <ul className="flex justify-center items-center gap-x-4 font-jost  text-[15px] py-3">
-              <li
-                onMouseEnter={handleHome}
-                onMouseLeave={() => setHomeDropdown(false)}
-                className="relative">
-                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
-                  Home <FaCaretDown />
-                </div>
-                {homeDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_30px_0px_#05103608] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
-                    {[
-                      { name: "Home 1", href: "/" },
-                      { name: "Home 2", href: "/about" },
-                      { name: "Home 3", href: "/contact" },
-                      { name: "Home 4", href: "/" },
-                      { name: "Home 5", href: "/" },
-                      { name: "Home 6", href: "/" },
-                      { name: "Home 7", href: "/" },
-                      { name: "Home 8", href: "/" },
-                      { name: "Home 9", href: "/" },
-                      { name: "Home 10", href: "/" },
-                    ].map((item) => (
-                      <li
-                        key={item.name}
-                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
-                        <Link
-                          href={item.href}
-                          onClick={() => setHomeDropdown(false)}>
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-              <li
-                onMouseEnter={handleCategories}
-                onMouseLeave={() => setCategoriesDropdown(false)}
-                className="relative">
-                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
-                  Categories <FaCaretDown />
-                </div>
-                {categoriesDropdown && (
-                  <div className="absolute top-16 -left-3 w-200 max-w-[calc(100vw-32px)] bg-white rounded-sm text-primaryText p-6 lg:p-7.5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)]">
-                    <div className="flex flex-wrap items-center gap-x-9 gap-y-3">
-                      {categoryTabs.map((tab) => (
-                        <button
-                          key={tab}
-                          type="button"
-                          onClick={() => handleCategoryTab(tab)}
-                          className={`relative pb-2 text-base font-medium font-jost transition-all duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] cursor-pointer ${
-                            activeCategoryTab === tab
-                              ? "text-hoverText after:absolute after:left-0 after:bottom-1.25 after:h-0.5 after:w-full after:bg-hoverText after:content-['']"
-                              : "text-pText hover:text-hoverText"
-                          }`}>
-                          {tab}
-                        </button>
+          <Flex className={""}>
+            <Flex className={"gap-7"}>
+              <Image
+                src={logo}
+                alt="logo"
+                height={50}
+                width={143}
+                loading="eager"
+              />
+              <ul className="flex justify-center items-center gap-x-4 font-jost  text-[15px] py-3">
+                <li
+                  onMouseEnter={handleHome}
+                  onMouseLeave={() => setHomeDropdown(false)}
+                  className="relative">
+                  <div className="flex gap-2 items-center py-5.25 cursor-pointer">
+                    Home <FaCaretDown />
+                  </div>
+                  {homeDropdown && (
+                    <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_30px_0px_#05103608] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                      {[
+                        { name: "Home 1", href: "/" },
+                        { name: "Home 2", href: "/about" },
+                        { name: "Home 3", href: "/contact" },
+                        { name: "Home 4", href: "/" },
+                        { name: "Home 5", href: "/" },
+                        { name: "Home 6", href: "/" },
+                        { name: "Home 7", href: "/" },
+                        { name: "Home 8", href: "/" },
+                        { name: "Home 9", href: "/" },
+                        { name: "Home 10", href: "/" },
+                      ].map((item) => (
+                        <li
+                          key={item.name}
+                          className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                          <Link
+                            href={item.href}
+                            onClick={() => setHomeDropdown(false)}>
+                            {item.name}
+                          </Link>
+                        </li>
                       ))}
-                    </div>
-
-                    <div
-                      key={activeCategoryTab}
-                      className={`mt-10 grid grid-cols-1 gap-7.5 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:grid-cols-[1fr_280px] lg:items-start ${
-                        categoryPanelVisible
-                          ? "translate-y-0 opacity-100"
-                          : "translate-y-2 opacity-0"
-                      }`}>
-                      <div className="grid min-w-0 grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
-                        {activeCategoryPanel.columns.map((column) => (
-                          <div key={column.title}>
-                            <h3 className="mb-4 text-base font-medium font-jost text-primaryText">
-                              {column.title}
-                            </h3>
-                            <ul className="space-y-3">
-                              {column.links.map((item) => (
-                                <li key={item}>
-                                  <Link
-                                    href={getCategoryHref(item)}
-                                    onClick={() => setCategoriesDropdown(false)}
-                                    className="block text-base font-jost text-primaryText transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] hover:text-hoverText">
-                                    {item}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                    </ul>
+                  )}
+                </li>
+                <li
+                  onMouseEnter={handleCategories}
+                  onMouseLeave={() => setCategoriesDropdown(false)}
+                  className="relative">
+                  <div className="flex gap-2 items-center py-5.25 cursor-pointer">
+                    Categories <FaCaretDown />
+                  </div>
+                  {categoriesDropdown && (
+                    <div className="absolute top-16 -left-3 w-200 max-w-[calc(100vw-32px)] bg-white rounded-sm text-primaryText p-6 lg:p-7.5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)]">
+                      <div className="flex flex-wrap items-center gap-x-9 gap-y-3">
+                        {categoryTabs.map((tab) => (
+                          <button
+                            key={tab}
+                            type="button"
+                            onClick={() => handleCategoryTab(tab)}
+                            className={`relative pb-2 text-base font-medium font-jost transition-all duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] cursor-pointer ${
+                              activeCategoryTab === tab
+                                ? "text-hoverText after:absolute after:left-0 after:bottom-1.25 after:h-0.5 after:w-full after:bg-hoverText after:content-['']"
+                                : "text-pText hover:text-hoverText"
+                            }`}>
+                            {tab}
+                          </button>
                         ))}
                       </div>
 
-                      <Link
-                        key={`${activeCategoryTab}-image-link`}
-                        href={activeCategoryPanel.image.href}
-                        onClick={() => setCategoriesDropdown(false)}
-                        className="group relative hidden h-78.75 overflow-hidden rounded-sm transform-[translateZ(0)] lg:block">
-                        <Image
-                          key={`${activeCategoryTab}-image`}
-                          src={activeCategoryPanel.image.src}
-                          alt={activeCategoryPanel.image.alt}
-                          fill
-                          sizes="280px"
-                          className="origin-center object-cover transform-gpu select-none will-change-transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                        />
-                        <div className="absolute inset-x-7 top-7">
-                          <p className="text-[25px] leading-[1.35] font-medium font-jost text-white">
-                            Things to do on
-                            <br />
-                            your trip
-                          </p>
-                          <span className="mt-6 inline-flex h-13 min-w-38 items-center justify-center rounded-sm bg-white px-5 text-base font-medium font-jost text-primaryText hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
-                            Experiences
-                          </span>
+                      <div
+                        key={activeCategoryTab}
+                        className={`mt-10 grid grid-cols-1 gap-7.5 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:grid-cols-[1fr_280px] lg:items-start ${
+                          categoryPanelVisible
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-2 opacity-0"
+                        }`}>
+                        <div className="grid min-w-0 grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+                          {activeCategoryPanel.columns.map((column) => (
+                            <div key={column.title}>
+                              <h3 className="mb-4 text-base font-medium font-jost text-primaryText">
+                                {column.title}
+                              </h3>
+                              <ul className="space-y-3">
+                                {column.links.map((item) => (
+                                  <li key={item}>
+                                    <Link
+                                      href={getCategoryHref(item)}
+                                      onClick={() =>
+                                        setCategoriesDropdown(false)
+                                      }
+                                      className="block text-base font-jost text-primaryText transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] hover:text-hoverText">
+                                      {item}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
                         </div>
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </li>
 
-              <li>
-                <Link href={"/"} className="flex gap-2 items-center">
-                  Destinations
-                </Link>
-              </li>
-              <li
-                onMouseEnter={handleBlog}
-                onMouseLeave={() => setBlogDropdown(false)}
-                className="relative">
-                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
-                  Blog <FaCaretDown />
-                </div>
-                {blogDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
-                    {[
-                      { name: "Blog list v1", href: "/" },
-                      { name: "Blog list v2", href: "/about" },
-                      { name: "Blog list v3", href: "/contact" },
-                    ].map((item) => (
-                      <li
-                        key={item.name}
-                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
                         <Link
-                          href={item.href}
-                          onClick={() => setBlogDropdown(false)}>
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-              <li
-                onMouseEnter={handlePages}
-                onMouseLeave={() => setPagesDropdown(false)}
-                className="relative">
-                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
-                  Pages <FaCaretDown />
-                </div>
-                {pagesDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
-                    {[
-                      { name: "404", href: "/" },
-                      { name: "About", href: "/about" },
-                      { name: "Become Expert", href: "/contact" },
-                      { name: "Help center", href: "/contact" },
-                      { name: "Login", href: "/contact" },
-                      { name: "Register", href: "/contact" },
-                      { name: "Terms", href: "/contact" },
-                      { name: "Invoice", href: "/contact" },
-                      { name: "UI elements", href: "/contact" },
-                    ].map((item) => (
-                      <li
-                        key={item.name}
-                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
-                        <Link
-                          href={item.href}
-                          onClick={() => setPagesDropdown(false)}>
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-              <li
-                onMouseEnter={handleDashboard}
-                onMouseLeave={() => setDashboardDropdown(false)}
-                className="relative">
-                <div className="flex gap-2 items-center py-5.25 cursor-pointer">
-                  Dashboard <FaCaretDown />
-                </div>
-                {dashboardDropdown && (
-                  <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
-                    {[
-                      { name: "Dashboard", href: "/" },
-                      { name: "Booking", href: "/about" },
-                      { name: "Settings", href: "/contact" },
-                      { name: "Wishlist", href: "/contact" },
-                      { name: "Vendor dashboard", href: "/contact" },
-                      { name: "Vendor add hotel", href: "/contact" },
-                      { name: "Vendor booking", href: "/contact" },
-                      { name: "Vendor hotels", href: "/contact" },
-                      { name: "Vendor recovery", href: "/contact" },
-                    ].map((item) => (
-                      <li
-                        key={item.name}
-                        className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
-                        <Link
-                          href={item.href}
-                          onClick={() => setDashboardDropdown(false)}>
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-              <li>
-                <Link href={"/"} className="flex gap-2 items-center">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </Flex>
-          <Flex className={"gap-x-4 items-center"}>
-            <div ref={currencyRef}>
-              <span
-                href={"/"}
-                className="uppercase flex gap-2 items-center font-jost  text-[15px] cursor-pointer"
-                onClick={() => setCurrency(!currency)}>
-                {selectedCurrency.currency.split(" - ")[0]} <FaCaretDown />
-              </span>
-              {currency && (
-                <div className="top-0 left-0 w-full h-full pt-30 z-50 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] fixed">
-                  <div
-                    className="absolute top-0 left-0 h-full w-full z-0 bg-[#05103666]"
-                    onClick={() => setCurrency(false)}></div>
-                  <div
-                    className="w-267.5 bg-white rounded-sm absolute left-1/2 -translate-x-1/2"
-                    onClick={(e) => e.stopPropagation()}>
-                    <div className="px-7.5 py-5 flex justify-between items-center">
-                      <p className="text-xl font-medium text-black font-jost">
-                        Select your currency
-                      </p>
-                      <RxCross2
-                        className="text-primaryText text-2xl cursor-pointer"
-                        onClick={() => setCurrency(false)}
-                      />
-                    </div>
-                    <hr className="text-[#ddd]" />
-                    <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
-                      {repeatedCurrencyGridItems.map((item, index) => (
-                        <div
-                          key={index}
-                          onClick={() => {
-                            setSelectedIndex(index);
-                            setSelectedCurrency(item);
-                          }}
-                          className={`py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] ${selectedIndex === index ? "bg-[#F5F5F5]" : ""}`}>
-                          <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">
-                            {item.currencyName}
+                          key={`${activeCategoryTab}-image-link`}
+                          href={activeCategoryPanel.image.href}
+                          onClick={() => setCategoriesDropdown(false)}
+                          className="group relative hidden h-78.75 overflow-hidden rounded-sm transform-[translateZ(0)] lg:block">
+                          <Image
+                            key={`${activeCategoryTab}-image`}
+                            src={activeCategoryPanel.image.src}
+                            alt={activeCategoryPanel.image.alt}
+                            fill
+                            sizes="280px"
+                            className="origin-center object-cover transform-gpu select-none will-change-transform transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                          />
+                          <div className="absolute inset-x-7 top-7">
+                            <p className="text-[25px] leading-[1.35] font-medium font-jost text-white">
+                              Things to do on
+                              <br />
+                              your trip
+                            </p>
+                            <span className="mt-6 inline-flex h-13 min-w-38 items-center justify-center rounded-sm bg-white px-5 text-base font-medium font-jost text-primaryText hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
+                              Experiences
+                            </span>
                           </div>
-                          <span className="text-sm text-primaryText font-jost">
-                            {item.currency}
-                          </span>
-                        </div>
-                      ))}
+                        </Link>
+                      </div>
                     </div>
+                  )}
+                </li>
+
+                <li>
+                  <Link href={"/"} className="flex gap-2 items-center">
+                    Destinations
+                  </Link>
+                </li>
+                <li
+                  onMouseEnter={handleBlog}
+                  onMouseLeave={() => setBlogDropdown(false)}
+                  className="relative">
+                  <div className="flex gap-2 items-center py-5.25 cursor-pointer">
+                    Blog <FaCaretDown />
                   </div>
-                </div>
-              )}
-            </div>
-            <div className="w-0.5 h-5 bg-[#ffffff33]"></div>
-            <div className="flex gap-x-2 items-center">
-              <Image
-                src={England}
-                alt="england"
-                height={20}
-                width={20}
-                className="rounded-full h-5"
-              />
-              <div ref={languageRef}>
+                  {blogDropdown && (
+                    <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                      {[
+                        { name: "Blog list v1", href: "/" },
+                        { name: "Blog list v2", href: "/about" },
+                        { name: "Blog list v3", href: "/contact" },
+                      ].map((item) => (
+                        <li
+                          key={item.name}
+                          className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                          <Link
+                            href={item.href}
+                            onClick={() => setBlogDropdown(false)}>
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+                <li
+                  onMouseEnter={handlePages}
+                  onMouseLeave={() => setPagesDropdown(false)}
+                  className="relative">
+                  <div className="flex gap-2 items-center py-5.25 cursor-pointer">
+                    Pages <FaCaretDown />
+                  </div>
+                  {pagesDropdown && (
+                    <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                      {[
+                        { name: "404", href: "/" },
+                        { name: "About", href: "/about" },
+                        { name: "Become Expert", href: "/contact" },
+                        { name: "Help center", href: "/contact" },
+                        { name: "Login", href: "/contact" },
+                        { name: "Register", href: "/contact" },
+                        { name: "Terms", href: "/contact" },
+                        { name: "Invoice", href: "/contact" },
+                        { name: "UI elements", href: "/contact" },
+                      ].map((item) => (
+                        <li
+                          key={item.name}
+                          className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                          <Link
+                            href={item.href}
+                            onClick={() => setPagesDropdown(false)}>
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+                <li
+                  onMouseEnter={handleDashboard}
+                  onMouseLeave={() => setDashboardDropdown(false)}
+                  className="relative">
+                  <div className="flex gap-2 items-center py-5.25 cursor-pointer">
+                    Dashboard <FaCaretDown />
+                  </div>
+                  {dashboardDropdown && (
+                    <ul className="absolute top-16 -left-3 bg-white rounded-sm text-primaryText min-w-60 p-5 shadow-[0px_10px_60px_0px_#0510360D] transition-all duration-200 ease-[cubic-bezier(0.165,0.84,0.44,1)] before:absolute before:content-[''] before:-top-1.25 before:left-5 before:w-2.5 before:h-2.5 before:bg-white before:rotate-45">
+                      {[
+                        { name: "Dashboard", href: "/" },
+                        { name: "Booking", href: "/about" },
+                        { name: "Settings", href: "/contact" },
+                        { name: "Wishlist", href: "/contact" },
+                        { name: "Vendor dashboard", href: "/contact" },
+                        { name: "Vendor add hotel", href: "/contact" },
+                        { name: "Vendor booking", href: "/contact" },
+                        { name: "Vendor hotels", href: "/contact" },
+                        { name: "Vendor recovery", href: "/contact" },
+                      ].map((item) => (
+                        <li
+                          key={item.name}
+                          className="hover:text-hoverText hover:bg-[#3554d10d] py-1.25 px-4 rounded-sm text-black font-jost text-base cursor-pointer">
+                          <Link
+                            href={item.href}
+                            onClick={() => setDashboardDropdown(false)}>
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+                <li>
+                  <Link href={"/"} className="flex gap-2 items-center">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </Flex>
+            <Flex className={"gap-x-4 items-center"}>
+              <div ref={currencyRef}>
                 <span
-                  className="flex gap-2 items-center font-jost text-[15px] cursor-pointer"
-                  onClick={() => setLanguage(!language)}>
-                  {selectedLanguage.country} <FaCaretDown />
+                  href={"/"}
+                  className="uppercase flex gap-2 items-center font-jost  text-[15px] cursor-pointer"
+                  onClick={() => setCurrency(!currency)}>
+                  {selectedCurrency.currency.split(" - ")[0]} <FaCaretDown />
                 </span>
-                {language && (
+                {currency && (
                   <div className="top-0 left-0 w-full h-full pt-30 z-50 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] fixed">
                     <div
                       className="absolute top-0 left-0 h-full w-full z-0 bg-[#05103666]"
-                      onClick={() => setLanguage(false)}></div>
+                      onClick={() => setCurrency(false)}></div>
                     <div
                       className="w-267.5 bg-white rounded-sm absolute left-1/2 -translate-x-1/2"
                       onClick={(e) => e.stopPropagation()}>
                       <div className="px-7.5 py-5 flex justify-between items-center">
                         <p className="text-xl font-medium text-black font-jost">
-                          Select your language
+                          Select your currency
                         </p>
                         <RxCross2
                           className="text-primaryText text-2xl cursor-pointer"
-                          onClick={() => setLanguage(false)}
+                          onClick={() => setCurrency(false)}
                         />
                       </div>
                       <hr className="text-[#ddd]" />
                       <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
-                        {repeatedLanguageGridItems.map((item, index) => (
+                        {repeatedCurrencyGridItems.map((item, index) => (
                           <div
                             key={index}
                             onClick={() => {
-                              setSelectedLanguageIndex(index);
-                              setSelectedLanguage(item);
+                              setSelectedIndex(index);
+                              setSelectedCurrency(item);
                             }}
-                            className={`py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] ${selectedLanguageIndex === index ? "bg-[#F5F5F5]" : ""}`}>
+                            className={`py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] ${selectedIndex === index ? "bg-[#F5F5F5]" : ""}`}>
                             <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">
-                              {item.language}
+                              {item.currencyName}
                             </div>
                             <span className="text-sm text-primaryText font-jost">
-                              {item.country}
+                              {item.currency}
                             </span>
                           </div>
                         ))}
@@ -763,19 +713,74 @@ const Header = () => {
                   </div>
                 )}
               </div>
-              <Link href={"/"}>
-                <button className="px-7.5 text-sm bg-white h-12.5 text-primaryText font-jost rounded-sm mr-2.5 ml-2 cursor-pointer">
-                  Become An Expert
-                </button>
-              </Link>
-              <Link href={"/"}>
-                <button className="px-7.5 text-sm text-white border border-white hover:bg-white h-12.5 hover:text-primaryText font-jost rounded-sm transition-all duration-300 ease-in-out cursor-pointer">
-                  Sign In / Register
-                </button>
-              </Link>
-            </div>
+              <div className="w-0.5 h-5 bg-[#ffffff33]"></div>
+              <div className="flex gap-x-2 items-center">
+                <Image
+                  src={England}
+                  alt="england"
+                  height={20}
+                  width={20}
+                  className="rounded-full h-5"
+                />
+                <div ref={languageRef}>
+                  <span
+                    className="flex gap-2 items-center font-jost text-[15px] cursor-pointer"
+                    onClick={() => setLanguage(!language)}>
+                    {selectedLanguage.country} <FaCaretDown />
+                  </span>
+                  {language && (
+                    <div className="top-0 left-0 w-full h-full pt-30 z-50 transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] fixed">
+                      <div
+                        className="absolute top-0 left-0 h-full w-full z-0 bg-[#05103666]"
+                        onClick={() => setLanguage(false)}></div>
+                      <div
+                        className="w-267.5 bg-white rounded-sm absolute left-1/2 -translate-x-1/2"
+                        onClick={(e) => e.stopPropagation()}>
+                        <div className="px-7.5 py-5 flex justify-between items-center">
+                          <p className="text-xl font-medium text-black font-jost">
+                            Select your language
+                          </p>
+                          <RxCross2
+                            className="text-primaryText text-2xl cursor-pointer"
+                            onClick={() => setLanguage(false)}
+                          />
+                        </div>
+                        <hr className="text-[#ddd]" />
+                        <div className="p-7.5 grid grid-cols-5 grid-rows-4 gap-7.5">
+                          {repeatedLanguageGridItems.map((item, index) => (
+                            <div
+                              key={index}
+                              onClick={() => {
+                                setSelectedLanguageIndex(index);
+                                setSelectedLanguage(item);
+                              }}
+                              className={`py-2.5 px-4 rounded-sm cursor-pointer group hover:bg-[#3554d10d] transition-all duration-150 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] ${selectedLanguageIndex === index ? "bg-[#F5F5F5]" : ""}`}>
+                              <div className="text-primaryText text-[15px] font-medium font-jost mb-1 group-hover:text-hoverText">
+                                {item.language}
+                              </div>
+                              <span className="text-sm text-primaryText font-jost">
+                                {item.country}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <Link href={"/"}>
+                  <button className="px-7.5 text-sm bg-white h-12.5 text-primaryText font-jost rounded-sm mr-2.5 ml-2 cursor-pointer">
+                    Become An Expert
+                  </button>
+                </Link>
+                <Link href={"/"}>
+                  <button className="px-7.5 text-sm text-white border border-white hover:bg-white h-12.5 hover:text-primaryText font-jost rounded-sm transition-all duration-300 ease-in-out cursor-pointer">
+                    Sign In / Register
+                  </button>
+                </Link>
+              </div>
+            </Flex>
           </Flex>
-        </Flex>
         </Container>
       </div>
     </div>
