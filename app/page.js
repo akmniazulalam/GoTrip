@@ -858,7 +858,9 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={recommendSectionRef} className={"mobile-recommend py-15 recommend max-md:py-8"}>
+      <section
+        ref={recommendSectionRef}
+        className={"mobile-recommend py-15 recommend max-md:py-8"}>
         <Container className={recommendRevealClass}>
           <Flex className={` mb-10 max-md:mb-5 max-md:items-start`}>
             <div>
@@ -1332,7 +1334,9 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={featureSectionRef} className="mobile-features pt-24 pb-30 max-md:pt-8 max-md:pb-10">
+      <section
+        ref={featureSectionRef}
+        className="mobile-features pt-24 pb-30 max-md:pt-8 max-md:pb-10">
         <Container>
           <div className="grid grid-cols-3 max-md:grid-cols-1 max-md:gap-y-9">
             <div
@@ -1393,7 +1397,9 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={testimonialSectionRef} className="mobile-testimonials bg-[#E5F0FD] py-30 max-md:py-10">
+      <section
+        ref={testimonialSectionRef}
+        className="mobile-testimonials bg-[#E5F0FD] py-30 max-md:py-10">
         <Container>
           <div className="flex justify-between max-md:block">
             <div
@@ -1536,7 +1542,9 @@ export default function Home() {
         </Container>
       </section>
 
-      <section ref={blogSectionRef} className="mobile-blog pt-30 pb-15 max-md:pt-10 max-md:pb-5">
+      <section
+        ref={blogSectionRef}
+        className="mobile-blog pt-30 pb-15 max-md:pt-10 max-md:pb-5">
         <Container>
           <div
             className={`${blogSlideUpClass} section-slide-up-blog-heading text-center max-md:text-left`}>
@@ -1547,7 +1555,9 @@ export default function Home() {
               Interdum et malesuada fames
             </p>
           </div>
-          <div ref={blogGridRef} className="pt-10 grid grid-cols-3 gap-7.5 max-md:grid-cols-1 max-md:gap-6 max-md:pt-5">
+          <div
+            ref={blogGridRef}
+            className="pt-10 grid grid-cols-3 gap-7.5 max-md:grid-cols-1 max-md:gap-6 max-md:pt-5">
             <Link
               href={"/"}
               className={`${blogSlideLeftClass} section-slide-left-blog-one block`}>
