@@ -165,7 +165,7 @@ const Footer = () => {
           <div className="flex py-5 justify-between">
             <Flex className={"gap-x-7"}>
               <p className="font-jost text-base text-primaryText">
-                © 2022 GoTrip LLC All rights reserved.
+                © 2026 GoTrip LLC All rights reserved.
               </p>
               <div className="flex gap-3">
                 <Link
