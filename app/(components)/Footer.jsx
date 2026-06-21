@@ -4,7 +4,14 @@ import Flex from "./Flex";
 import newsletter from "../../public/newsletter 1.svg";
 import { TfiWorld } from "react-icons/tfi";
 import { LiaDollarSignSolid } from "react-icons/lia";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaApple, FaGooglePlay } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+  FaApple,
+  FaGooglePlay,
+} from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -154,15 +161,21 @@ const Footer = () => {
               <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 w-fit">
                 <FaApple className="text-primaryText text-3xl" />
                 <div className="">
-                  <p className="text-sm text-pText font-jost ">Download on the</p>
-                  <p className="text-[15px] font-medium font-jost text-primaryText">Apple Store</p>
+                  <p className="text-sm text-pText font-jost ">
+                    Download on the
+                  </p>
+                  <p className="text-[15px] font-medium font-jost text-primaryText">
+                    Apple Store
+                  </p>
                 </div>
               </div>
               <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 ">
-                <FaGooglePlay  className="text-primaryText text-2xl" />
+                <FaGooglePlay className="text-primaryText text-2xl" />
                 <div className="">
                   <p className="text-sm text-pText font-jost ">Get in on</p>
-                  <p className="text-[15px] font-medium font-jost text-primaryText">Google Play</p>
+                  <p className="text-[15px] font-medium font-jost text-primaryText">
+                    Google Play
+                  </p>
                 </div>
               </div>
             </div>
@@ -191,7 +204,10 @@ const Footer = () => {
                 </Link>
               </div>
             </Flex>
-            <Flex className={"max-md:mt-5 max-md:flex-wrap max-md:justify-start max-md:gap-y-4"}>
+            <Flex
+              className={
+                "max-md:mt-5 max-md:flex-wrap max-md:justify-start max-md:gap-y-4"
+              }>
               <button className="flex items-center cursor-pointer">
                 <TfiWorld className="text-primaryText mr-3" />
                 <p className="font-jost font-medium text-sm underline text-primaryText">
@@ -204,11 +220,22 @@ const Footer = () => {
                   USD
                 </p>
               </button>
-              <Flex className={"gap-x-5 items-center ml-6 max-md:ml-0 max-md:w-full max-md:justify-start"}>
-                <Link href={"www.facebook.com"}><FaFacebookF className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
-                <Link href={"www.twitter.com"}><FaTwitter className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
-                <Link href={"www.instagram.com"}><FaInstagram className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
-                <Link href={"www.linkedin.com"}><FaLinkedinIn className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out"/></Link>
+              <Flex
+                className={
+                  "gap-x-5 items-center ml-6 max-md:ml-0 max-md:w-full max-md:justify-start"
+                }>
+                <Link href={"www.facebook.com"}>
+                  <FaFacebookF className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out" />
+                </Link>
+                <Link href={"www.twitter.com"}>
+                  <FaTwitter className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out" />
+                </Link>
+                <Link href={"www.instagram.com"}>
+                  <FaInstagram className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out" />
+                </Link>
+                <Link href={"www.linkedin.com"}>
+                  <FaLinkedinIn className="text-primaryText hover:text-hoverText transition-all duration-300 ease-in-out" />
+                </Link>
               </Flex>
             </Flex>
           </div>
