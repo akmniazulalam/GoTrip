@@ -413,53 +413,148 @@ body.mobile-menu-open {
     opacity: 1;
   }
 
-  .mobile-recommend .slick-list {
-    margin-right: -24px;
+  .mobile-recommend.max-w-330,
+  .mobile-recommend .max-w-330 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mobile-recommend {
+    padding-top: 28px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .mobile-recommend .section-slide-up-recommend > .flex {
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .mobile-recommend h3 {
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0;
+  }
+
+  .mobile-recommend h3 + p {
+    margin-top: 4px;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+  }
+
+  .mobile-recommend .relative > button.w-35 {
+    width: 72px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .mobile-recommend .relative > button.w-35 svg {
+    font-size: 11px;
+  }
+
+  .mobile-recommend .recommend-main-slider {
+    display: none !important;
+  }
+
+  .mobile-recommend-slider {
     overflow: hidden;
   }
 
-  .mobile-recommend .slick-slide > div {
-    padding-right: 12px;
+  .mobile-recommend-slider .slick-list {
+    margin-right: -8px;
+    overflow: hidden;
   }
 
-  .mobile-recommend .slick-slide > div > div,
-  .mobile-recommend .slick-slide a,
-  .mobile-recommend .recoSlider {
-    width: 100% !important;
-    height: auto !important;
+  .mobile-recommend-slider .slick-slide > div {
+    padding-right: 8px;
   }
 
-  .mobile-recommend img,
-  .mobile-recommend .recommend-image {
-    width: 100% !important;
+  .mobile-recommend-card {
+    width: 100%;
+  }
+
+  .mobile-recommend-image-wrap {
     aspect-ratio: 1 / 1;
-    height: auto !important;
-    object-fit: cover;
+    background: #f5f5f5;
   }
 
-  .mobile-recommend h4 {
+  .mobile-recommend-image {
+    display: block;
     width: 100% !important;
-    font-size: 15px;
-    line-height: 1.45;
+    height: 100% !important;
   }
 
-  .mobile-recommend p,
-  .mobile-recommend .text-sm {
-    font-size: 12px;
-    line-height: 1.5;
+  .mobile-recommend-label {
+    max-width: calc(100% - 34px);
+    padding: 4px 7px;
+    overflow: hidden;
+    font-size: 7px;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .mobile-recommend .mt-5 {
-    margin-top: 12px;
+  .mobile-recommend-heart {
+    height: 24px;
+    width: 24px;
   }
 
-  .mobile-recommend .recommend-main-slider > .slick-list {
-    height: auto !important;
+  .mobile-recommend-heart svg {
+    font-size: 14px;
   }
 
-  .mobile-recommend .recommend-image-slider .slick-dots,
-  .mobile-recommend .recommend-image-slider .recommend-image-arrow {
-    display: none !important;
+  .mobile-recommend-body {
+    padding-top: 8px;
+  }
+
+  .mobile-recommend-card h4 {
+    display: -webkit-box;
+    min-height: 32px;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+
+  .mobile-recommend-card p {
+    margin-top: 4px;
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 1.4;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-recommend-rating {
+    gap: 4px;
+    margin-top: 8px;
+    min-width: 0;
+  }
+
+  .mobile-recommend-score {
+    flex: 0 0 auto;
+    height: 18px;
+    width: 18px;
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  .mobile-recommend-rating span {
+    min-width: 0;
+    overflow: hidden;
+    font-size: 9px;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-recommend-price {
+    margin-top: 7px;
+    font-size: 10px;
+    line-height: 1.4;
   }
 
   .mobile-blog img {

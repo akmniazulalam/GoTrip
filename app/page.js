@@ -466,6 +466,53 @@ export default function Home() {
     { src: HotelThree, alt: "HotelThree" },
   ];
 
+  const mobileRecommendCards = [
+    {
+      src: HotelOne,
+      alt: "HotelOne",
+      label: "Breakfast included",
+      labelClass: "bg-primaryText text-white",
+      title: "The Montcalm At Brewery London City",
+      location: "Westminster Borough, London",
+    },
+    {
+      src: HotelTwo,
+      alt: "HotelTwo",
+      label: "Best Seller",
+      labelClass: "bg-hoverText text-white",
+      title: "Staycity Aparthotels Deptford Bridge Station",
+      location: "Ciutat Vella, Barcelona",
+    },
+    {
+      src: HotelThree,
+      alt: "HotelThree",
+      label: "Best Seller",
+      labelClass: "bg-hoverText text-white",
+      title: "The Westin New York at Times Square",
+      location: "Manhattan, New York",
+    },
+    {
+      src: HotelFour,
+      alt: "HotelFour",
+      label: "Top Rated",
+      labelClass: "bg-[#F8D448] text-primaryText",
+      title: "DoubleTree by Hilton Hotel New York Times Square West",
+      location: "Vaticano Prati, Rome",
+    },
+  ];
+
+  const mobileRecommendSettings = {
+    dots: false,
+    arrows: false,
+    infinite: false,
+    autoplay: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    variableWidth: true,
+  };
+
   const renderRecommendImageSlider = () => (
     <div
       className="recommend-image-slider overflow-hidden rounded-sm"
@@ -491,6 +538,49 @@ export default function Home() {
         ))}
       </Slider>
     </div>
+  );
+
+  const renderMobileRecommendCard = (item) => (
+    <Link href={"/"} className="mobile-recommend-card block">
+      <div className="mobile-recommend-image-wrap relative overflow-hidden rounded-sm">
+        <Image
+          src={item.src}
+          alt={item.alt}
+          width={300}
+          height={300}
+          className="mobile-recommend-image rounded-sm object-cover"
+        />
+        <div className="absolute top-2 left-0">
+          <div
+            className={`mobile-recommend-label rounded-tr-sm rounded-br-sm uppercase font-jost font-medium ${item.labelClass}`}>
+            {item.label}
+          </div>
+        </div>
+        <div className="absolute top-2 right-2 flex rounded-full bg-white mobile-recommend-heart items-center justify-center">
+          <IoMdHeartEmpty className="text-primaryText" />
+        </div>
+      </div>
+      <div className="mobile-recommend-body">
+        <h4 className="font-jost font-medium text-primaryText">
+          {item.title}
+        </h4>
+        <p className="font-jost text-pText">{item.location}</p>
+        <div className="mobile-recommend-rating flex items-center">
+          <div className="mobile-recommend-score flex items-center justify-center rounded-sm bg-hoverText font-jost font-semibold text-white">
+            4.8
+          </div>
+          <span className="font-jost font-medium text-primaryText">
+            Exceptional
+          </span>
+          <span className="font-jost font-medium text-pText">
+            3,014 reviews
+          </span>
+        </div>
+        <div className="mobile-recommend-price font-jost font-medium text-primaryText">
+          Starting from <span className="text-hoverText">US$72</span>
+        </div>
+      </div>
+    </Link>
   );
 
   var destinationSliderSettings = {
@@ -906,7 +996,7 @@ export default function Home() {
           </Flex>
           <Slider
             ref={recommendSliderRef}
-            className="recommend-main-slider"
+            className="recommend-main-slider max-md:hidden"
             {...recommendSettings}>
             <div className="relative w-75! group">
               <Link href={"/"}>
@@ -1330,6 +1420,18 @@ export default function Home() {
                 </div>
               </Link>
             </div>
+          </Slider>
+          <Slider
+            className="mobile-recommend-slider md:hidden"
+            {...mobileRecommendSettings}>
+            {mobileRecommendCards.map((item) => (
+              <div
+                key={item.title}
+                className="focus:outline-0"
+                style={{ width: "calc((100vw - 32px) / 2)" }}>
+                {renderMobileRecommendCard(item)}
+              </div>
+            ))}
           </Slider>
         </Container>
       </section>
