@@ -25,6 +25,7 @@ import HotelTwo from "../public/hotelTwo.webp";
 import HotelThree from "../public/hotelThree.webp";
 import HotelFour from "../public/hotelFour.webp";
 import { FaCaretDown, FaCaretUp, FaStar } from "react-icons/fa";
+import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
 import Link from "next/link";
 import NextArrow from "./(components)/NextArrow";
 import PrevArrow from "./(components)/PrevArrow";
@@ -108,10 +109,13 @@ export default function Home() {
   const [recommend, setRecommend] = useState("Hotel");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentDestinationSlide, setCurrentDestinationSlide] = useState(0);
+  const [currentMobileRecommendSlide, setCurrentMobileRecommendSlide] =
+    useState(0);
   const [isDesktopDestinationSlider, setIsDesktopDestinationSlider] =
     useState(false);
   const sliderRef = useRef(null);
   const recommendSliderRef = useRef(null);
+  const mobileRecommendSliderRef = useRef(null);
   const destinationSliderRef = useRef(null);
   const destinationSectionRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -476,10 +480,38 @@ export default function Home() {
       location: "Westminster Borough, London",
     },
     {
-      src: HotelTwo,
+      isNestedSlider: true,
       alt: "HotelTwo",
+      title: "Staycity Aparthotels Deptford Bridge Station",
+      location: "Ciutat Vella, Barcelona",
+    },
+    {
+      src: HotelThree,
+      alt: "HotelThree",
       label: "Best Seller",
       labelClass: "bg-hoverText text-white",
+      title: "The Westin New York at Times Square",
+      location: "Manhattan, New York",
+    },
+    {
+      src: HotelFour,
+      alt: "HotelFour",
+      label: "Top Rated",
+      labelClass: "bg-[#F8D448] text-primaryText",
+      title: "DoubleTree by Hilton Hotel New York Times Square West",
+      location: "Vaticano Prati, Rome",
+    },
+    {
+      src: HotelOne,
+      alt: "HotelOne",
+      label: "Breakfast included",
+      labelClass: "bg-primaryText text-white",
+      title: "The Montcalm At Brewery London City",
+      location: "Westminster Borough, London",
+    },
+    {
+      isNestedSlider: true,
+      alt: "HotelTwo",
       title: "Staycity Aparthotels Deptford Bridge Station",
       location: "Ciutat Vella, Barcelona",
     },
@@ -511,6 +543,9 @@ export default function Home() {
     slidesToScroll: 1,
     swipeToSlide: true,
     variableWidth: true,
+    afterChange: (current) => {
+      setCurrentMobileRecommendSlide(current);
+    },
   };
 
   const renderRecommendImageSlider = () => (
@@ -543,19 +578,25 @@ export default function Home() {
   const renderMobileRecommendCard = (item) => (
     <Link href={"/"} className="mobile-recommend-card block">
       <div className="mobile-recommend-image-wrap relative overflow-hidden rounded-sm">
-        <Image
-          src={item.src}
-          alt={item.alt}
-          width={300}
-          height={300}
-          className="mobile-recommend-image rounded-sm object-cover"
-        />
-        <div className="absolute top-2 left-0">
-          <div
-            className={`mobile-recommend-label rounded-tr-sm rounded-br-sm uppercase font-jost font-medium ${item.labelClass}`}>
-            {item.label}
-          </div>
-        </div>
+        {item.isNestedSlider ? (
+          renderRecommendImageSlider()
+        ) : (
+          <>
+            <Image
+              src={item.src}
+              alt={item.alt}
+              width={300}
+              height={300}
+              className="mobile-recommend-image rounded-sm object-cover"
+            />
+            <div className="absolute top-2 left-0">
+              <div
+                className={`mobile-recommend-label rounded-tr-sm rounded-br-sm uppercase font-jost font-medium ${item.labelClass}`}>
+                {item.label}
+              </div>
+            </div>
+          </>
+        )}
         <div className="absolute top-2 right-2 flex rounded-full bg-white mobile-recommend-heart items-center justify-center">
           <IoMdHeartEmpty className="text-primaryText" />
         </div>
@@ -634,6 +675,13 @@ export default function Home() {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -1422,17 +1470,49 @@ export default function Home() {
             </div>
           </Slider>
           <Slider
+            ref={mobileRecommendSliderRef}
             className="mobile-recommend-slider md:hidden"
             {...mobileRecommendSettings}>
-            {mobileRecommendCards.map((item) => (
+            {mobileRecommendCards.map((item, index) => (
               <div
-                key={item.title}
+                key={`${item.title}-${index}`}
                 className="focus:outline-0"
-                style={{ width: "calc((100vw - 32px) / 2)" }}>
+                style={{ width: "min(300px, calc(100vw - 96px))" }}>
                 {renderMobileRecommendCard(item)}
               </div>
             ))}
           </Slider>
+          <div className="mobile-recommend-controls md:hidden">
+            <button
+              type="button"
+              aria-label="Previous recommendation"
+              onClick={() => mobileRecommendSliderRef.current?.slickPrev()}
+              className="mobile-recommend-control-button">
+              <LiaArrowLeftSolid />
+            </button>
+            <div className="mobile-recommend-control-dots">
+              {mobileRecommendCards.map((item, index) => (
+                <button
+                  key={`${item.title}-${index}-dot`}
+                  type="button"
+                  aria-label={`Go to recommendation ${index + 1}`}
+                  onClick={() =>
+                    mobileRecommendSliderRef.current?.slickGoTo(index)
+                  }
+                  className={`mobile-recommend-control-dot ${
+                    index === currentMobileRecommendSlide ? "is-active" : ""
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              aria-label="Next recommendation"
+              onClick={() => mobileRecommendSliderRef.current?.slickNext()}
+              className="mobile-recommend-control-button">
+              <LiaArrowRightSolid />
+            </button>
+          </div>
         </Container>
       </section>
 

@@ -421,13 +421,17 @@ body.mobile-menu-open {
 
   .mobile-recommend {
     padding-top: 28px !important;
-    padding-bottom: 30px !important;
+    padding-bottom: 72px !important;
   }
 
   .mobile-recommend .section-slide-up-recommend > .flex {
     align-items: flex-start;
     gap: 12px;
     margin-bottom: 18px;
+  }
+
+  .mobile-recommend .section-slide-up-recommend {
+    position: relative;
   }
 
   .mobile-recommend h3 {
@@ -459,16 +463,16 @@ body.mobile-menu-open {
   }
 
   .mobile-recommend-slider {
-    overflow: hidden;
+    overflow: visible;
   }
 
   .mobile-recommend-slider .slick-list {
-    margin-right: -8px;
+    margin-right: -16px;
     overflow: hidden;
   }
 
   .mobile-recommend-slider .slick-slide > div {
-    padding-right: 8px;
+    padding-right: 12px;
   }
 
   .mobile-recommend-card {
@@ -486,13 +490,30 @@ body.mobile-menu-open {
     height: 100% !important;
   }
 
+  .mobile-recommend .recommend-image-slider,
+  .mobile-recommend .recommend-image-slider .slick-slider,
+  .mobile-recommend .recommend-image-slider .slick-list,
+  .mobile-recommend .recommend-image-slider .slick-track,
+  .mobile-recommend .recommend-image-slider .slick-slide,
+  .mobile-recommend .recommend-image-slider .slick-slide > div,
+  .mobile-recommend .recommend-image-slider .slick-slide > div > div {
+    height: 100%;
+  }
+
+  .mobile-recommend .recommend-image-slider .recommend-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
+
   .mobile-recommend-label {
-    max-width: calc(100% - 34px);
-    padding: 4px 7px;
-    overflow: hidden;
-    font-size: 7px;
+    width: max-content;
+    max-width: none;
+    padding: 5px 9px;
+    overflow: visible;
+    font-size: 8px;
     line-height: 1;
-    text-overflow: ellipsis;
+    text-overflow: clip;
     white-space: nowrap;
   }
 
@@ -555,6 +576,53 @@ body.mobile-menu-open {
     margin-top: 7px;
     font-size: 10px;
     line-height: 1.4;
+  }
+
+  .mobile-recommend-controls {
+    display: flex;
+    position: static;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+    transform: none;
+  }
+
+  .mobile-recommend-control-button {
+    display: flex;
+    height: 24px;
+    width: 24px;
+    align-items: center;
+    justify-content: center;
+    color: #051036;
+    cursor: pointer;
+  }
+
+  .mobile-recommend-control-button svg {
+    font-size: 20px;
+  }
+
+  .mobile-recommend-control-dots {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-recommend-control-dot {
+    height: 6px;
+    width: 6px;
+    border-radius: 999px;
+    background: #d9d9d9;
+    cursor: pointer;
+  }
+
+  .mobile-recommend-control-dot.is-active {
+    background: #3554d1;
+    transform: scale(1.35);
+  }
+
+  .mobile-recommend-slider .slick-dots {
+    display: none !important;
   }
 
   .mobile-blog img {
