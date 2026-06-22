@@ -576,7 +576,7 @@ export default function Home() {
   );
 
   const renderMobileRecommendCard = (item) => (
-    <Link href={"/"} className="mobile-recommend-card block">
+    <Link href={"/"} className="mobile-recommend-card group block">
       <div className="mobile-recommend-image-wrap relative overflow-hidden rounded-sm">
         {item.isNestedSlider ? (
           renderRecommendImageSlider()
@@ -587,7 +587,7 @@ export default function Home() {
               alt={item.alt}
               width={300}
               height={300}
-              className="mobile-recommend-image rounded-sm object-cover"
+              className="mobile-recommend-image recommend-image rounded-sm object-cover"
             />
             <div className="absolute top-2 left-0">
               <div
@@ -603,7 +603,18 @@ export default function Home() {
       </div>
       <div className="mobile-recommend-body">
         <h4 className="font-jost font-medium text-primaryText">
-          {item.title}
+          <span
+            className="
+      bg-[linear-gradient(transparent_24px,black_20px)]
+      bg-no-repeat
+      bg-size-[0%_100%]
+      transition-[background-size]
+      duration-300
+      ease-[cubic-bezier(0.785,0.135,0.15,0.86)]
+      group-hover:bg-size-[100%_100%]
+    ">
+            {item.title}
+          </span>
         </h4>
         <p className="font-jost text-pText">{item.location}</p>
         <div className="mobile-recommend-rating flex items-center">

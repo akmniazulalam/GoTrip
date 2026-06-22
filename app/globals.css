@@ -425,8 +425,9 @@ body.mobile-menu-open {
   }
 
   .mobile-recommend .section-slide-up-recommend > .flex {
+    flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 14px;
     margin-bottom: 18px;
   }
 
@@ -435,27 +436,43 @@ body.mobile-menu-open {
   }
 
   .mobile-recommend h3 {
-    font-size: 18px !important;
-    line-height: 1.25 !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
     letter-spacing: 0;
   }
 
   .mobile-recommend h3 + p {
-    margin-top: 4px;
-    font-size: 11px !important;
-    line-height: 1.45 !important;
+    margin-top: 8px;
+    font-size: 14px !important;
+    line-height: 24px !important;
   }
 
-  .mobile-recommend .relative > button.w-35 {
-    width: 72px;
-    height: 36px;
-    padding: 0 12px;
-    font-size: 12px;
+  .mobile-recommend .section-slide-up-recommend > .flex > .relative {
+    width: 100%;
+  }
+
+  .mobile-recommend .section-slide-up-recommend > .flex > .relative > button.w-35 {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    font-size: 14px;
     line-height: 1;
   }
 
-  .mobile-recommend .relative > button.w-35 svg {
-    font-size: 11px;
+  .mobile-recommend .section-slide-up-recommend > .flex > .relative > button.w-35 svg {
+    font-size: 12px;
+  }
+
+  .mobile-recommend .section-slide-up-recommend > .flex > .relative > .absolute {
+    left: 50%;
+    width: 100%;
+    min-width: 100%;
+    transform: none;
+  }
+
+  .mobile-recommend .section-slide-up-recommend > .flex > .relative > .absolute > div {
+    display: flex;
+    flex-direction: column;
   }
 
   .mobile-recommend .recommend-main-slider {
@@ -504,6 +521,24 @@ body.mobile-menu-open {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
+  }
+
+  .mobile-recommend .recommend-image-slider .recommend-image-arrow {
+    display: flex;
+    opacity: 1;
+  }
+
+  .mobile-recommend .recommend-image-slider .slick-dots {
+    bottom: 12px;
+    display: block !important;
+  }
+
+  .mobile-recommend .recommend-image-slider .slick-dots li button:before {
+    opacity: 0.75;
+  }
+
+  .mobile-recommend .recommend-image-slider .slick-dots li.slick-active button:before {
+    opacity: 1;
   }
 
   .mobile-recommend-label {
