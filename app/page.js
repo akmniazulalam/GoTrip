@@ -702,15 +702,15 @@ export default function Home() {
   return (
     <>
       <section className="mobile-hero bg-[url(../public/bg.webp)] bg-no-repeat bg-cover bg-center">
-        <div className="pt-80 pb-52.5 bg-linear-[270deg] from-[rgba(5,16,54,0.5)] to-[#051036d9] max-md:pt-28 max-md:pb-8">
+        <div className="pt-80 pb-52.5 bg-linear-[270deg] from-[rgba(5,16,54,0.5)] to-[#051036d9] max-md:pt-44 max-md:pb-8">
           <Container>
             <div className="text-center opacity-100 z-50">
               <h1
-                className={`${heroSlideClass} hero-slide-up-title font-semibold font-jost text-6xl text-white max-md:text-[24px] max-md:leading-8`}>
+                className={`${heroSlideClass} hero-slide-up-title font-semibold font-jost text-6xl text-white max-md:text-3xl max-md:leading-8`}>
                 Find Next Place To Visit
               </h1>
               <p
-                className={`${heroSlideClass} hero-slide-up-text font-jost text-white font-medium text-base leading-7.5 pt-4 pb-15 max-md:pt-1 max-md:pb-5 max-md:text-[13px] max-md:leading-5`}>
+                className={`${heroSlideClass} hero-slide-up-text font-jost text-white font-medium text-base leading-7.5 pt-4 pb-15 max-md:pt-3 max-md:pb-15 max-md:font-normal`}>
                 Discover amzaing places at exclusive deals
               </p>
               <div
@@ -1055,7 +1055,7 @@ export default function Home() {
           </Flex>
           <Slider
             ref={recommendSliderRef}
-            className="recommend-main-slider max-md:hidden"
+            className="recommend-main-slider"
             {...recommendSettings}>
             <div className="relative w-75! group">
               <Link href={"/"}>
