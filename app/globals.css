@@ -660,12 +660,12 @@ body.mobile-menu-open {
     display: none !important;
   }
 
-  .mobile-blog .section-slide-up.section-slide-up-blog-heading {
+  /* .mobile-blog .section-slide-up.section-slide-up-blog-heading {
     opacity: 1;
     transform: none;
     visibility: visible;
     pointer-events: auto;
-  }
+  } */
 
   .mobile-blog img {
     aspect-ratio: 410 / 308;
