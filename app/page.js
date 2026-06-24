@@ -111,12 +111,15 @@ export default function Home() {
   const [currentDestinationSlide, setCurrentDestinationSlide] = useState(0);
   const [currentMobileRecommendSlide, setCurrentMobileRecommendSlide] =
     useState(0);
+  const [currentMobileDestinationSlide, setCurrentMobileDestinationSlide] =
+    useState(0);
   const [isDesktopDestinationSlider, setIsDesktopDestinationSlider] =
     useState(false);
   const sliderRef = useRef(null);
   const recommendSliderRef = useRef(null);
   const mobileRecommendSliderRef = useRef(null);
   const destinationSliderRef = useRef(null);
+  const mobileDestinationSliderRef = useRef(null);
   const destinationSectionRef = useRef(null);
   const dropdownRef = useRef(null);
   const promoSectionRef = useRef(null);
@@ -562,6 +565,66 @@ export default function Home() {
     },
   };
 
+  const destinationCards = [
+    { name: "New York", src: NewYork, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
+    { name: "London", src: London, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
+    { name: "Barcelona", src: Barcelona, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
+    { name: "Sydney", src: Sydney, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
+    { name: "Rome", src: Rome, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
+  ];
+
+  const mobileDestinationSettings = {
+    dots: false,
+    arrows: false,
+    infinite: false,
+    autoplay: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    variableWidth: true,
+    afterChange: (current) => {
+      setCurrentMobileDestinationSlide(current);
+    },
+  };
+
+  const renderMobileDestinationCard = (item) => (
+    <div className="rounded-sm focus:outline-0 w-fit! destination-slide">
+      <Link href={"/"} className="relative rounded-sm">
+        <Image
+          src={item.src}
+          alt={item.name}
+          height={400}
+          width={300}
+          className={"rounded-sm"}
+        />
+
+        <div className="absolute top-0 left-0 h-full w-75 rounded-sm flex flex-col justify-between pt-7.5 px-5 pb-5 text-center overflow-hidden group">
+          <div
+            className={
+              "bg-[#05103666] absolute rounded-sm top-0 left-0 h-full w-full transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100"
+            }></div>
+          <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] opacity-0 group-hover:opacity-100 z-20">
+            <p className="text-sm text-white font-jost font-medium">
+              {item.details}
+            </p>
+          </div>
+          <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-20 group-hover:translate-y-0">
+            <h4
+              className={
+                "text-[26px] text-white font-jost font-semibold mb-5"
+              }>
+              {item.name}
+            </h4>
+            <button className="h-15 w-65 flex justify-center items-center rounded-sm text-[15px] font-jost font-medium text-primaryText bg-white cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
+              Discover
+            </button>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+
   const renderRecommendImageSlider = () => (
     <div
       className="recommend-image-slider overflow-hidden rounded-sm"
@@ -809,7 +872,7 @@ export default function Home() {
           </Flex>
           <div
             className={`${destinationRevealClass} section-slide-up-slider destination-slider`}>
-            <Slider ref={destinationSliderRef} {...destinationSliderSettings}>
+            <Slider ref={destinationSliderRef} className="destination-main-slider md:block! hidden" {...destinationSliderSettings}>
               <div
                 className={`focus:outline-0 w-fit! destination-slide ${currentDestinationSlide > 0 ? "destination-slide-before" : ""}`}>
                 <Link href={"/"} className="relative rounded-sm">
@@ -984,6 +1047,58 @@ export default function Home() {
                 </Link>
               </div>
             </Slider>
+            <Slider
+              ref={mobileDestinationSliderRef}
+              className="mobile-destination-slider md:hidden!"
+              {...mobileDestinationSettings}>
+              {destinationCards.map((item, index) => (
+                <div
+                  key={`${item.name}-${index}`}
+                  className="focus:outline-0"
+                  style={{ width: "min(300px, calc(100vw - 96px))" }}>
+                  {renderMobileDestinationCard(item)}
+                </div>
+              ))}
+            </Slider>
+            <div className="mobile-recommend-controls md:hidden">
+              <button
+                type="button"
+                aria-label="Previous destination"
+                onClick={() => mobileDestinationSliderRef.current?.slickPrev()}
+                className="mobile-recommend-control-button">
+                <LiaArrowLeftSolid />
+              </button>
+              <div className="mobile-recommend-control-dots">
+                {destinationCards.map((item, index) => (
+                  <button
+                    key={`${item.name}-${index}-dot`}
+                    type="button"
+                    aria-label={`Go to destination ${index + 1}`}
+                    onClick={() =>
+                      mobileDestinationSliderRef.current?.slickGoTo(index)
+                    }
+                    className={`mobile-recommend-control-dot ${
+                      index === currentMobileDestinationSlide ? "is-active" : ""
+                    }`}
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                aria-label="Next destination"
+                onClick={() => mobileDestinationSliderRef.current?.slickNext()}
+                className="mobile-recommend-control-button">
+                <LiaArrowRightSolid />
+              </button>
+            </div>
+          </div>
+          <div className="mt-6 md:hidden">
+            <Link
+              href={"/"}
+              className="py-3 px-7 bg-[#3554d10d] rounded-sm font-jost font-medium text-base text-hoverText flex justify-center items-center gap-x-1 w-full hover:bg-hoverText hover:text-white transition-all duration-300">
+              View All Destinations
+              <RxArrowTopRight className="text-2xl" />
+            </Link>
           </div>
         </Container>
       </section>

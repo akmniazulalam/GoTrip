@@ -401,6 +401,7 @@ body.mobile-menu-open {
     line-height: 1.25;
   }
 
+  /*
   .mobile-destinations .destination-slide button {
     display: none;
   }
@@ -412,6 +413,7 @@ body.mobile-menu-open {
   .mobile-destinations .destination-slide .opacity-0 {
     opacity: 1;
   }
+  */
 
   .mobile-recommend.max-w-330,
   .mobile-recommend .max-w-330 {
@@ -475,20 +477,24 @@ body.mobile-menu-open {
     flex-direction: column;
   }
 
-  .mobile-recommend .recommend-main-slider {
+  .mobile-recommend .recommend-main-slider,
+  .mobile-destinations .destination-main-slider {
     display: none !important;
   }
 
-  .mobile-recommend-slider {
+  .mobile-recommend-slider,
+  .mobile-destination-slider {
     overflow: visible;
   }
 
-  .mobile-recommend-slider .slick-list {
+  .mobile-recommend-slider .slick-list,
+  .mobile-destination-slider .slick-list {
     margin-right: -16px;
     overflow: hidden;
   }
 
-  .mobile-recommend-slider .slick-slide > div {
+  .mobile-recommend-slider .slick-slide > div,
+  .mobile-destination-slider .slick-slide > div {
     padding-right: 12px;
   }
 
