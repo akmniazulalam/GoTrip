@@ -336,13 +336,13 @@ const Header = () => {
       <div
         className={`transition-all duration-300 md:hidden ${
           isMobileHeaderSolid
-            ? "bg-white text-primaryText shadow-[0px_1px_0px_#dddddd]"
+            ? "bg-primaryText text-white"
             : "bg-transparent text-white"
         }`}>
         <div className="flex h-24 items-center justify-between px-6">
           <Link href={"/"} onClick={closeMobileMenu}>
             <Image
-              src={isMobileHeaderSolid ? logoDark : logo}
+              src={isMobileHeaderSolid ? logo : logo}
               alt="GoTrip"
               height={42}
               width={120}
