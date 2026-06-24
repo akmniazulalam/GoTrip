@@ -312,19 +312,33 @@ export default function Home() {
       return;
     }
 
+    const isMobileBlog = window.matchMedia("(max-width: 767px)").matches;
+    const target = isMobileBlog
+      ? section.querySelector(".section-slide-up-blog-heading")
+      : section;
+
+    if (!target) {
+      return;
+    }
+
+    const visibilityThreshold = isMobileBlog ? 0.2 : 0.5;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        if (
+          entry.isIntersecting &&
+          entry.intersectionRatio >= visibilityThreshold
+        ) {
           setIsBlogSectionVisible(true);
           observer.unobserve(entry.target);
         }
       },
       {
-        threshold: 0.5,
+        threshold: visibilityThreshold,
       },
     );
 
-    observer.observe(section);
+    observer.observe(target);
 
     return () => {
       observer.disconnect();
