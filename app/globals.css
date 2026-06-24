@@ -379,11 +379,11 @@ body.mobile-menu-open {
     padding-right: 12px;
   }
 
-  .mobile-destinations .destination-slide,
+  /* .mobile-destinations .destination-slide,
   .mobile-destinations .destination-slide a,
   .mobile-destinations .destination-slide img {
     width: 100% !important;
-  }
+  } */
 
   .mobile-destinations .destination-slide img {
     aspect-ratio: 3 / 4;
