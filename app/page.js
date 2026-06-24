@@ -1482,7 +1482,7 @@ export default function Home() {
           </Slider>
           <Slider
             ref={mobileRecommendSliderRef}
-            className="mobile-recommend-slider md:hidden"
+            className="mobile-recommend-slider md:hidden!"
             {...mobileRecommendSettings}>
             {mobileRecommendCards.map((item, index) => (
               <div
