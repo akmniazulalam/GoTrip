@@ -383,7 +383,7 @@ const Header = () => {
                 <button
                   type="button"
                   onClick={() => setMobileSubmenu(null)}
-                  className="mb-7 flex h-15 w-full items-center gap-4 rounded-sm bg-[#F5F6FE] px-7 text-left font-jost text-[24px] font-medium text-hoverText">
+                  className="mb-7 flex h-15 w-full items-center gap-4 rounded-sm bg-[#F5F6FE] px-7 text-left font-jost text-xl font-medium text-hoverText">
                   <FaCaretDown className="rotate-90 text-[14px]" />
                   {activeMobileMenu.name}
                 </button>
@@ -401,7 +401,7 @@ const Header = () => {
                 </ul>
               </div>
             ) : (
-              <ul className="space-y-5 px-6">
+              <ul className="space-y-4 px-6">
                 {mobileMenus.map((item) => (
                   <li key={item.name}>
                     {item.links ? (
