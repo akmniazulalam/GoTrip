@@ -377,7 +377,7 @@ const Header = () => {
               ? "translate-x-0 opacity-100"
               : "translate-x-full opacity-0 pointer-events-none"
           }`}>
-          <div className="min-h-full border-b border-[#DDDDDD] px-6 pb-14 pt-15">
+          <div className="min-h-full border-b border-[#DDDDDD] px-6 pb-6 pt-10">
             {activeMobileMenu ? (
               <div>
                 <button
