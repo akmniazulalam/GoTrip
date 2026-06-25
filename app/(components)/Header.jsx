@@ -352,7 +352,7 @@ const Header = () => {
           </Link>
           <div className="flex items-center gap-6">
             <Link href={"/"} aria-label="Account">
-              <FiUser className="text-[30px]" />
+              <FiUser className="text-[26px]" />
             </Link>
             <button
               type="button"
@@ -364,9 +364,9 @@ const Header = () => {
               }}
               className="flex h-10 w-10 items-center justify-center">
               {mobileMenuOpen ? (
-                <RxCross2 className="text-[30px]" />
+                <RxCross2 className="text-[26px]" />
               ) : (
-                <FiMenu className="text-[34px]" />
+                <FiMenu className="text-[28px]" />
               )}
             </button>
           </div>
