@@ -387,13 +387,13 @@ const Header = () => {
                   <FaCaretDown className="rotate-90 text-[14px]" />
                   {activeMobileMenu.name}
                 </button>
-                <ul className="space-y-7 px-6">
+                <ul className="space-y-2 px-6">
                   {activeMobileMenu.links.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}
                         onClick={closeMobileMenu}
-                        className="block font-jost text-[23px] font-medium leading-8 text-primaryText">
+                        className="block font-jost text-[18px] font-medium leading-8 text-primaryText">
                         {item.name}
                       </Link>
                     </li>
