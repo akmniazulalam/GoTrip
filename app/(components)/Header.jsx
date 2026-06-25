@@ -401,14 +401,14 @@ const Header = () => {
                 </ul>
               </div>
             ) : (
-              <ul className="space-y-8 px-6">
+              <ul className="space-y-5 px-6">
                 {mobileMenus.map((item) => (
                   <li key={item.name}>
                     {item.links ? (
                       <button
                         type="button"
                         onClick={() => setMobileSubmenu(item.name)}
-                        className="flex w-full items-center justify-between font-jost text-[24px] font-medium leading-9 text-primaryText">
+                        className="flex w-full items-center justify-between font-jost text-[20px] font-medium leading-9 text-primaryText">
                         {item.name}
                         <FaCaretDown className="-rotate-90 text-[14px]" />
                       </button>
