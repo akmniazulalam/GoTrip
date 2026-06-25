@@ -416,7 +416,7 @@ const Header = () => {
                       <Link
                         href={item.href}
                         onClick={closeMobileMenu}
-                        className="block font-jost text-[24px] font-medium leading-9 text-primaryText">
+                        className="block font-jost text-[20px] font-medium leading-9 text-primaryText">
                         {item.name}
                       </Link>
                     )}
