@@ -814,8 +814,8 @@ export default function Home() {
                 ))}
               </div>
               <div
-                className={`${heroSlideClass} hero-slide-up-search mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%] max-md:mt-3 max-md:w-full max-md:grid-cols-1 max-md:rounded-sm max-md:p-2 max-md:text-left`}>
-                <div className="px-7 py-1.5 w-fit text-left max-md:w-full max-md:px-3 max-md:py-2">
+                className={`${heroSlideClass} hero-slide-up-search mt-10 p-2.5 bg-white rounded-full w-4xl m-auto grid grid-cols-[22%_28%_30%_20%] max-md:mt-7 max-md:w-full max-md:grid-cols-1 max-md:rounded-sm max-md:p-4 max-md:text-left`}>
+                <div className="px-7 py-1.5 w-fit text-left max-md:w-full max-md:px-3 max-md:py-4">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Location ({activeTab})
                   </h4>
@@ -825,7 +825,7 @@ export default function Home() {
                     className="placeholder:text-[#757575] placeholder:font-jost font-jost text-black text-[15px] focus:outline-0"
                   />
                 </div>
-                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-2">
+                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-4">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Check in - Check out
                   </h4>
@@ -833,7 +833,7 @@ export default function Home() {
                     Wed 2 Mar - Fri 11 Apr
                   </span>
                 </div>
-                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-2">
+                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-4">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Guest
                   </h4>
