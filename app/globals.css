@@ -577,46 +577,44 @@ body.mobile-menu-open {
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    font-size: 12px !important;
-    line-height: 1.35 !important;
   }
 
   .mobile-recommend-card p {
     margin-top: 4px;
     overflow: hidden;
-    font-size: 10px;
-    line-height: 1.4;
+    font-size: 14px;
+    line-height: 1.7;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .mobile-recommend-rating {
-    gap: 4px;
+    gap: 10px;
     margin-top: 8px;
     min-width: 0;
   }
 
   .mobile-recommend-score {
     flex: 0 0 auto;
-    height: 18px;
-    width: 18px;
-    font-size: 9px;
+    height: 30px;
+    width: 30px;
+    font-size: 12px;
     line-height: 1;
   }
 
   .mobile-recommend-rating span {
     min-width: 0;
     overflow: hidden;
-    font-size: 9px;
-    line-height: 1.25;
+    font-size: 14px;
+    line-height: 1.6;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .mobile-recommend-price {
     margin-top: 7px;
-    font-size: 10px;
-    line-height: 1.4;
+    font-size: 16px;
+    line-height: 1.8;
   }
 
   .mobile-recommend-controls {
