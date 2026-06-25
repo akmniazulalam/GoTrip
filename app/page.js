@@ -804,7 +804,7 @@ export default function Home() {
                   <button
                     key={item.name}
                     onClick={() => setActiveTab(item.name)}
-                    className={`font-medium font-jost text-[15px] text-white hover:text-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer relative before:absolute before:top-7 before:left-0 before:w-full before:bg-white before:h-0.5 before:content-[''] ${
+                    className={`whitespace-nowrap font-medium font-jost text-[15px] text-white hover:text-hoverText transition-all duration-300 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] cursor-pointer relative before:absolute before:top-7 before:left-0 before:w-full before:bg-white before:h-0.5 before:content-[''] ${
                       activeTab === item.name
                         ? "text-hoverText before:scale-x-100"
                         : "text-white before:scale-x-0"
