@@ -453,7 +453,11 @@ body.mobile-menu-open {
     width: 100%;
   }
 
-  .mobile-recommend .section-slide-up-recommend > .flex > .relative > button.w-35 {
+  .mobile-recommend
+    .section-slide-up-recommend
+    > .flex
+    > .relative
+    > button.w-35 {
     width: 100%;
     height: 46px;
     padding: 0 16px;
@@ -461,18 +465,32 @@ body.mobile-menu-open {
     line-height: 1;
   }
 
-  .mobile-recommend .section-slide-up-recommend > .flex > .relative > button.w-35 svg {
+  .mobile-recommend
+    .section-slide-up-recommend
+    > .flex
+    > .relative
+    > button.w-35
+    svg {
     font-size: 12px;
   }
 
-  .mobile-recommend .section-slide-up-recommend > .flex > .relative > .absolute {
+  .mobile-recommend
+    .section-slide-up-recommend
+    > .flex
+    > .relative
+    > .absolute {
     left: 50%;
     width: 100%;
     min-width: 100%;
     transform: none;
   }
 
-  .mobile-recommend .section-slide-up-recommend > .flex > .relative > .absolute > div {
+  .mobile-recommend
+    .section-slide-up-recommend
+    > .flex
+    > .relative
+    > .absolute
+    > div {
     display: flex;
     flex-direction: column;
   }
@@ -543,7 +561,11 @@ body.mobile-menu-open {
     opacity: 0.75;
   }
 
-  .mobile-recommend .recommend-image-slider .slick-dots li.slick-active button:before {
+  .mobile-recommend
+    .recommend-image-slider
+    .slick-dots
+    li.slick-active
+    button:before {
     opacity: 1;
   }
 
