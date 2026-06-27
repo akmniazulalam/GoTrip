@@ -5,7 +5,6 @@ import Link from "next/link";
 import Flex from "./Flex";
 import Image from "next/image";
 import logo from "../../public/logo.png";
-import logoDark from "../../public/logo-dark.svg";
 import { FaCaretDown } from "react-icons/fa";
 import { FiMenu, FiUser } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
