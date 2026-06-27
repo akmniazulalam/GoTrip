@@ -20,7 +20,9 @@ const Header = () => {
   const [pagesDropdown, setPagesDropdown] = useState(false);
   const [dashboardDropdown, setDashboardDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [animateMenu, setAnimateMenu] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState(null);
+  const [animateSubmenu, setAnimateSubmenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [currency, setCurrency] = useState(false);
   const [language, setLanguage] = useState(false);
@@ -52,6 +54,16 @@ const Header = () => {
       document.body.classList.remove("mobile-menu-open");
     };
   }, [mobileMenuOpen]);
+
+
+  const openMenu = () => { setMobileMenuOpen(true); requestAnimationFrame(() => { setAnimateMenu(true); }); };
+
+  const closeMenu = () => { setAnimateMenu(false); setAnimateSubmenu(false); setTimeout(() => { setMobileMenuOpen(false); setMobileSubmenu(null); }, 750); };
+
+  const openSubmenu = (name) => { setAnimateSubmenu(false); requestAnimationFrame(() => { setMobileSubmenu(name); requestAnimationFrame(() => { setAnimateSubmenu(true); }); }); };
+
+  const closeSubmenu = () => { setAnimateSubmenu(false); setTimeout(() => { setMobileSubmenu(null); }, 650); };
+
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
   };
@@ -334,7 +346,7 @@ const Header = () => {
   return (
     <div className="fixed w-full top-0 left-0 z-50">
       <div
-        className={`transition-all duration-300 md:hidden ${
+        className={`transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
           isMobileHeaderSolid
             ? "bg-primaryText text-white"
             : "bg-transparent text-white"
@@ -362,9 +374,12 @@ const Header = () => {
               aria-label="Open menu"
               aria-expanded={mobileMenuOpen}
               onClick={() => {
-                setMobileMenuOpen((open) => !open);
-                setMobileSubmenu(null);
-              }}
+  if (mobileMenuOpen) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
+}}
               className="flex h-10 w-10 items-center justify-center">
               {mobileMenuOpen ? (
                 <RxCross2 className="text-[26px]" />
@@ -388,7 +403,7 @@ const Header = () => {
                 {/* Back Button */}
                 <button
                   type="button"
-                  onClick={() => setMobileSubmenu(null)}
+                  onClick={closeSubmenu}
                   className="mb-7 flex h-15 w-full items-center gap-4 rounded-sm bg-[#F5F6FE] px-7 text-left font-jost text-xl font-medium text-hoverText">
                   <FaCaretDown className="rotate-90 text-[14px]" />
                   {activeMobileMenu.name}
@@ -402,13 +417,16 @@ const Header = () => {
                         href={item.href}
                         onClick={closeMobileMenu}
                         style={{
-                          transitionDelay: `${index * 80}ms`,
+                          transitionDelay: `${index * 90}ms`,
                         }}
-                        className={`block font-jost text-[18px] font-medium leading-8 text-primaryText transition-all duration-500 ${
-                          activeMobileMenu
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-full opacity-0"
-                        }`}>
+                        className={`block font-jost text-[18px] font-medium leading-8 text-primaryText transition-transform
+duration-800
+ease-[cubic-bezier(0.22,1,0.36,1)]
+will-change-transform ${
+  animateSubmenu
+    ? "translate-y-0"
+    : "translate-y-full"
+}`}>
                         {item.name}
                       </Link>
                     </li>
@@ -422,15 +440,18 @@ const Header = () => {
                     {item.links ? (
                       <button
                         type="button"
-                        onClick={() => setMobileSubmenu(item.name)}
+                        onClick={() => openSubmenu(item.name)}
                         style={{
-                          transitionDelay: `${index * 80}ms`,
+                          transitionDelay: `${index * 90}ms`,
                         }}
-                        className={`flex w-full items-center justify-between font-jost text-[20px] font-medium leading-9 text-primaryText transition-all duration-500 ${
-                          mobileMenuOpen
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-full opacity-0"
-                        }`}>
+                        className={`flex w-full items-center justify-between font-jost text-[20px] font-medium leading-9 text-primaryText transition-transform
+duration-800
+ease-[cubic-bezier(0.22,1,0.36,1)]
+will-change-transform ${
+  animateMenu
+    ? "translate-y-0"
+    : "translate-y-full"
+}`}>
                         {item.name}
                         <FaCaretDown className="-rotate-90 text-[14px]" />
                       </button>
