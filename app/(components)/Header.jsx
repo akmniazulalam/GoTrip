@@ -334,99 +334,132 @@ const Header = () => {
   return (
     <div className="fixed w-full top-0 left-0 z-50">
       <div
-        className={`transition-all duration-300 md:hidden ${
-          isMobileHeaderSolid
-            ? "bg-primaryText text-white"
-            : "bg-transparent text-white"
-        }`}>
-        <div className="flex h-24 items-center justify-between px-6">
-          <Link href={"/"} onClick={closeMobileMenu}>
-            <Image
-              src={isMobileHeaderSolid ? logo : logo}
-              alt="GoTrip"
-              height={42}
-              width={120}
-              loading="eager"
-              className="h-13 w-auto"
-            />
-          </Link>
-          <div className="flex items-center gap-6">
-            <Link href={"/"} aria-label="Account">
-              <FiUser className="text-[26px]" />
-            </Link>
-            <button
-              type="button"
-              aria-label="Open menu"
-              aria-expanded={mobileMenuOpen}
-              onClick={() => {
-                setMobileMenuOpen((open) => !open);
-                setMobileSubmenu(null);
-              }}
-              className="flex h-10 w-10 items-center justify-center">
-              {mobileMenuOpen ? (
-                <RxCross2 className="text-[26px]" />
-              ) : (
-                <FiMenu className="text-[28px]" />
-              )}
-            </button>
-          </div>
-        </div>
-        <div
-          className={`fixed left-0 top-24 h-[calc(100dvh-96px)] w-full overflow-y-auto bg-white transition-all duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] ${
-            mobileMenuOpen
-              ? "translate-x-0 opacity-100"
-              : "translate-x-full opacity-0 pointer-events-none"
-          }`}>
-          <div className="min-h-full border-b border-[#DDDDDD] px-6 pb-6 pt-10">
-            {activeMobileMenu ? (
-              <div>
+  className={`transition-all duration-300 md:hidden ${
+    isMobileHeaderSolid
+      ? "bg-primaryText text-white"
+      : "bg-transparent text-white"
+  }`}>
+  {/* Header */}
+  <div className="flex h-24 items-center justify-between px-6">
+    <Link href={"/"} onClick={closeMobileMenu}>
+      <Image
+        src={logo}
+        alt="GoTrip"
+        height={42}
+        width={120}
+        loading="eager"
+        className="h-13 w-auto"
+      />
+    </Link>
+
+    <div className="flex items-center gap-6">
+      <Link href={"/"} aria-label="Account">
+        <FiUser className="text-[26px]" />
+      </Link>
+
+      <button
+        type="button"
+        aria-label="Open menu"
+        aria-expanded={mobileMenuOpen}
+        onClick={() => {
+          setMobileMenuOpen((open) => !open);
+          setMobileSubmenu(null);
+        }}
+        className="flex h-10 w-10 items-center justify-center">
+        {mobileMenuOpen ? (
+          <RxCross2 className="text-[26px]" />
+        ) : (
+          <FiMenu className="text-[28px]" />
+        )}
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile Menu */}
+  <div
+    className={`fixed left-0 top-24 h-[calc(100dvh-96px)] w-full overflow-y-auto bg-white transition-all duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] ${
+      mobileMenuOpen
+        ? "translate-x-0 opacity-100"
+        : "translate-x-full opacity-0 pointer-events-none"
+    }`}>
+    <div className="min-h-full border-b border-[#DDDDDD] px-6 pb-6 pt-10">
+      {activeMobileMenu ? (
+        <>
+          {/* Back Button */}
+          <button
+            type="button"
+            onClick={() => setMobileSubmenu(null)}
+            className="mb-7 flex h-15 w-full items-center gap-4 rounded-sm bg-[#F5F6FE] px-7 text-left font-jost text-xl font-medium text-hoverText">
+            <FaCaretDown className="rotate-90 text-[14px]" />
+            {activeMobileMenu.name}
+          </button>
+
+          {/* Submenu */}
+          <ul className="space-y-2 px-6">
+            {activeMobileMenu.links.map((item, index) => (
+              <li
+                key={item.name}
+                className="overflow-hidden">
+                <Link
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  style={{
+                    transitionDelay: `${index * 80}ms`,
+                  }}
+                  className={`block font-jost text-[18px] font-medium leading-8 text-primaryText transition-all duration-500 ${
+                    activeMobileMenu
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-full opacity-0"
+                  }`}>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <ul className="space-y-4 px-6">
+          {mobileMenus.map((item, index) => (
+            <li
+              key={item.name}
+              className="overflow-hidden">
+              {item.links ? (
                 <button
                   type="button"
-                  onClick={() => setMobileSubmenu(null)}
-                  className="mb-7 flex h-15 w-full items-center gap-4 rounded-sm bg-[#F5F6FE] px-7 text-left font-jost text-xl font-medium text-hoverText">
-                  <FaCaretDown className="rotate-90 text-[14px]" />
-                  {activeMobileMenu.name}
+                  onClick={() => setMobileSubmenu(item.name)}
+                  style={{
+                    transitionDelay: `${index * 80}ms`,
+                  }}
+                  className={`flex w-full items-center justify-between font-jost text-[20px] font-medium leading-9 text-primaryText transition-all duration-500 ${
+                    mobileMenuOpen
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-full opacity-0"
+                  }`}>
+                  {item.name}
+                  <FaCaretDown className="-rotate-90 text-[14px]" />
                 </button>
-                <ul className="space-y-2 px-6">
-                  {activeMobileMenu.links.map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        href={item.href}
-                        onClick={closeMobileMenu}
-                        className="block font-jost text-[18px] font-medium leading-8 text-primaryText">
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <ul className="space-y-4 px-6">
-                {mobileMenus.map((item) => (
-                  <li key={item.name}>
-                    {item.links ? (
-                      <button
-                        type="button"
-                        onClick={() => setMobileSubmenu(item.name)}
-                        className="flex w-full items-center justify-between font-jost text-[20px] font-medium leading-9 text-primaryText">
-                        {item.name}
-                        <FaCaretDown className="-rotate-90 text-[14px]" />
-                      </button>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onClick={closeMobileMenu}
-                        className="block font-jost text-[20px] font-medium leading-9 text-primaryText">
-                        {item.name}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
+              ) : (
+                <Link
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  style={{
+                    transitionDelay: `${index * 80}ms`,
+                  }}
+                  className={`block font-jost text-[20px] font-medium leading-9 text-primaryText transition-all duration-500 ${
+                    mobileMenuOpen
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-full opacity-0"
+                  }`}>
+                  {item.name}
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+</div>
 
       <div
         className={`hidden transition-all duration-300 ease-in-out md:block ${isScrolled ? "bg-primaryText" : "bg-transparent"}`}>
