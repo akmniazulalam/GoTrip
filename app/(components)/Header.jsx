@@ -55,14 +55,38 @@ const Header = () => {
     };
   }, [mobileMenuOpen]);
 
+  const openMenu = () => {
+    setMobileMenuOpen(true);
+    requestAnimationFrame(() => {
+      setAnimateMenu(true);
+    });
+  };
 
-  const openMenu = () => { setMobileMenuOpen(true); requestAnimationFrame(() => { setAnimateMenu(true); }); };
+  const closeMenu = () => {
+    setAnimateMenu(false);
+    setAnimateSubmenu(false);
+    setTimeout(() => {
+      setMobileMenuOpen(false);
+      setMobileSubmenu(null);
+    }, 750);
+  };
 
-  const closeMenu = () => { setAnimateMenu(false); setAnimateSubmenu(false); setTimeout(() => { setMobileMenuOpen(false); setMobileSubmenu(null); }, 750); };
+  const openSubmenu = (name) => {
+    setAnimateSubmenu(false);
+    requestAnimationFrame(() => {
+      setMobileSubmenu(name);
+      requestAnimationFrame(() => {
+        setAnimateSubmenu(true);
+      });
+    });
+  };
 
-  const openSubmenu = (name) => { setAnimateSubmenu(false); requestAnimationFrame(() => { setMobileSubmenu(name); requestAnimationFrame(() => { setAnimateSubmenu(true); }); }); };
-
-  const closeSubmenu = () => { setAnimateSubmenu(false); setTimeout(() => { setMobileSubmenu(null); }, 650); };
+  const closeSubmenu = () => {
+    setAnimateSubmenu(false);
+    setTimeout(() => {
+      setMobileSubmenu(null);
+    }, 650);
+  };
 
   const handleHome = () => {
     setHomeDropdown(!homeDropdown);
@@ -374,12 +398,12 @@ const Header = () => {
               aria-label="Open menu"
               aria-expanded={mobileMenuOpen}
               onClick={() => {
-  if (mobileMenuOpen) {
-    closeMenu();
-  } else {
-    openMenu();
-  }
-}}
+                if (mobileMenuOpen) {
+                  closeMenu();
+                } else {
+                  openMenu();
+                }
+              }}
               className="flex h-10 w-10 items-center justify-center">
               {mobileMenuOpen ? (
                 <RxCross2 className="text-[26px]" />
@@ -423,10 +447,8 @@ const Header = () => {
 duration-800
 ease-[cubic-bezier(0.22,1,0.36,1)]
 will-change-transform ${
-  animateSubmenu
-    ? "translate-y-0"
-    : "translate-y-full"
-}`}>
+                          animateSubmenu ? "translate-y-0" : "translate-y-full"
+                        }`}>
                         {item.name}
                       </Link>
                     </li>
@@ -447,11 +469,7 @@ will-change-transform ${
                         className={`flex w-full items-center justify-between font-jost text-[20px] font-medium leading-9 text-primaryText transition-transform
 duration-800
 ease-[cubic-bezier(0.22,1,0.36,1)]
-will-change-transform ${
-  animateMenu
-    ? "translate-y-0"
-    : "translate-y-full"
-}`}>
+will-change-transform ${animateMenu ? "translate-y-0" : "translate-y-full"}`}>
                         {item.name}
                         <FaCaretDown className="-rotate-90 text-[14px]" />
                       </button>
