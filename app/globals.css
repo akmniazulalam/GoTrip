@@ -572,10 +572,10 @@ body.mobile-menu-open {
   .mobile-recommend-label {
     width: max-content;
     max-width: none;
-    padding: 5px 9px;
+    padding: 5px 15px;
     overflow: visible;
-    font-size: 8px;
-    line-height: 1;
+    font-size: 12px;
+    line-height: 1.6;
     text-overflow: clip;
     white-space: nowrap;
   }
