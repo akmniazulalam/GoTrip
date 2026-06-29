@@ -158,7 +158,7 @@ const Footer = () => {
               <h3 className="mb-7.5 text-base font-medium font-jost text-black">
                 Mobile
               </h3>
-              <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 w-fit">
+              <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 w-fit cursor-pointer">
                 <FaApple className="text-primaryText text-3xl" />
                 <div className="">
                   <p className="text-sm text-pText font-jost ">
