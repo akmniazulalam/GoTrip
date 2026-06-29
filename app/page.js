@@ -833,7 +833,7 @@ export default function Home() {
                     Wed 2 Mar - Fri 11 Apr
                   </span>
                 </div>
-                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-4">
+                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-4 flex flex-col justify-center">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Guest
                   </h4>
