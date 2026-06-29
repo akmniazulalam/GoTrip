@@ -169,7 +169,7 @@ const Footer = () => {
                   </p>
                 </div>
               </div>
-              <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 ">
+              <div className="border border-[#DDDDDD] rounded-sm flex items-center gap-x-4 py-3 px-5 mb-5 cursor-pointer">
                 <FaGooglePlay className="text-primaryText text-2xl" />
                 <div className="">
                   <p className="text-sm text-pText font-jost ">Get in on</p>
