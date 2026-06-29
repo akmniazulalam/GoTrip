@@ -666,7 +666,7 @@ export default function Home() {
               height={300}
               className="mobile-recommend-image recommend-image rounded-sm object-cover"
             />
-            <div className="absolute top-2 left-0">
+            <div className="absolute top-5 left-0">
               <div
                 className={`mobile-recommend-label rounded-tr-sm rounded-br-sm uppercase font-jost font-medium ${item.labelClass}`}>
                 {item.label}
