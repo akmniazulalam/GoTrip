@@ -674,7 +674,7 @@ export default function Home() {
             </div>
           </>
         )}
-        <div className="absolute top-5 right-2 flex rounded-full bg-white mobile-recommend-heart items-center justify-center">
+        <div className="absolute top-5 right-4.5 flex rounded-full bg-white mobile-recommend-heart items-center justify-center">
           <IoMdHeartEmpty className="text-primaryText" />
         </div>
       </div>
