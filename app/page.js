@@ -825,7 +825,7 @@ export default function Home() {
                     className="placeholder:text-[#757575] placeholder:font-jost font-jost text-black text-[15px] focus:outline-0"
                   />
                 </div>
-                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-4">
+                <div className="px-7 py-1.5 w-fit text-left border-l border-[#DDDDDD] max-md:w-full max-md:border-l-0 max-md:border-t max-md:px-3 max-md:py-4 flex flex-col justify-center">
                   <h4 className="text-[15px] font-jost font-medium text-black">
                     Check in - Check out
                   </h4>
