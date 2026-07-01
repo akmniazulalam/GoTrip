@@ -349,8 +349,9 @@ body.mobile-menu-open {
     overflow-x: hidden;
   }
 
-  .hover\:bg-hoverText:active {
+  .hover\:bg-hoverText:hover {
     background-color: #3554d1;
+
   }
 
   .hover\:bg-primaryText:active {
@@ -361,7 +362,7 @@ body.mobile-menu-open {
     color: #3554d1;
   }
 
-  .hover\:text-white:active {
+  .hover\:text-white:hover {
     color: #ffffff;
   }
 
