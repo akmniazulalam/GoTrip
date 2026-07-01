@@ -360,15 +360,21 @@ export default function Home() {
       return;
     }
 
+    const isMobileBlogGrid = window.matchMedia("(max-width: 767px)").matches;
+    const blogGridVisibilityThreshold = isMobileBlogGrid ? 0.2 : 0.5;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        if (
+          entry.isIntersecting &&
+          entry.intersectionRatio >= blogGridVisibilityThreshold
+        ) {
           setIsBlogGridVisible(true);
           observer.unobserve(entry.target);
         }
       },
       {
-        threshold: 0.5,
+        threshold: blogGridVisibilityThreshold,
       },
     );
 
