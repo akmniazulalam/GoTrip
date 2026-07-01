@@ -349,6 +349,107 @@ body.mobile-menu-open {
     overflow-x: hidden;
   }
 
+  .hover\:bg-hoverText:active {
+    background-color: #3554d1;
+  }
+
+  .hover\:bg-primaryText:active {
+    background-color: #051036;
+  }
+
+  .hover\:text-hoverText:active {
+    color: #3554d1;
+  }
+
+  .hover\:text-white:active {
+    color: #ffffff;
+  }
+
+  .hover\:text-\[\#0a58ca\]:active {
+    color: #0a58ca;
+  }
+
+  .hover\:text-\[\#7E53F9\]:active {
+    color: #7e53f9;
+  }
+
+  .hover\:translate-x-1\.5:active {
+    transform: translateX(calc(var(--spacing) * 1.5));
+  }
+
+  .hover\:-translate-x-1\.5:active {
+    transform: translateX(calc(var(--spacing) * -1.5));
+  }
+
+  .hover\:scale-125:active {
+    transform: scale(1.25);
+  }
+
+  .group:active .group-hover\:opacity-100,
+  .group:focus-within .group-hover\:opacity-100 {
+    opacity: 1;
+  }
+
+  .group:active .group-hover\:translate-y-0,
+  .group:focus-within .group-hover\:translate-y-0 {
+    transform: translateY(0);
+  }
+
+  .group:active .group-hover\:scale-110,
+  .group:focus-within .group-hover\:scale-110 {
+    transform: scale(1.1);
+  }
+
+  .group:active .group-hover\:text-hoverText,
+  .group:focus-within .group-hover\:text-hoverText {
+    color: #3554d1;
+  }
+
+  .group:active .group-hover\:bg-size-\[100\%_100\%\],
+  .group:focus-within .group-hover\:bg-size-\[100\%_100\%\] {
+    background-size: 100% 100%;
+  }
+
+  .group\/wish:active,
+  .group\/wish:focus-within {
+    background-color: #3554d1;
+  }
+
+  .group\/wish:active .group-hover\/wish\:text-white,
+  .group\/wish:focus-within .group-hover\/wish\:text-white {
+    color: #ffffff;
+  }
+
+  .group:active .recommend-image,
+  .group:focus-within .recommend-image {
+    transform: scale(1.1) translate3d(0, 0, 0);
+    transition-delay: 0s;
+  }
+
+  .group:active .recommend-image-slider .recommend-image-arrow,
+  .group:focus-within .recommend-image-slider .recommend-image-arrow {
+    opacity: 1;
+  }
+
+  .group:active .recommend-image-slider .slick-dots li button:before,
+  .group:focus-within .recommend-image-slider .slick-dots li button:before {
+    opacity: 0.7;
+  }
+
+  .group:active
+    .recommend-image-slider
+    .slick-dots
+    li.slick-active
+    button:before,
+  .group:focus-within
+    .recommend-image-slider
+    .slick-dots
+    li.slick-active
+    button:before {
+    color: #ffffff !important;
+    opacity: 1;
+  }
+
   .max-w-330,
   .max-w-368 {
     max-width: 100%;
