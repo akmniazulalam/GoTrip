@@ -566,11 +566,31 @@ export default function Home() {
   };
 
   const destinationCards = [
-    { name: "New York", src: NewYork, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
-    { name: "London", src: London, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
-    { name: "Barcelona", src: Barcelona, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
-    { name: "Sydney", src: Sydney, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
-    { name: "Rome", src: Rome, details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity" },
+    {
+      name: "New York",
+      src: NewYork,
+      details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
+    },
+    {
+      name: "London",
+      src: London,
+      details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
+    },
+    {
+      name: "Barcelona",
+      src: Barcelona,
+      details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
+    },
+    {
+      name: "Sydney",
+      src: Sydney,
+      details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
+    },
+    {
+      name: "Rome",
+      src: Rome,
+      details: "14 Hotel - 22 Cars - 18 Tours - 95 Activity",
+    },
   ];
 
   const mobileDestinationSettings = {
@@ -611,9 +631,7 @@ export default function Home() {
           </div>
           <div className="transition-all duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)] translate-y-20 group-hover:translate-y-0">
             <h4
-              className={
-                "text-[26px] text-white font-jost font-semibold mb-5"
-              }>
+              className={"text-[26px] text-white font-jost font-semibold mb-5"}>
               {item.name}
             </h4>
             <button className="h-15 w-65 flex justify-center items-center rounded-sm text-[15px] font-jost font-medium text-primaryText bg-white cursor-pointer hover:bg-hoverText hover:text-white transition-all duration-300 ease-in-out">
@@ -872,7 +890,10 @@ export default function Home() {
           </Flex>
           <div
             className={`${destinationRevealClass} section-slide-up-slider destination-slider`}>
-            <Slider ref={destinationSliderRef} className="destination-main-slider md:block! hidden" {...destinationSliderSettings}>
+            <Slider
+              ref={destinationSliderRef}
+              className="destination-main-slider md:block! hidden"
+              {...destinationSliderSettings}>
               <div
                 className={`focus:outline-0 w-fit! destination-slide ${currentDestinationSlide > 0 ? "destination-slide-before" : ""}`}>
                 <Link href={"/"} className="relative rounded-sm">
