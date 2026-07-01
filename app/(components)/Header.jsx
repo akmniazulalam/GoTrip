@@ -9,6 +9,7 @@ import { FaCaretDown } from "react-icons/fa";
 import { FiMenu, FiUser } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import England from "../../public/lang.webp";
+import { FaBarsStaggered } from "react-icons/fa6";
 
 const Header = () => {
   const [homeDropdown, setHomeDropdown] = useState(false);
@@ -407,7 +408,7 @@ const Header = () => {
               {mobileMenuOpen ? (
                 <RxCross2 className="text-[26px]" />
               ) : (
-                <FiMenu className="text-[28px]" />
+                <FaBarsStaggered className="text-[28px]" />
               )}
             </button>
           </div>
