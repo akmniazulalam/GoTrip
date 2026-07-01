@@ -477,13 +477,12 @@ will-change-transform ${animateMenu ? "translate-y-0" : "translate-y-full"}`}>
                         href={item.href}
                         onClick={closeMobileMenu}
                         style={{
-                          transitionDelay: `${index * 80}ms`,
+                          transitionDelay: `${index * 90}ms`,
                         }}
-                        className={`block font-jost text-[20px] font-medium leading-9 text-primaryText transition-all duration-500 ${
-                          mobileMenuOpen
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-full opacity-0"
-                        }`}>
+                        className={`block font-jost text-[20px] font-medium leading-9 text-primaryText transition-transform
+duration-800
+ease-[cubic-bezier(0.22,1,0.36,1)]
+will-change-transform ${animateMenu ? "translate-y-0" : "translate-y-full"}`}>
                         {item.name}
                       </Link>
                     )}
