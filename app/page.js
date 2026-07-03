@@ -107,6 +107,8 @@ export default function Home() {
   }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [recommend, setRecommend] = useState("Hotel");
+  const [computedMaxRecommendSlide, setComputedMaxRecommendSlide] =
+    useState(4);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentDestinationSlide, setCurrentDestinationSlide] = useState(0);
   const [currentMobileRecommendSlide, setCurrentMobileRecommendSlide] =
@@ -430,6 +432,55 @@ export default function Home() {
     };
   }, []);
 
+  // Tablet breakpoint (900–1024 px): slick shows 3 slides, so the last
+  // reachable starting index is 8 – 3 = 5.  Desktop keeps 4.
+  // Below 900 px the arrows / dots are CSS-hidden so the value is irrelevant.
+  useEffect(() => {
+    const updateMaxSlide = () => {
+      const w = window.innerWidth;
+      setComputedMaxRecommendSlide(w >= 900 && w < 1025 ? 5 : 4);
+    };
+
+    updateMaxSlide();
+    window.addEventListener("resize", updateMaxSlide);
+
+    return () => {
+      window.removeEventListener("resize", updateMaxSlide);
+    };
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(min-width: 768px) and (max-width: 899px)",
+    );
+
+    const refreshTabletSliders = () => {
+      if (!mediaQuery.matches) {
+        return;
+      }
+
+      window.setTimeout(() => {
+        [
+          mobileDestinationSliderRef,
+          mobileRecommendSliderRef,
+          destinationSliderRef,
+          recommendSliderRef,
+        ].forEach((ref) => {
+          ref.current?.innerSlider?.onWindowResized?.();
+        });
+      }, 100);
+    };
+
+    refreshTabletSliders();
+    mediaQuery.addEventListener("change", refreshTabletSliders);
+    window.addEventListener("resize", refreshTabletSliders);
+
+    return () => {
+      mediaQuery.removeEventListener("change", refreshTabletSliders);
+      window.removeEventListener("resize", refreshTabletSliders);
+    };
+  }, []);
+
   var settings = {
     dots: false,
     arrows: false,
@@ -453,12 +504,14 @@ export default function Home() {
     speed: 500,
     slidesToShow: 3.8823529412,
     slidesToScroll: 1,
-    nextArrow: <RecommendNext maxSlide={maxRecommendSlide} />,
+    nextArrow: <RecommendNext maxSlide={computedMaxRecommendSlide} />,
     prevArrow: <RecommendPrev />,
-    appendDots: (dots) => <ul>{dots.slice(0, maxRecommendSlide + 1)}</ul>,
+    appendDots: (dots) => (
+      <ul>{dots.slice(0, computedMaxRecommendSlide + 1)}</ul>
+    ),
     afterChange: (current) => {
-      if (current > maxRecommendSlide) {
-        recommendSliderRef.current?.slickGoTo(maxRecommendSlide);
+      if (current > computedMaxRecommendSlide) {
+        recommendSliderRef.current?.slickGoTo(computedMaxRecommendSlide);
       }
     },
     responsive: [

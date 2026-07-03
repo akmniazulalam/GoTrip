@@ -411,6 +411,10 @@ body.mobile-menu-open {
     min-height: 56px;
     justify-content: center;
     border-radius: 4px;
+    /* The button sits in column 2 of row 2 in the 2×2 search grid.
+       Add matching dividers so all four cells share consistent borders. */
+    border-top: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
   }
 
   .mobile-destinations {
@@ -639,8 +643,10 @@ body.mobile-menu-open {
   }
 
   .footer-main .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 36px 28px;
+    /* Show all 4 visible footer columns in a single balanced row.
+       The 5th column (Mobile / app badges) is still hidden below. */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
   }
 
   .footer-main .grid > div:last-child {
@@ -650,6 +656,57 @@ body.mobile-menu-open {
   .footer-main .flex.py-5 {
     align-items: flex-start;
     gap: 24px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .mobile-destinations .destination-main-slider .slick-list,
+  .mobile-recommend .recommend-main-slider > .slick-list {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  .mobile-destinations .destination-main-slider .slick-list {
+    min-height: 400px;
+  }
+
+  .mobile-recommend .recommend-main-slider > .slick-list {
+    min-height: 438px;
+  }
+
+  .mobile-destinations .destination-main-slider .slick-list::-webkit-scrollbar,
+  .mobile-recommend .recommend-main-slider > .slick-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-destinations .destination-main-slider .slick-track,
+  .mobile-recommend .recommend-main-slider .slick-track {
+    display: flex !important;
+    gap: 22px;
+    width: max-content !important;
+    transform: none !important;
+  }
+
+  .mobile-destinations .destination-main-slider .slick-slide,
+  .mobile-recommend .recommend-main-slider .slick-slide {
+    flex: 0 0 300px;
+    width: 300px !important;
+  }
+
+  .mobile-destinations .destination-main-slider .slick-slide > div,
+  .mobile-recommend .recommend-main-slider .slick-slide > div {
+    padding-right: 0;
+  }
+
+  .mobile-destinations .destination-main-slider .slick-arrow,
+  .mobile-recommend .recommend-main-slider .slick-arrow,
+  .mobile-recommend .recommend-main-slider .slick-dots {
+    display: none !important;
+  }
+
+  .mobile-destinations .destination-slider {
+    padding-bottom: 4px;
   }
 }
 
