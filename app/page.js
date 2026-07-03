@@ -1730,7 +1730,9 @@ export default function Home() {
               aria-label="Previous recommendation"
               onClick={() => mobileRecommendSliderRef.current?.slickPrev()}
               className="mobile-recommend-control-button">
-              <LiaArrowLeftSolid />
+              <LiaArrowLeftSolid
+                className="transition-all duration-300 ease-[cubic-bezier(0.215,0.61,0.355,1)] hover:text-[#7E53F9] hover:-translate-x-1.5 hover:scale-125"
+              />
             </button>
             <div className="mobile-recommend-control-dots">
               {mobileRecommendCards.map((item, index) => (
@@ -1752,7 +1754,9 @@ export default function Home() {
               aria-label="Next recommendation"
               onClick={() => mobileRecommendSliderRef.current?.slickNext()}
               className="mobile-recommend-control-button">
-              <LiaArrowRightSolid />
+              <LiaArrowRightSolid
+                className="transition-all duration-300 ease-[cubic-bezier(0.215,0.61,0.355,1)] hover:text-[#7E53F9] hover:translate-x-1.5 hover:scale-125"
+              />
             </button>
           </div>
         </Container>
