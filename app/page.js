@@ -107,8 +107,7 @@ export default function Home() {
   }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [recommend, setRecommend] = useState("Hotel");
-  const [computedMaxRecommendSlide, setComputedMaxRecommendSlide] =
-    useState(4);
+  const [computedMaxRecommendSlide, setComputedMaxRecommendSlide] = useState(4);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentDestinationSlide, setCurrentDestinationSlide] = useState(0);
   const [currentMobileRecommendSlide, setCurrentMobileRecommendSlide] =
