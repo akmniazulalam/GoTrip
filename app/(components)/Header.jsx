@@ -370,7 +370,7 @@ const Header = () => {
   return (
     <div className="fixed w-full top-0 left-0 z-50">
       <div
-        className={`transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
+        className={`site-mobile-header transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
           isMobileHeaderSolid
             ? "bg-primaryText text-white"
             : "bg-transparent text-white"
@@ -496,7 +496,7 @@ will-change-transform ${animateMenu ? "translate-y-0" : "translate-y-full"}`}>
       </div>
 
       <div
-        className={`hidden transition-all duration-300 ease-in-out md:block ${isScrolled ? "bg-primaryText" : "bg-transparent"}`}>
+        className={`hidden transition-all duration-300 ease-in-out md:block site-desktop-header ${isScrolled ? "bg-primaryText" : "bg-transparent"}`}>
         <Container className={"max-w-368"}>
           <Flex className={""}>
             <Flex className={"gap-7"}>

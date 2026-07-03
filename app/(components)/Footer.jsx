@@ -18,7 +18,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <>
-      <section className="py-15 bg-[#0D2857] max-md:py-8">
+      <section className="footer-newsletter py-15 bg-[#0D2857] max-md:py-8">
         <Container>
           <div className="flex justify-between items-center max-md:block">
             <Flex className={"gap-6 max-md:justify-start max-md:gap-4"}>
@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
         </Container>
       </section>
-      <section className="">
+      <section className="footer-main">
         <Container>
           <div className="grid grid-cols-5 py-15 max-md:grid-cols-1 max-md:gap-y-8 max-md:py-8">
             <div className="">
