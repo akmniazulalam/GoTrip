@@ -43,7 +43,9 @@ const SplashLoader = () => {
           </svg>
         </div>
       </div>
-      <div className="text-[47px] font-jost text-primaryText font-semibold leading-17 mt-4">GoTrip</div>
+      <div className="text-[47px] font-jost text-primaryText font-semibold leading-17 mt-4">
+        GoTrip
+      </div>
     </div>
   );
 };
