@@ -390,7 +390,7 @@ const Header = () => {
 
           <div className="flex items-center gap-6">
             <Link href={"/"} aria-label="Account">
-              <FiUser className="text-[26px]" />
+              <FiUser className="text-[28px]" />
             </Link>
 
             <button
