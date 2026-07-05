@@ -7,7 +7,7 @@ const SplashLoader = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(true);
+      setLoading(false);
     }, 1800);
 
     return () => clearTimeout(timer);
@@ -16,7 +16,7 @@ const SplashLoader = () => {
   if (!loading) return null;
 
   return (
-    <div className="fixed inset-0 z-9999 flex items-center justify-center flex-col bg-white transition-opacity duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
+    <div className="fixed inset-0 z-9999 flex items-center justify-center flex-col bg-white transition-all duration-600 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
       <div className="overflow-hidden relative flex justify-center items-center h-18 w-18 rounded-[30px] bg-white shadow-[0px_2px_24px_0px_#00000014] animate-preloader">
         <div className="absolute animate-preloadericon">
           <svg
@@ -43,6 +43,7 @@ const SplashLoader = () => {
           </svg>
         </div>
       </div>
+      <div className="text-[47px] font-jost text-primaryText font-semibold leading-17 mt-4">GoTrip</div>
     </div>
   );
 };
