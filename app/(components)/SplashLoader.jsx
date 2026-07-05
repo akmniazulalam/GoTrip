@@ -16,7 +16,7 @@ const SplashLoader = () => {
   if (!loading) return null;
 
   return (
-    <div className="fixed inset-0 z-9999 flex items-center justify-center bg-white">
+    <div className="fixed inset-0 z-9999 flex items-center justify-center flex-col bg-white transition-opacity duration-500 ease-[cubic-bezier(0.165, 0.84, 0.44, 1)]">
       <img src="/logo.svg" alt="Logo" className="w-28 animate-pulse" />
     </div>
   );
