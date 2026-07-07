@@ -8,7 +8,7 @@ const SplashLoader = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1600);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
