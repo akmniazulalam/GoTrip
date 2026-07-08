@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 const jost = Jost({
   variable: "--font-jost",
   subsets: ["latin"],
-})
+});
 
 export const metadata = {
   title: "GoTrip",
@@ -28,14 +28,13 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${jost.variable} h-full antialiased`}
-    >
+      className={`${geistSans.variable} ${geistMono.variable} ${jost.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col" cz-shortcut-listen="true">
-        <SplashLoader/>
-        <Header/>
+        <SplashLoader />
+        <Header />
         {children}
-        <Footer/>
-        </body>
+        <Footer />
+      </body>
     </html>
   );
 }
