@@ -1,4 +1,5 @@
 "use client";
+import { React, useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,7 +8,6 @@ import { RxArrowTopRight } from "react-icons/rx";
 import Container from "./(components)/Container";
 import { FiSearch } from "react-icons/fi";
 import Flex from "./(components)/Flex";
-import { React, useEffect, useRef, useState } from "react";
 import featureOne from "../public/1.svg";
 import featureTwo from "../public/2.svg";
 import featureThree from "../public/3.svg";
