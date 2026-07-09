@@ -24,14 +24,14 @@ import HotelOne from "../public/hotelOne.webp";
 import HotelTwo from "../public/hotelTwo.webp";
 import HotelThree from "../public/hotelThree.webp";
 import HotelFour from "../public/hotelFour.webp";
-import { FaCaretDown, FaCaretUp, FaStar } from "react-icons/fa";
-import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
 import Link from "next/link";
 import NextArrow from "./(components)/NextArrow";
 import PrevArrow from "./(components)/PrevArrow";
 import RecommendNext from "./(components)/RecommendNext";
 import RecommendPrev from "./(components)/RecommendPrev";
 import { IoMdHeartEmpty } from "react-icons/io";
+import { FaCaretDown, FaCaretUp, FaStar } from "react-icons/fa";
+import { LiaArrowLeftSolid, LiaArrowRightSolid } from "react-icons/lia";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Hotel");
