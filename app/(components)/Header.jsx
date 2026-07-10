@@ -5,10 +5,10 @@ import Link from "next/link";
 import Flex from "./Flex";
 import Image from "next/image";
 import logo from "../../public/logo.png";
+import England from "../../public/lang.webp";
 import { FaCaretDown } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
-import England from "../../public/lang.webp";
 import { FaBarsStaggered } from "react-icons/fa6";
 
 const Header = () => {
