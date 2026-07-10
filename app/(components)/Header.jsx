@@ -406,7 +406,7 @@ const Header = () => {
               }}
               className="flex h-10 w-10 items-center justify-center">
               {mobileMenuOpen ? (
-                <RxCross2 className="text-[26px]" />
+                <RxCross2 className="text-[28px]" />
               ) : (
                 <FaBarsStaggered className="text-[28px]" />
               )}
