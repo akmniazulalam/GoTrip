@@ -2,6 +2,8 @@ import React from "react";
 import Container from "./Container";
 import Flex from "./Flex";
 import newsletter from "../../public/newsletter 1.svg";
+import Image from "next/image";
+import Link from "next/link";
 import { TfiWorld } from "react-icons/tfi";
 import { LiaDollarSignSolid } from "react-icons/lia";
 import {
@@ -12,8 +14,6 @@ import {
   FaApple,
   FaGooglePlay,
 } from "react-icons/fa";
-import Image from "next/image";
-import Link from "next/link";
 
 const Footer = () => {
   return (
